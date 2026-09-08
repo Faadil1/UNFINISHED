@@ -1,6 +1,8 @@
 # UNFINISHED — Playable Co-Authorship Kill Test
 
-Status: **PROTOTYPE / KILL TEST**, not yet PDPB/PRD.
+Status: **PROTOTYPE / KILL TEST LIVE**, not yet PDPB/PRD.
+
+Live mobile prototype: https://unfinished-kill-test.vercel.app
 
 Core hypothesis: a previous real person's unfinished spatial decision can materially shape the current player's play, and the current player can leave an unfinished decision for the next person.
 
