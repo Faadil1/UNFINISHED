@@ -3,7 +3,7 @@
 Date: 2026-09-08
 
 ## Status
-**PROTOTYPE_KILL_TEST_LIVE**
+**PROTOTYPE_KILL_TEST_V2_LIVE**
 
 ## Current candidate
 **UNFINISHED — Playable Co-Authorship**
@@ -16,16 +16,30 @@ Core loop: **INHERIT → COMPLETE → PLAY → START → LEAVE**
 https://unfinished-kill-test.vercel.app
 
 Vercel project: `unfinished-kill-test`
-Production deployment: `dpl_2eHEnUiiUKynCggPa6joMW4SA2xh`
+Production deployment: `dpl_4rNESHw7cEwcgybfFvTcY12VJhfw`
+Version: `Cold Test V2`
+
+## Pilot result
+V1 self-runs: `PILOT_TECH_PASS / USER_GATE_NOT_YET_VALIDATED`.
+They are QA evidence only and do not count as independent cold testers.
+
+V2 corrections:
+- no thesis/slogan priming before start;
+- deterministic `mode` + `prior` query parameters;
+- route use can be skipped, so playfulness is no longer forced;
+- verbatim tester explanation captured;
+- separate prior contribution and self contribution captured;
+- Origin / Social / Fun ratings captured.
 
 ## Active gate
-Run 5–10 cold mobile tests against the 2×2 prototype.
+Run the controlled 5-person mobile test matrix in `TEST-PROTOCOL.md` and Issue #1.
 
 Required evidence:
 - Recognition
 - Counterfactual Authorship
 - Human Necessity
 - Playfulness
+- Independent comprehension
 
 ## Decision rule
 - PASS → mandatory **PDPB Builder**
