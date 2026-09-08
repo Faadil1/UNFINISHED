@@ -3,7 +3,7 @@
 Date: 2026-09-08
 
 ## Status
-**PROTOTYPE_KILL_TEST_READY**
+**PROTOTYPE_KILL_TEST_LIVE**
 
 ## Current candidate
 **UNFINISHED — Playable Co-Authorship**
@@ -11,6 +11,12 @@ Date: 2026-09-08
 Rule: **NO ONE FINISHES WHAT THEY START.**
 
 Core loop: **INHERIT → COMPLETE → PLAY → START → LEAVE**
+
+## Live kill-test URL
+https://unfinished-kill-test.vercel.app
+
+Vercel project: `unfinished-kill-test`
+Production deployment: `dpl_2eHEnUiiUKynCggPa6joMW4SA2xh`
 
 ## Active gate
 Run 5–10 cold mobile tests against the 2×2 prototype.
