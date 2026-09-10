@@ -1,51 +1,70 @@
-# PDPB BUILDER GATE
+# PDPB BUILDER GATE — V5
 
-PDPB Builder is mandatory but **not yet authorized**.
+PDPB Builder remains mandatory and **is not yet authorized**.
 
-Authorization condition: the active **V4 causal-authorship Prototype/Kill Test must PASS**.
+Authorization condition: the active V5 Prototype / Kill Test must PASS.
 
 ## Required PASS evidence
+1. **Recognition** — inherited geometry is legible before explanatory copy does the work.
+2. **Counterfactual Authorship** — same next-player action + changed prior anchor/vector/reach produces materially different playable geometry.
+3. **Human Necessity** — HUMAN meaning outperforms matched WORLD meaning when geometry/engine state are identical.
+4. **Playfulness** — testers voluntarily use the route and do not treat the experience as a configurator.
+5. **Independent comprehension** — tester separates prior contribution, own contribution, and successor consequence.
+6. **Constraint strength** — median constraint score >=4/5.
+7. **Successor consequence** — the tester understands that solving the current problem creates the next player's problem.
 
-1. **Recognition** — inherited geometry is legible without explanatory text doing the work.
-2. **Counterfactual Authorship** — changing the previous person's spatial decision materially changes the current route for the same completion action.
-3. **Human Necessity** — matched HUMAN attribution/causality produces meaning that WORLD/system attribution does not.
-4. **Playfulness** — testers voluntarily use the resulting topology rather than treating the experience as a configurator.
-5. **Independent comprehension** — testers can separately state what the prior person changed and what they changed.
-6. **Constraint strength** — inherited `anchor + vector` materially influences current choice/play.
-7. **Causal source proof** — a HUMAN test state must originate from a real prior contributor using V4 author mode, not a hard-coded `MAYA` label.
+## V5 validated primitive to hand into PDPB after PASS
 
-## Mandatory PDPB inputs after PASS
+`prior human spatial authorship → inherited physical grammar → player completion → playable consequence → successor pressure → next authored state`
 
-- validated problem statement;
-- validated causal primitive;
-- five-person matched HUMAN/WORLD evidence;
-- `causalProof` exports and counterfactual evidence;
-- tester language and failure cases;
-- all requirements in `HIDDEN-SPOTS-HARDENING-V4.md`;
-- Friendzone mobile/judging constraints;
-- smallest winning scope;
-- evidence requirements and kill conditions.
+Canonical state grammar:
 
-## Mandatory PDPB outputs before material build
+`anchor × vector × reach × pressure × tension`
 
-- Problem → Decision → Proof → Build decomposition;
-- acceptance criteria;
-- state machine;
-- persistent active-state + immutable-lineage model;
-- deterministic versioned concurrency rule;
-- authenticated identity and display attribution rule;
-- self-completion prevention;
-- zero-user / one-user / sparse-user behavior;
-- persistence failure/fallback behavior;
-- retention rule based on downstream consequence;
-- capped lineage/history rule;
-- mobile performance and interaction budget;
-- deterministic demo/evidence path;
-- real Decentraland Mobile test matrix;
-- Definition of Done.
+Human-authored dimensions:
+- anchor
+- vector
+- reach
 
-## Hard prohibition
+System-carried deterministic dimensions:
+- pressure
+- tension
 
-No material Decentraland implementation should begin before this gate passes and PDPB Builder produces the above outputs.
+## Yellow hidden spots that PDPB must convert into production architecture
+### Shared persistence
+Replace URL/localStorage prototype persistence with one durable shared active state plus immutable/capped lineage.
 
-Browser V4 PASS proves the primitive is worth building. It does **not** prove Decentraland mobile runtime readiness.
+### Atomic concurrency
+Replace local CAS with shared transaction/CAS semantics. Two simultaneous completions of the same state must deterministically yield one accepted successor and one stale/refused result.
+
+### Real identity
+Replace opaque prototype session identity with connected Decentraland identity. Display names remain non-authoritative and privacy-safe.
+
+### Real mobile runtime
+Define acceptance tests and performance budget for the actual Decentraland Mobile runtime.
+
+## PDPB Builder output required before material Decentraland build
+- Problem → Decision → Proof → Build decomposition
+- explicit assumptions/hypotheses
+- state machine
+- persistence model
+- versioning / concurrency semantics
+- identity/authorization model
+- zero-user / one-user / sparse-user behavior
+- honest WORLD/FOUNDER seed behavior
+- self-completion prevention
+- failure/fallback behavior
+- deterministic adaptation policy
+- lineage/return-receipt model
+- mobile controls and performance budget
+- evidence schema
+- deterministic judge-demo path
+- acceptance criteria
+- kill conditions
+- Definition of Done
+
+## Chain preservation
+
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+
+No material Decentraland implementation should begin before the V5 gate passes and PDPB output exists.
