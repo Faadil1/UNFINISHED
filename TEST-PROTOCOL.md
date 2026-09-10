@@ -1,4 +1,7 @@
-# Cold Test Protocol — V3
+# Cold Test Protocol — V4
+
+## Purpose
+V4 tests whether a previous real player is a **causal spatial author**, not merely a name attached to a designer-authored state.
 
 ## Setup
 Use a phone if possible. Do not explain the concept. Say only:
@@ -7,72 +10,80 @@ Use a phone if possible. Do not explain the concept. Say only:
 
 Do not say social, co-author, previous player, unfinished, relay, persistence, or the slogan before the run.
 
-Do not count anyone who has already seen V1/V2 or already knows the concept as a cold tester.
+Do not count anyone who has already seen V1–V4 or knows the concept as a scored cold tester.
 
-## Controlled 5-test matrix
-Use these exact links in order. Do not reveal the assigned condition.
+## Create real inherited states first
+Use operator mode `/?author=1`.
 
-1. T1 — HUMAN + STEP
-   https://unfinished-kill-test.vercel.app/?mode=HUMAN&prior=STEP&run=T1
-2. T2 — WORLD + STEP
-   https://unfinished-kill-test.vercel.app/?mode=WORLD&prior=STEP&run=T2
-3. T3 — HUMAN + ARC
-   https://unfinished-kill-test.vercel.app/?mode=HUMAN&prior=ARC&run=T3
-4. T4 — WORLD + ARC
-   https://unfinished-kill-test.vercel.app/?mode=WORLD&prior=ARC&run=T4
-5. T5 — HUMAN + STEP replication
-   https://unfinished-kill-test.vercel.app/?mode=HUMAN&prior=STEP&run=T5
+A real prior contributor chooses:
+- `anchor`: LOW / MID / HIGH
+- `vector`: FLAT / UP
+
+The prototype generates a HUMAN link and a matched WORLD link with **identical geometry**.
+
+This is mandatory. Do not replace it with a hand-written `MAYA` label.
+
+## Controlled five-test matrix
+Use `TEST-MATRIX-V4.md`:
+- T1 HUMAN geometry A
+- T2 WORLD matched geometry A
+- T3 HUMAN geometry B
+- T4 WORLD matched geometry B
+- T5 HUMAN geometry C replication
+
+Use five different English-speaking cold testers.
 
 ## Observe silently
-1. Does the tester notice the inherited geometry before reading attribution?
-2. Does ARC vs STEP affect how they reason about CONNECT vs RISE?
-3. After the morph, is their first action MOVE or DONE_WITHOUT_USE?
-4. If they move, do they complete/use the route?
-5. Can they explain the starting state's contribution separately from their own?
+1. Does the tester notice the inherited geometry before attribution copy?
+2. Does the inherited anchor/vector affect how they choose CONNECT vs RISE?
+3. After the morph, is the first action MOVE or I'M DONE HERE?
+4. If they move, do they actually use the generated route?
+5. Can they explain the inherited contributor's effect separately from their own?
 6. Can they recall who/what created the starting state without prompting?
-7. Do HUMAN and WORLD feel meaningfully different on the same geometry?
-8. Do they understand their final ARC/STEP becomes a new starting state for someone else?
+7. Do matched HUMAN/WORLD conditions feel meaningfully different despite identical geometry?
+8. Do they understand that their LOW/MID/HIGH + FLAT/UP choice becomes the next person's constraint?
 
-## Built-in V3 debrief
-The export captures:
-- `whatHappened`
+## Built-in V4 evidence
+Each JSON export captures:
+- `mode`
+- inherited `anchor` / `vector`
+- `complete`
+- `outcome`
+- `causalProof.priorSpatialDecision`
+- `causalProof.resultingTarget`
+- counterfactual targets for a different prior anchor/vector
+- `stateVersion`
+- successor `expectedVersion`
+- `firstPostReveal`
+- `used` / `skipped`
 - `sourceRecall`
 - `priorContribution`
 - `selfContribution`
-- `constraintScore` (1–5): how much the inherited shape affected their choice
-- `originScore` (1–5): how much the source mattered
-- `socialScore` (1–5)
-- `funScore` (1–5)
-- `firstPostReveal`
-- `used` / `skipped`
-- controlled condition + run label
+- `constraintScore`
+- `originScore`
+- `socialScore`
+- `funScore`
 
-Capture the tester's own words verbatim. Never type the test instruction into answer fields.
-
-## External follow-up questions
-Only after the built-in debrief:
-- “If the starting state had come from the system instead of a person, would that change anything for you? Why?”
-- “If the starting shape had been different, would your choice or route have changed?”
-- “What made you want — or not want — to use what appeared?”
+Capture the tester's own words verbatim.
 
 ## Strong PASS signal
-- >=4/5 independently explain that they completed or transformed something inherited and then left a new start;
-- >=4/5 distinguish the starting contribution from their own;
-- >=4/5 voluntarily MOVE before choosing I'M DONE HERE and/or complete the route;
+- >=4/5 independently explain that they inherited another source's unfinished spatial state, changed it, used the result, and left a new constraint;
+- >=4/5 distinguish prior contribution from self contribution;
+- >=4/5 voluntarily engage with the resulting route;
 - median Fun >=4/5;
 - median Constraint >=4/5;
-- HUMAN conditions outperform matched WORLD conditions on Origin and/or Social meaning, supported by qualitative explanation;
-- ARC and STEP produce recognizably different practical consequences;
-- HUMAN testers can recall a person as the source without the observer telling them.
+- HUMAN matched conditions outperform WORLD on Origin and/or Social meaning with qualitative support;
+- HUMAN testers recall a person as the source without prompting;
+- different prior anchor/vector states create visibly and practically different paths for the same completion action.
 
 ## PIVOT/KILL signals
-- 2+ of first 5 describe the experience mainly as choosing/building a shape;
-- HUMAN and WORLD matched conditions feel essentially equivalent;
+- 2+ of first 5 describe it mainly as choosing/building a shape;
+- matched HUMAN and WORLD states feel essentially equivalent;
 - fewer than 4/5 voluntarily engage with the route;
 - median Constraint <3/5;
-- ARC vs STEP feels cosmetic;
-- prior contribution cannot be explained distinctly;
-- tester does not understand that their final state is left for someone else.
+- the tester remembers a name but cannot explain the prior person's spatial effect;
+- different prior decisions do not materially change the route;
+- the successor state is understood as a menu choice rather than a constraint for another person.
 
 ## Decision
 PASS → **PDPB Builder**.
