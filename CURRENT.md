@@ -3,12 +3,13 @@
 Date: 2026-09-10
 
 ## Status
-**PROTOTYPE_KILL_TEST_V5_DEPLOYED / VERCEL_STATUS_SUCCESS / USER_GATE_NOT_YET_VALIDATED**
+**PROTOTYPE_KILL_TEST_V5_1_SINGLE_BATCH_PUSH / USER_GATE_NOT_YET_VALIDATED**
 
 ## Current candidate
-**UNFINISHED — Intelligent Causal Loop**
+**UNFINISHED — Intelligent Causal Loop V5.1**
 
-Canonical rule: **NO ONE FINISHES WHAT THEY START.**
+Canonical rule:
+> **NO ONE FINISHES WHAT THEY START.**
 
 Stronger product thesis:
 > **Every player solves one problem and creates the next.**
@@ -16,102 +17,104 @@ Stronger product thesis:
 Core loop:
 **INHERIT → INTERPRET → COMPLETE → PLAY → AUTHOR NEXT → LEAVE → CONSEQUENCE**
 
-## Winning chain
-The required chain is preserved:
-
+## Required winning chain
 **RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
-PDPB Builder is still blocked until the V5 causal-authorship kill test passes. No production Decentraland implementation is being claimed before that gate.
+Current location: **V5.1 KILL TEST**.
+
+PDPB Builder remains blocked until this gate passes. No production Decentraland implementation is claimed before PASS.
 
 ## Canonical source
-https://github.com/Faadil1/UNFINISHED
+Repository: `Faadil1/UNFINISHED`
+Branch: `main`
+Active prototype: `index.html`
+Active protocol: `TEST-PROTOCOL.md`
+Active matrix: `TEST-MATRIX-V5.md`
+Active hardening: `HIDDEN-SPOTS-HARDENING-V5.md`
+Build budget: `BUILD-BUDGET.md`
 
-`index.html` is now **V5**, English-first.
+## Public runtime
+Current Vercel project: `unfinished`
+Current observed production domain: `https://unfinished-delta.vercel.app`
 
-V5 source commit:
-`13696af2648f7dc7acff3b979b86dc0a42ab9513`
+V5 was already verified through GitHub as `Vercel: success` after the project re-import. V5.1 is intentionally shipped as one atomic source+docs batch. Runtime verification should be recorded in Issue #1 rather than creating a documentation-only follow-up deploy.
 
-## Vercel
-The repository was re-imported into the user's current Vercel scope as project `unfinished`.
+## V5.1 interaction upgrade — 2.5D tactile proof
+V5.1 keeps Canvas 2D for fast falsification but changes the experience from a flat diagram into a lightweight 2.5D spatial playground:
+- perspective floor and layered depth;
+- extruded route surfaces and shadows;
+- subtle parallax;
+- creator mark embedded in the inherited geometry;
+- pressure/tension shown through physical stress cues rather than explanatory text;
+- in-scene ghost outcomes that can be tapped directly for CONNECT/RISE;
+- direct avatar drag constrained to the route, with D-pad fallback;
+- drag-from-socket authoring for both the original author and successor author;
+- short non-verbal handoff animation before debrief;
+- debrief is completed before any explicit successor explanation is revealed.
 
-Observed production domain from the Vercel dashboard:
-`https://unfinished-delta.vercel.app`
+This is intentionally **not Three.js / full 3D**. Full 3D is reserved for post-PDPB Decentraland execution so visual polish cannot hide a weak primitive.
 
-GitHub commit status now reports:
-- context: `Vercel`
-- state: `success`
-- project target: `faadil-s-projects/unfinished`
+## Causal authorship
+A prior real person authors:
+- `anchor`: LOW / MID / HIGH
+- `vector`: FLAT / UP
+- `reach`: SHORT / MEDIUM / LONG
 
-This confirms the new GitHub → Vercel deployment pipeline is working. A final browser smoke-test should confirm the public domain title/UI is V5 before scored external tests begin.
+The state also carries deterministic:
+- `pressure`: SPAN / HEIGHT / BALANCE
+- `tension`: 0–3
+- `engineBias`: explicit state-carried deterministic adaptation value
 
-## V5 — five intelligence improvements
-1. **Solve + create tension** — CONNECT resolves SPAN and creates HEIGHT pressure for the successor; RISE resolves HEIGHT and creates SPAN pressure.
-2. **Physical grammar** — inherited state now carries `anchor + vector + reach + pressure + tension`.
-3. **Embodied intention** — inherited contribution is visually distinct, has an origin mark and arrow direction, and is readable before explanatory prose.
-4. **Delayed consequence proof** — each completed run creates a next-visitor handoff plus a privacy-gated return receipt describing what happened after the prior person left.
-5. **Deterministic adaptation** — recent local lineage can raise/lower successor tension deterministically; no randomness is used, and matched HUMAN/WORLD controls preserve identical engine state.
+The next route is computed from inherited geometry + carried pressure/tension + the current visitor's CONNECT/RISE action.
 
-## Causal-authorship upgrade
-The prior person is no longer a display label attached to a prefab route.
+`CONNECT` resolves SPAN and creates HEIGHT pressure.
+`RISE` resolves HEIGHT and creates SPAN pressure.
 
-A real author chooses spatially in the scene:
-- anchor: LOW / MID / HIGH
-- direction: FLAT / UP
-- reach: SHORT / MEDIUM / LONG (derived from actual endpoint placement)
+The successor state therefore inherits a real consequence, not a cosmetic label.
 
-The next playable route is computed from that human-authored geometry plus the next visitor's completion and inherited pressure/tension.
+## Hidden spots — current truth
+### Implemented strongly in prototype
+- causal prior authorship;
+- counterfactual authorship;
+- self-completion prevention;
+- honest WORLD root when no authenticated human authorship exists;
+- retention receipt / consequence handoff;
+- capped lineage;
+- deterministic engine/no random core generation;
+- 2.5D mobile interaction + route adherence instrumentation.
 
-V5 evidence exports counterfactuals for changed anchor, vector, and reach.
+### Yellow: prototype implementation exists, production proof still pending
+1. **Persistence** — transferable URL state + local active state + capped lineage + return receipt; shared durable backend still required.
+2. **Concurrency** — exact local CAS on `chainId + stateId + version`; atomic shared CAS still required.
+3. **Identity** — opaque prototype session is authoritative and display name is non-authoritative; connected Decentraland identity still required.
+4. **Decentraland Mobile** — mobile-safe 2.5D controls and telemetry exist; actual Decentraland Mobile runtime still required.
 
-## Previously yellow hidden spots — implementation status
-### 4. Persistence — IMPLEMENTED IN PROTOTYPE / NOT YET PRODUCTION-VALIDATED
-- state handoff survives as a transferable URL;
-- local active state persists in localStorage;
-- lineage is capped to five recent entries;
-- return receipt proves the intended consequence loop.
-- still requires shared durable persistence after PDPB.
-
-### 5. Concurrency — IMPLEMENTED IN PROTOTYPE / NOT YET PRODUCTION-VALIDATED
-- state carries id + version;
-- local compare-and-swap refuses stale writes instead of overwriting;
-- evidence records expected/new version.
-- still requires atomic shared CAS in the production backend.
-
-### 7. Identity — IMPLEMENTED IN PROTOTYPE / NOT YET PRODUCTION-VALIDATED
-- opaque prototype session id is authoritative;
-- display name is explicitly non-authoritative;
-- a user cannot complete their own state under the same prototype identity;
-- default unauthored root is WORLD, never a fake human.
-- production must replace prototype identity with connected Decentraland identity.
-
-### 10. Decentraland Mobile — PREPARED / NOT VALIDATABLE YET
-- four-direction mobile controls;
-- safe-area layout;
-- reduced-motion support;
-- haptics when available;
-- route-following/off-route instrumentation.
-- actual Decentraland Mobile validation remains mandatory after PDPB + implementation.
+## Instrumentation added in V5.1
+Evidence can now include:
+- page-to-start latency;
+- completion choice latency;
+- button vs in-scene completion source;
+- first post-reveal interaction latency;
+- D-pad moves;
+- direct-drag starts/samples;
+- route progress;
+- off-route attempts;
+- route completion latency;
+- play duration;
+- author/leave gesture duration and spatial distance;
+- debrief duration;
+- exact CAS result;
+- causal counterfactuals;
+- successor pressure/tension/engineBias.
 
 ## Active gate
-Smoke-test the V5 public runtime, then run real-author matched HUMAN/WORLD cold tests.
-
-Required evidence:
-- Recognition
-- Counterfactual Authorship
-- Human Necessity
-- Playfulness
-- Independent comprehension
-- Constraint strength
-- Real prior-player causal contribution
-- Successor tension comprehension
-
-## Decision rule
-- PASS → mandatory **PDPB Builder**
-- PIVOT → modify only the failed primitive and rerun the gate
-- KILL → do not automatically fall back to NEED//RELAY or RELAY ECHO
-
-## After PASS
-PDPB Builder → evolving PRD / Spec Kit → state machine + shared persistence/identity architecture → Decentraland implementation → TRACE → real Decentraland Mobile validation → evidence → STORY → DEMO → Q&A → submission readiness.
+1. Smoke-test `https://unfinished-delta.vercel.app/?author=1` after the V5.1 atomic build completes.
+2. Produce at least two materially different real-authored geometries.
+3. Generate matched HUMAN/WORLD pairs.
+4. Run five independent cold tests.
+5. Record verbatim answers + evidence JSON.
+6. Issue a hard PASS / PIVOT / KILL verdict.
+7. PASS → **PDPB Builder immediately**.
 
 ## Integrity constraints
-No fake users. No display-name authority. Honest WORLD/FOUNDER seed only. No self-completion. No random adaptive black box. Lineage stays secondary to active play. Evidence must distinguish prototype proof from production proof.
+No fake users. No display-name authority. No self-completion. No random/opaque AI in the core mechanic. No treating browser 2.5D as Decentraland proof. No gallery drift. No final STORY/DEMO claims before evidence.

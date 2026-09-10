@@ -1,25 +1,29 @@
 # CANONICAL HANDOFF — UNFINISHED
 
 Date: 2026-09-10
-Active version: **V5 Intelligent Causal Loop**
+Active version: **V5.1 — Intelligent Causal Loop / 2.5D Tactile Kill Test**
 
 ## Source of truth
 Repository: `Faadil1/UNFINISHED`
 Branch: `main`
 
-Active prototype file: `index.html`
+Active prototype: `index.html`
 Active protocol: `TEST-PROTOCOL.md`
 Active matrix: `TEST-MATRIX-V5.md`
 Active hardening: `HIDDEN-SPOTS-HARDENING-V5.md`
-Winning-chain control: `WINNING-CHAIN.md`
+Winning chain: `WINNING-CHAIN.md`
 PDPB gate: `PDPB-GATE.md`
+Build budget: `BUILD-BUDGET.md`
 
-Older V2/V3/V4 test matrices are historical only.
+Older V2/V3/V4 artifacts are historical only. V5 flat interaction is superseded by V5.1.
 
-## Current project state
-**PROTOTYPE_KILL_TEST_V5_PUSHED / USER_GATE_NOT_YET_VALIDATED**
+## Current gate
+**V5.1 KILL TEST / USER_GATE_NOT_YET_VALIDATED**
 
-The previous V4.1 state is superseded.
+Required order:
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.1 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+
+Do not start material Decentraland implementation before V5.1 PASS and PDPB output.
 
 ## Product thesis
 > **Every player solves one problem and creates the next.**
@@ -31,9 +35,9 @@ Problem:
 A low-concurrency World lacks cross-session consequential social continuity when one real visitor's action does not materially shape another real visitor's later session.
 
 Differentiator under test:
-A previous real player authors the physical starting conditions of the next player's problem; the next player solves it and creates a successor constraint.
+A previous real person authors the physical starting conditions of the next visitor's playable problem. The next visitor resolves one pressure, physically uses the result, then authors a successor state carrying a new pressure.
 
-## V5 physical grammar
+## V5.1 physical grammar
 Human-authored:
 - anchor
 - vector
@@ -42,64 +46,74 @@ Human-authored:
 Deterministically carried:
 - pressure
 - tension
+- engineBias
 
-Core state:
-`anchor × vector × reach × pressure × tension`
+State grammar:
+`anchor × vector × reach × pressure × tension × engineBias`
 
-## V5 loop
-**INHERIT → INTERPRET → COMPLETE → PLAY → AUTHOR NEXT → LEAVE → CONSEQUENCE**
+`CONNECT`: resolves SPAN → creates HEIGHT.
+`RISE`: resolves HEIGHT → creates SPAN.
 
-`CONNECT`: resolves SPAN, creates HEIGHT pressure.
+## V5.1 interaction model
+- lightweight 2.5D Canvas, not full 3D;
+- drag-from-socket spatial authorship;
+- tap ghost outcomes directly or use accessible CONNECT/RISE buttons;
+- direct avatar drag constrained to generated topology + D-pad fallback;
+- physical stress cues for pressure/tension;
+- non-verbal successor handoff animation;
+- open-ended debrief occurs before explicit successor explanation;
+- post-debrief next-visitor link and return receipt.
 
-`RISE`: resolves HEIGHT, creates SPAN pressure.
-
-## Implemented prototype hardening
-- real in-scene authoring of anchor/vector/reach;
-- HUMAN/WORLD matched links with identical geometry/engine state;
-- counterfactual causal evidence;
-- next-visitor handoff URL;
+## Prototype hardening
+- real spatial authoring of anchor/vector/reach;
+- matched HUMAN/WORLD pairs with separate test lanes but identical causal state;
+- counterfactual evidence holding current action constant;
+- transferable URL handoff;
 - local active-state persistence;
 - capped local lineage;
-- return-receipt link;
-- local CAS stale-write refusal;
-- opaque prototype identity separate from display name;
+- exact local CAS on chainId/stateId/version;
+- opaque prototype authority separate from display name;
 - self-completion block;
-- unauthored root defaults to WORLD;
-- deterministic adaptive tension with no randomness;
-- route-adherence/off-route instrumentation;
-- four-direction mobile controls;
-- haptics where supported;
-- reduced-motion support.
+- honest WORLD fallback;
+- deterministic pressure/tension adaptation;
+- retention return receipt;
+- detailed interaction telemetry;
+- mobile safe areas, haptics and reduced motion.
 
 ## Still yellow until real execution layer
-Do not mark these production-validated yet:
+Never mark these production-validated from V5.1:
 1. shared durable persistence;
 2. atomic shared concurrency/CAS;
 3. authoritative Decentraland identity;
 4. actual Decentraland Mobile runtime.
 
-They are prepared in the prototype/contract and must become real only after V5 PASS → PDPB.
+## Vercel discipline
+Project: `unfinished`
+Domain: `https://unfinished-delta.vercel.app`
+Plan constraint: Hobby build budget shared with other projects.
 
-## Required chain
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
-
-Current gate: **V5 KILL TEST**.
+Policy:
+- one atomic deployable commit per substantive gate/batch;
+- no documentation-only commits to main merely to record deployment success;
+- target 1–2 UNFINISHED deployments per 24h, hard ceiling 3–5 unless critical;
+- verify locally before pushing;
+- record runtime verification in Issue #1 to avoid a follow-up build.
 
 ## Immediate next actions
-1. Verify the re-imported Vercel project is serving V5 from `main`.
-2. Open `/?author=1` on the verified V5 runtime.
-3. Have real authors create geometry A/B.
-4. Generate matched HUMAN/WORLD links.
-5. Run five independent cold tests according to `TEST-MATRIX-V5.md`.
-6. Record verbatim responses + evidence JSON.
-7. Issue a hard verdict: PASS / PIVOT / KILL.
-8. If PASS, invoke **PDPB Builder immediately** before any material Decentraland implementation.
+1. Verify V5.1 live title/author mode after the atomic build.
+2. In `/?author=1`, have real authors drag two materially different starting conditions.
+3. Generate HUMAN/WORLD matched links for geometry A and B.
+4. Run T1–T5 with five independent English-speaking cold testers.
+5. Capture full evidence JSON and verbatim debrief.
+6. PASS/PIVOT/KILL.
+7. PASS → **PDPB Builder immediately**.
 
 ## Never do
 - do not resurrect FAVOR//RELAY V1;
-- do not substitute fake human attribution;
-- do not treat localStorage/URL persistence as final backend proof;
-- do not treat browser-mobile testing as Decentraland Mobile proof;
-- do not finalize judge story/demo claims before evidence;
-- do not turn lineage into the primary experience;
-- do not add random/opaque AI generation to the core mechanic.
+- do not fake human attribution;
+- do not interpret localStorage/URL persistence as final backend proof;
+- do not interpret browser-mobile proof as Decentraland Mobile proof;
+- do not finalize judge story or demo claims before evidence;
+- do not turn lineage into a gallery product;
+- do not add opaque AI generation to the core causal engine;
+- do not spend Vercel builds on bookkeeping-only changes.

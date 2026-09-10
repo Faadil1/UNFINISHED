@@ -1,81 +1,110 @@
-# UNFINISHED — V5 Hidden-Spots Hardening
+# UNFINISHED — V5.1 Hidden-Spots Hardening
 
 Date: 2026-09-10
 Status: ACTIVE PRE-PDPB CONSTRAINTS
 
-This document supersedes V4 hardening for the active prototype.
+This document supersedes the flat V5 interaction implementation while preserving the same ten hardening requirements.
 
 ## 1. Causal prior author — implemented in prototype
-A real prior person authors `anchor + vector + reach` by tapping directly in the scene. The next route is computed from that geometry.
+A real prior person authors `anchor + vector + reach` by dragging directly from a socket in the scene. The next route is computed from that gesture.
+
+The display name is not the cause. The spatial decision is.
 
 ## 2. Counterfactual authorship — implemented in prototype
-The evidence export records the observed target plus counterfactual targets for changed anchor, vector, and reach while holding the next player's completion constant.
+Evidence records the observed target plus counterfactual targets for changed anchor, vector, and reach while holding the next player's completion constant.
 
-## 3. Browser fun is not Decentraland proof — preserved as a hard gate
-V5 can falsify the primitive and measure comprehension/playfulness, but cannot certify Decentraland Mobile fun or runtime quality.
+The active falsification test remains:
+`f(A,B) ≠ f(A',B)` and `f(A,B) ≠ f(A,B')`.
 
-## 4. Persistence — prototype layer implemented, production validation pending
-V5 now has:
+## 3. Browser fun is not Decentraland proof — preserved as hard gate
+V5.1 upgrades the falsification surface to tactile 2.5D but deliberately avoids full 3D/Three.js. It can validate causal comprehension and interaction quality, not certify Decentraland runtime fun.
+
+## 4. Persistence — stronger prototype layer, production validation pending
+V5.1 has:
 - transferable state URLs;
 - local active-state persistence;
 - capped recent lineage;
-- a next-visitor link;
-- a privacy-gated return-receipt link.
+- next-visitor links;
+- privacy-gated return receipts;
+- chain identity carried with each successor.
 
 Production still requires shared durable persistence after PDPB.
 
-## 5. Concurrency — prototype layer implemented, production validation pending
-Each state has `stateId`, `stateVersion`, and successor version. Local compare-and-swap refuses a stale completion rather than overwriting a newer state.
+## 5. Concurrency — stronger prototype layer, production validation pending
+Each active state carries `chainId + stateId + version`.
 
-Production still requires atomic CAS/transaction semantics in the shared backend.
+A successor commit succeeds only when the current local active state matches all three expected values. A stale/forked state is refused rather than silently overwriting the newer state.
+
+Production still requires atomic shared CAS/transaction semantics in the real backend.
 
 ## 6. No self-completion — implemented in prototype
-The authoritative prototype identity is an opaque local session id. Matching `authorId === viewerId` blocks completion. The production build must enforce the same rule using Decentraland identity.
+The authoritative prototype identity is an opaque local session id. `authorId === viewerId` blocks completion. Production must enforce the same rule using platform identity.
 
 ## 7. Identity integrity — prototype layer implemented, Decentraland validation pending
-Display names are presentation only. They never authorize a state transition. An unauthored root defaults to WORLD instead of inventing a human contributor. Production authority must come from the connected Decentraland identity.
+- display name is presentation only;
+- authority is separate from display name;
+- an unauthored root is WORLD, never a fabricated human;
+- matched WORLD controls use separate test lanes to avoid false concurrency collisions.
 
-## 8. Retention by consequence — implemented as a prototype proof
-The return mechanism is "what happened after what I left." V5 creates a return receipt from the actual inherited state, the next player's completion, and the resulting successor constraint. No streaks, loot, or generic daily-task gamification are required.
+Production authority must come from connected Decentraland identity.
 
-## 9. Gallery drift — constrained
-Lineage is capped and secondary. It exists to prove continuity, not to turn UNFINISHED into a museum/gallery.
+## 8. Retention by consequence — implemented as prototype proof
+The return reason is: **what happened after what I left**.
 
-## 10. Real Decentraland Mobile — prepared, not yet validated
-V5 includes mobile-safe layout, four-direction controls, route-following checks, haptics when available, reduced-motion support, and telemetry for off-route attempts. Actual camera, controls, cold start, persistence, identity, and stale-state recovery must still be tested in Decentraland Mobile after PDPB + implementation.
-
-# Five intelligence upgrades
-
-## A. Solve one problem, create the next
-`CONNECT` resolves current span pressure and creates successor height pressure. `RISE` resolves current height pressure and creates successor span pressure. Every solution therefore alters the next player's problem.
-
-## B. Physical grammar
-Canonical state grammar:
-
-`anchor × vector × reach × pressure × tension`
-
-Human-authored fields: `anchor`, `vector`, `reach`.
-System-carried fields: `pressure`, `tension`.
-
-## C. Embodied intention
-The inherited segment has a creator mark and arrow direction and is visually distinct from the current player's extension. The prior person's contribution must be legible in geometry before explanatory copy.
-
-## D. Delayed social consequence
-A completed state emits:
+After debrief, the prototype can expose:
 - next-visitor handoff;
-- successor constraint;
+- successor pressure/tension;
 - return receipt for the prior author;
 - capped lineage event.
 
+No streaks, loot, XP or generic daily-task gamification are required.
+
+## 9. Gallery drift — constrained
+Lineage is capped and secondary. The primary experience remains inherit → solve → play → author. History exists only to prove continuity and consequence.
+
+## 10. Real Decentraland Mobile — prepared, not yet validated
+V5.1 adds:
+- 2.5D depth and perspective without a heavy 3D dependency;
+- direct avatar drag constrained to route;
+- accessible D-pad fallback;
+- in-scene completion targets;
+- mobile-safe layout;
+- haptics when available;
+- reduced-motion support;
+- off-route instrumentation;
+- authoring gesture metrics.
+
+Actual camera, avatar, collision, persistence, identity, stale-state recovery and performance must still be tested in real Decentraland Mobile after PDPB + implementation.
+
+# Intelligence layer
+
+## A. Solve one problem, create the next
+`CONNECT` resolves SPAN and creates HEIGHT.
+`RISE` resolves HEIGHT and creates SPAN.
+
+## B. Physical grammar
+State:
+`anchor × vector × reach × pressure × tension × engineBias`
+
+Human-authored: anchor/vector/reach.
+Carried deterministic state: pressure/tension/engineBias.
+
+## C. Embodied intention
+Creator mark, route direction, reach and physical stress cues make the inherited decision readable before explanatory prose.
+
+## D. Delayed social consequence
+A completion emits a successor state and can produce a return receipt proving how the prior contribution changed.
+
 ## E. Deterministic adaptation
-The prototype adaptation policy uses recent route-use/skip history to adjust successor tension. It has no randomness. Controlled HUMAN/WORLD tests must preserve identical geometry, pressure, tension, and engine state.
+No random core generation. `engineBias` is explicit, carried in state, and updates deterministically. HUMAN/WORLD matched links hold geometry, pressure, tension and engineBias constant.
+
+# Debrief-bias protection added in V5.1
+The tester answers open-ended comprehension + ratings **before** explicit text reveals that their solution became the next starting condition. This prevents the product from teaching the answer before the measurement is captured.
 
 # Canonical causal claim
-
-> A previous real player creates the initial spatial conditions of the next player's playable problem, and the next player's solution creates a new problem for someone else.
+> **A previous real player creates the initial spatial conditions of the next player's playable problem, and the next player's solution creates a new problem for someone else.**
 
 # Gate discipline
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.1 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
-
-Nothing in this file converts a prototype proof into production proof. Persistence, concurrency, Decentraland identity, and Decentraland Mobile remain yellow until validated in their real runtime layers.
+Nothing here converts prototype proof into production proof. Persistence, concurrency, Decentraland identity and Decentraland Mobile remain yellow until validated in their actual runtime layers.

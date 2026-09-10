@@ -1,61 +1,63 @@
-# UNFINISHED — V5 Matched Cold-Test Matrix
+# UNFINISHED — V5.1 Matched Cold-Test Matrix
 
-Use only after the live deployment is verified to serve V5.
+Use only after `https://unfinished-delta.vercel.app` is verified to serve V5.1.
 
 ## Operator preparation
 Open:
-
 `/?author=1`
 
-Create at least two genuinely different authored geometries.
+Create at least two genuinely different authored geometries using **drag-from-socket** gestures.
 
 ## T1 / T2 — Geometry A
-Use one real authored state to generate:
+Generate one real authored state and use:
 - T1 — HUMAN A
 - T2 — WORLD A
 
-The two links must have identical:
+The pair must match on:
 - anchor
 - vector
 - reach
 - pressure
 - tension
+- engineBias
 - generation
 - state version
 
-Only source attribution/authority differs.
+HUMAN and WORLD intentionally use separate `chainId/stateId` test lanes so the A/B experiment does not create a false stale-write collision.
 
 ## T3 / T4 — Geometry B
-Create a second real authored state that differs materially from A in at least two spatial dimensions, preferably including `reach`.
+Create a second real authored state that differs from A in at least two spatial dimensions, preferably including reach.
 
 Generate:
 - T3 — HUMAN B
 - T4 — WORLD B
 
-Again, keep geometry and engine state identical within the pair.
+Again hold geometry and engine state constant inside the pair.
 
 ## T5 — HUMAN replication
 Use either:
-- a third real authored geometry C, or
-- a deliberate HUMAN repeat of geometry A if the priority is replication.
+- a third real geometry C, or
+- a deliberate HUMAN repeat of the strongest prior HUMAN condition.
 
 ## Instruction only
 > **Try this and tell me what you think is happening.**
 
 ## Tester eligibility
-Each slot must be a different English-speaking cold tester who has never seen V1–V5 and has not been briefed on the concept.
+Every slot must be a different English-speaking cold tester who has never seen V1–V5.1 and has not been briefed on the concept.
 
 ## Evidence labels
-For each tester record:
-- run label T1–T5
-- generated source link
+Record per tester:
+- T1–T5 label
 - source condition HUMAN/WORLD
-- stateId
+- pairId
+- chainId/stateId/version
 - anchor/vector/reach
-- pressure/tension
-- completion CONNECT/RISE
-- first post-reveal action
+- pressure/tension/engineBias
+- CONNECT/RISE
+- choice source + latency
+- first post-reveal action + latency
 - routeProgress
+- direct drag / D-pad metrics
 - used/skipped
 - offRouteAttempts
 - successor constraint
@@ -63,15 +65,18 @@ For each tester record:
 - sourceRecall
 - priorContribution
 - selfContribution
-- constraint/origin/social/fun ratings
+- constraint/origin/social/fun
 - full `causalProof`
 
-## Comparison rules
-Primary matched comparisons:
-- T1 vs T2 = source effect holding geometry constant
-- T3 vs T4 = source effect holding second geometry constant
+## Comparisons
+Primary source-effect comparisons:
+- T1 vs T2: source effect with geometry + engine held constant.
+- T3 vs T4: source effect with second geometry + engine held constant.
 
-Cross-geometry causal comparison:
-- same current completion across A vs B should produce a materially different target/path because prior human geometry changed.
+Causal geometry comparison:
+- same completion across A vs B should produce materially different target/topology because the prior human gesture changed.
 
-T5 checks whether the strongest HUMAN result replicates.
+Interaction check:
+- scene-choice vs button-choice and avatar-drag vs D-pad are instrumentation dimensions, not different product conditions. Do not intentionally coach one tester into a specific method.
+
+T5 checks replication of the strongest HUMAN signal.

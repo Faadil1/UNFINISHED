@@ -1,117 +1,142 @@
-# Cold Test Protocol — V5 Intelligent Causal Loop
+# Cold Test Protocol — V5.1 Intelligent Causal Loop
 
 ## Purpose
-Test whether a real prior person's spatial decision changes the next visitor's playable problem **and** whether the next visitor understands that their solution creates a new problem for someone else.
+Test whether a real prior person's spatial decision changes the next visitor's playable problem **and** whether the visitor understands that their own solution/authoring changes what comes after them.
 
-## Setup
-Use a phone if possible. Do not explain the concept. Say only:
+## Tester instruction
+Use a phone when possible. Say only:
 
 > **Try this and tell me what you think is happening.**
 
-Do not say social, co-author, previous player, unfinished, persistence, lineage, causal authorship, pressure, or the slogan before the run.
+Do not say social, co-author, previous player, unfinished, persistence, lineage, causal authorship, pressure, tension, next visitor, successor, or the slogan before the debrief is submitted.
 
-Do not count anyone who has already seen V1–V5 or knows the concept as a cold tester.
+Do not count anyone who has seen V1–V5.1 or already knows the concept.
 
 ## Authoring preparation
-Open operator mode:
-
+Open:
 `/?author=1`
 
 Have a real person:
 1. enter their display name;
-2. tap a start socket in the scene;
-3. tap an endpoint in the scene.
+2. press a visible start socket;
+3. drag and release an endpoint in the scene.
 
-V5 derives from that actual endpoint:
+V5.1 derives from the physical gesture:
 - `anchor`: LOW / MID / HIGH
 - `vector`: FLAT / UP
 - `reach`: SHORT / MEDIUM / LONG
 
-The operator then receives two matched links:
-- HUMAN — real authored geometry;
-- WORLD — identical geometry, pressure, tension, and engine state.
+It also freezes the deterministic engine state for a matched pair:
+- pressure
+- tension
+- engineBias
 
-Never invent a fake human state manually.
+The operator receives:
+- HUMAN link — real authored geometry;
+- WORLD link — identical geometry/engine state, separate test lane.
+
+Never hand-write a fake HUMAN state.
 
 ## Five scored cold tests
 Use `TEST-MATRIX-V5.md`.
 
-T1 and T2 must be a matched HUMAN/WORLD pair from geometry A.
-T3 and T4 must be a matched HUMAN/WORLD pair from geometry B.
-T5 must be a HUMAN replication using geometry C or a deliberate repeat of A.
+- T1/T2: matched HUMAN/WORLD geometry A.
+- T3/T4: matched HUMAN/WORLD geometry B.
+- T5: HUMAN replication or geometry C.
 
 Use five different independent English-speaking testers.
 
-## Observe silently
-1. Does the inherited contribution read as an intentional spatial act rather than a prefab shape?
-2. Does the tester distinguish the inherited segment from the segment they create?
-3. Does `anchor/vector/reach` materially influence the CONNECT/RISE result?
-4. After reveal, is first action MOVE or DONE_WITHOUT_USE?
-5. Can the tester physically follow the produced route without bypassing it?
-6. Can they explain what the prior contributor did vs what they did?
-7. Can they recall a human source in HUMAN conditions without observer prompting?
-8. Does HUMAN feel meaningfully different from matched WORLD when geometry is identical?
-9. Does the final spatial authoring feel like creating the next person's condition rather than choosing decoration?
-10. Do they understand that solving their current problem creates a new constraint for someone else?
+## Interaction behavior to observe silently
+1. Does the inherited segment read as an intentional act rather than a prefab object?
+2. Does the tester distinguish inherited geometry from the extension they create?
+3. Does prior `anchor/vector/reach` influence CONNECT/RISE reasoning?
+4. Do they choose through the scene or buttons, and how quickly?
+5. After the route appears, do they drag the avatar / use controls voluntarily?
+6. Does the topology physically constrain the avatar?
+7. Do off-route rejections help communicate that the geometry matters?
+8. Can they explain prior contribution vs self contribution?
+9. In HUMAN conditions, can they recall a person as source without observer prompting?
+10. Does final drag-from-socket authoring feel like creating a consequential state, not decoration?
+11. Before explicit post-debrief explanation, do they infer that something is being left behind?
+
+## Debrief integrity
+V5.1 intentionally hides explicit successor explanation until the built-in debrief is submitted.
+
+The tester must complete:
+- what happened;
+- source recall;
+- prior contribution;
+- self contribution;
+- Constraint 1–5;
+- Origin 1–5;
+- Social 1–5;
+- Fun 1–5.
+
+Only after submission may the prototype reveal the next-visitor link / return receipt explanation.
 
 ## Built-in evidence
-Export includes:
+Export can include:
 - `sourceRecall`
 - `priorContribution`
 - `selfContribution`
-- `constraintScore`
-- `originScore`
-- `socialScore`
-- `funScore`
-- `firstPostReveal`
-- `routeProgress`
-- `used` / `skipped`
-- `offRouteAttempts`
-- `tradeoff.resolved`
-- `tradeoff.created`
-- inherited `anchor/vector/reach/pressure/tension`
+- constraint/origin/social/fun scores
+- first post-reveal action + latency
+- completion choice latency
+- completion choice source: button vs scene
+- routeProgress
+- used/skipped
+- direct drag starts/samples
+- D-pad moves
+- offRouteAttempts
+- route completion latency
+- play duration
+- author/leave gesture time + distance
+- debrief duration
+- inherited anchor/vector/reach/pressure/tension/engineBias
+- tradeoff resolved/created
 - successor constraint
-- local CAS result
-- deterministic-engine evidence
+- exact local CAS result
 - causal counterfactuals
-- identity/persistence proof classification
+- identity/persistence classification
 
 Capture tester language verbatim.
 
 ## Strong PASS signal
-- >=4/5 independently explain that they inherited an unfinished spatial condition, changed/completed it, used the result, and left a new starting condition;
+- >=4/5 independently explain an inherited unfinished spatial condition was changed/completed and something was left behind;
 - >=4/5 distinguish prior contribution from self contribution;
 - >=4/5 voluntarily engage with the route;
 - median Fun >=4/5;
 - median Constraint >=4/5;
 - HUMAN matched conditions outperform WORLD on Origin and/or Social meaning with qualitative support;
-- HUMAN testers recall a person as the source without observer prompting;
+- HUMAN testers recall a person as source without observer prompting;
 - same current completion + changed prior anchor/vector/reach produces materially different geometry;
-- at least 3/5 understand that their solution changes the next visitor's problem, not merely its appearance.
+- >=3/5 infer before explicit post-debrief explanation that their final action affects what comes after them;
+- no evidence that 2.5D spectacle alone is creating fun while prior-human causality remains weak.
 
 ## PIVOT / KILL signals
-- 2+ describe the experience mainly as a shape/configuration tool;
+- 2+ describe it mainly as a drawing/configuration tool;
 - HUMAN and matched WORLD are effectively equivalent;
 - fewer than 4/5 voluntarily engage with the route;
 - median Constraint <3/5;
-- tester remembers a name but cannot explain the prior person's spatial decision;
-- reach/anchor/vector do not materially change traversal;
+- prior human is remembered as a name but not as causal author;
+- anchor/vector/reach feel cosmetic;
+- successor pressure is not perceptible in the resulting topology;
 - final authoring feels decorative;
-- successor pressure is invisible or meaningless;
-- fun comes from generic movement while human causality scores low.
+- direct interaction is confusing enough that it masks the primitive;
+- Fun remains high while Human Necessity remains low.
 
-## Yellow hidden-spot evidence
-V5 may demonstrate prototype behavior for persistence, concurrency, identity separation, and mobile controls. **Do not mark those production-validated from this test.**
+## Yellow hidden spots
+This gate can test prototype behavior for persistence, concurrency, identity separation and mobile interaction, but cannot turn them production-green.
 
-They can turn green only after:
-- shared durable persistence exists;
-- atomic shared CAS is exercised;
-- Decentraland identity is authoritative;
-- real Decentraland Mobile runtime is tested.
+Production-green requires:
+- shared durable persistence;
+- atomic shared CAS;
+- authoritative Decentraland identity;
+- real Decentraland Mobile validation.
 
 ## Decision
-PASS → **PDPB Builder** immediately.
+PASS → **PDPB Builder immediately**.
 
-PIVOT → change only the failed primitive and rerun this gate.
+PIVOT → modify only the failed primitive and rerun.
 
 KILL → do not automatically fall back to NEED//RELAY or RELAY ECHO.
