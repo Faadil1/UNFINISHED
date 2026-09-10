@@ -1,56 +1,66 @@
 # CURRENT — UNFINISHED
 
-Date: 2026-09-09
+Date: 2026-09-10
 
 ## Status
-**PROTOTYPE_KILL_TEST_V3_SOURCE_READY / PUBLIC_ALIAS_UNVERIFIED**
+**PROTOTYPE_KILL_TEST_V4_SOURCE_READY / LIVE_RUNTIME_REPAIR_PENDING**
 
 ## Current candidate
 **UNFINISHED — Playable Co-Authorship**
 
-Rule: **NO ONE FINISHES WHAT THEY START.**
+Canonical rule: **NO ONE FINISHES WHAT THEY START.**
 
-Core loop: **INHERIT → COMPLETE → PLAY → START → LEAVE**
+Core loop: **INHERIT → COMPLETE → PLAY → AUTHOR NEXT → LEAVE**
 
 ## Canonical source
 https://github.com/Faadil1/UNFINISHED
 
-`index.html` is now **Cold Test V3**, English-first.
+`index.html` is now **Cold Test V4**, English-first and hardened for causal authorship.
 
-## Vercel state
-Previous clean alias:
-https://unfinished-kill-test.vercel.app
+## What changed in V4
+The previous user is no longer represented only by `MAYA + ARC/STEP`.
 
-V2 production deployment previously verified:
-`dpl_4rNESHw7cEwcgybfFvTcY12VJhfw`
+A real prior contributor now authors two spatial parameters:
+- `anchor`: LOW / MID / HIGH
+- `vector`: FLAT / UP
 
-V3 production deployment was created:
-`dpl_6KNQi28PoS6niqRqT5hTHDGacXuf`
+The next visitor's playable path is computed from those inherited parameters plus the current visitor's CONNECT/RISE completion.
 
-However, during redeploy the Vercel connector switched to team scope `faadil-s-projects` and then returned authorization errors when verifying the deployment/alias. Therefore the clean public alias is **not claimed as V3 yet**.
+V4 therefore tests the stronger claim:
 
-Do not run scored external cold tests against an unverified alias.
+> A previous real player creates the initial spatial conditions of the next player's playable problem.
 
-## Pilot result
-V1 self-runs: `PILOT_TECH_PASS / USER_GATE_NOT_YET_VALIDATED`.
-They are QA evidence only and do not count as independent cold testers.
+The JSON export includes a `causalProof` object with the inherited spatial decision, actual result, and counterfactual results under changed prior geometry.
 
-## V3 improvements
-- tester-facing language switched fully to English;
-- neutral onboarding retained;
-- HUMAN/WORLD × ARC/STEP deterministic conditions retained;
-- voluntary `I'M DONE HERE` path makes playfulness observable;
-- larger attribution text in the scene;
-- debug hidden from testers unless explicitly enabled;
-- transformation animation + optional haptic feedback;
-- source recall captured without prompting;
-- constraint strength captured separately from social meaning;
-- prior contribution and self contribution captured separately;
-- Origin / Social / Fun ratings retained;
-- reduced-motion preference respected.
+## Ten hidden spots
+All ten previously identified hidden spots are now explicit constraints in `HIDDEN-SPOTS-HARDENING-V4.md`:
+1. causal prior author;
+2. real counterfactual authorship;
+3. browser-vs-Decentraland fun separation;
+4. production persistence contract;
+5. deterministic concurrency/versioning;
+6. no self-completion;
+7. authenticated/privacy-safe identity;
+8. consequence-based retention;
+9. capped lineage instead of museum/gallery drift;
+10. actual Decentraland Mobile runtime validation.
+
+## Test artifacts
+- `TEST-PROTOCOL.md` — V4 protocol
+- `TEST-MATRIX-V4.md` — matched HUMAN/WORLD test design
+- operator mode: `/?author=1`
+
+The operator creates a real spatial state once, then V4 produces:
+- HUMAN test link using that person's actual geometry;
+- matched WORLD control using identical geometry.
+
+## Live runtime
+The public Vercel runtime previously lagged behind the canonical source. A V4 redeploy was attempted after the source update, but the Vercel connector became unavailable during this session. Therefore **do not claim the old clean alias is V4 until it is verified**.
+
+This is a deployment issue, not a source-language issue: canonical V4 source is fully English.
 
 ## Active gate
-Once V3 public alias is verified, run the controlled 5-person mobile matrix in `TEST-MATRIX-V3.md` and Issue #1.
+Verify the V4 public runtime, then run the controlled five-person cold test matrix.
 
 Required evidence:
 - Recognition
@@ -59,14 +69,15 @@ Required evidence:
 - Playfulness
 - Independent comprehension
 - Constraint strength
+- Real prior-player causal contribution
 
 ## Decision rule
 - PASS → mandatory **PDPB Builder**
-- PIVOT → modify only the failed primitive and repeat this gate
+- PIVOT → modify only the failed primitive and rerun the gate
 - KILL → do not fall back automatically to NEED//RELAY or RELAY ECHO
 
 ## After PASS
-PDPB Builder → evolving PRD / Spec Kit → state machine + architecture → Decentraland implementation → TRACE → real mobile runtime validation → evidence package → submission readiness.
+PDPB Builder → evolving PRD / Spec Kit → state machine + persistence architecture → Decentraland implementation → TRACE → real Decentraland Mobile validation → evidence package → submission readiness.
 
 ## Integrity constraints
-No fake users. Honest WORLD/ORIGIN/FOUNDER state only. No delayed-return dependency. One-account comprehension in 60–90 seconds. Mobile-first throughout.
+No fake users. Honest WORLD/FOUNDER/GENESIS state only. No delayed-return dependency. No self-completion. Mobile-first. Lineage remains secondary to active play.
