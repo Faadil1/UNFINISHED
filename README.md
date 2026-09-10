@@ -1,71 +1,103 @@
-# UNFINISHED — Playable Co-Authorship
+# UNFINISHED
 
-Status: **V4 PROTOTYPE / KILL TEST**, not yet PDPB/PRD.
+**Every player solves one problem and creates the next.**
 
-Canonical repo: https://github.com/Faadil1/UNFINISHED
+UNFINISHED is an asynchronous social-play concept for Decentraland Friendzone. A visitor inherits an unfinished spatial condition authored by another real person, completes it into a playable route, uses the result, then authors the starting condition that someone else will inherit.
 
-## Core rule
+Canonical rule:
 
-**NO ONE FINISHES WHAT THEY START.**
+> **NO ONE FINISHES WHAT THEY START.**
 
-A visitor inherits a spatial condition created by a previous source, completes it into a playable route, uses the result, then authors the starting constraint for whoever comes next.
+## Current status
+**V5 Intelligent Causal Loop — Prototype / Kill Test**
 
-Core loop:
+This is not yet the production Decentraland build. The active purpose is to prove or kill the differentiator before PDPB and implementation.
 
-**INHERIT → COMPLETE → PLAY → AUTHOR NEXT → LEAVE**
+Canonical repo:
+https://github.com/Faadil1/UNFINISHED
 
-## V4: causal authorship, not attribution theater
+Vercel project was re-imported from `main` on 2026-09-10. The observed production domain in the Vercel project is:
 
-Earlier prototypes could still be criticized as “MAYA is only a name attached to designer-authored geometry.” V4 changes the primitive.
+`https://unfinished-delta.vercel.app`
 
-A real prior contributor now chooses two spatial properties:
+Do not count a scored test until the live page is verified to show V5.
+
+## Why V5 is different
+The previous player is not just a name attached to a prefab state.
+
+A real prior contributor authors three spatial properties directly in the scene:
 - `anchor`: LOW / MID / HIGH
 - `vector`: FLAT / UP
+- `reach`: SHORT / MEDIUM / LONG
 
-The current visitor chooses CONNECT or RISE. The route is computed from the inherited geometry plus the current completion.
+The inherited state also carries deterministic world pressure:
+- `pressure`: SPAN / HEIGHT / BALANCE
+- `tension`: 0–2
 
-Therefore the intended invariant is:
+The next route is computed from those inherited conditions plus the current player's action.
 
-`same current action + different prior human spatial decision = different playable consequence`
+## Intelligent causal loop
 
-The V4 export records this under `causalProof`, including counterfactual targets.
+`INHERIT → INTERPRET → COMPLETE → PLAY → AUTHOR NEXT → LEAVE → CONSEQUENCE`
 
-## Real prior-state authoring
+`CONNECT` resolves span pressure and creates height pressure for the successor.
 
-Operator mode:
+`RISE` resolves height pressure and creates span pressure for the successor.
+
+So the action is not just a cosmetic choice: every solution changes the problem that comes next.
+
+## Five V5 improvements
+1. **Solve + create tension** — each solution creates the next constraint.
+2. **Physical grammar** — anchor/vector/reach/pressure/tension form a compact world grammar.
+3. **Embodied intention** — the inherited segment shows origin + direction visually before explanatory text.
+4. **Delayed consequence** — next-visitor handoff and return receipt show what happened after a state was left.
+5. **Deterministic adaptation** — recent play/skip history adjusts tension without randomness; matched HUMAN/WORLD tests hold engine state constant.
+
+## Hidden-spot hardening
+See `HIDDEN-SPOTS-HARDENING-V5.md`.
+
+Prototype implementations now exist for:
+- transferable persistence + local capped lineage;
+- stale-write refusal through local compare-and-swap;
+- opaque authority separate from display name;
+- self-completion prevention;
+- mobile-safe controls, route adherence, haptics and reduced motion.
+
+These are **not yet production proof**. Shared persistence, atomic shared concurrency, connected Decentraland identity, and real Decentraland Mobile validation remain yellow until the post-PDPB implementation stage.
+
+## Test flow
+Open operator authoring mode:
 
 `/?author=1`
 
-A real person creates a starting state. The prototype then generates:
-- a HUMAN condition using that exact authored geometry;
-- a matched WORLD condition using the exact same geometry.
+A real author taps a start socket and endpoint. V5 then generates:
+- a HUMAN link containing that actual authored geometry;
+- a matched WORLD link with identical geometry and engine state.
 
-This allows a clean Human Necessity comparison without changing the path itself.
+The active test protocol is `TEST-PROTOCOL.md` and the active matrix is `TEST-MATRIX-V5.md`.
 
-## V4 evidence gates
+Older V2/V3/V4 matrices are historical only.
 
-1. Recognition — inherited geometry is legible before explanatory copy does the work.
-2. Counterfactual Authorship — changing the prior spatial decision changes the current playable consequence.
-3. Human Necessity — matched HUMAN states outperform WORLD states on meaning/social interpretation.
-4. Playfulness — route use is voluntary.
-5. Independent comprehension — tester separates previous contribution from their own.
-6. Constraint strength — inherited geometry materially affects choice/play.
-7. Causal source — HUMAN testers can explain what the prior person actually changed, not just remember a name.
+## Evidence
+V5 exports:
+- source recall;
+- prior vs self contribution;
+- constraint/origin/social/fun scores;
+- route use + off-route attempts;
+- inherited physical grammar;
+- action tradeoff;
+- successor constraint;
+- version/CAS result;
+- deterministic engine state;
+- counterfactual targets for changed anchor/vector/reach;
+- identity and persistence proof classification.
 
-See `TEST-PROTOCOL.md` and `TEST-MATRIX-V4.md`.
+## Required winning chain
 
-## Ten hidden spots hardened
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
-`HIDDEN-SPOTS-HARDENING-V4.md` converts the ten identified risks into required constraints covering causal authorship, counterfactuals, browser-vs-Decentraland proof, persistence, concurrency, self-completion, identity integrity, retention, lineage scope, and real Decentraland Mobile validation.
+Current location: **V5 KILL TEST**.
 
-## Runtime note
+PASS → PDPB Builder immediately.
 
-The canonical V4 source is fully English. The previous public Vercel alias lagged behind the repo. A V4 redeploy was attempted after the source update, but the Vercel connector became unavailable before the new public alias could be verified. Do not use an unverified old alias for scored tests.
-
-## Gate discipline
-
-V4 is still a falsification artifact. Passing a browser test does not authorize the final build.
-
-**V4 causal kill test PASS → PDPB Builder → evolving PRD / Spec Kit → state machine + persistence architecture → Decentraland implementation → TRACE → real Decentraland Mobile validation → evidence/submission.**
-
-PDPB Builder remains mandatory before the material Decentraland implementation.
+No material Decentraland implementation is claimed before that PASS.
