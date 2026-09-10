@@ -1,82 +1,71 @@
-# UNFINISHED — Playable Co-Authorship Kill Test
+# UNFINISHED — Playable Co-Authorship
 
-Status: **PROTOTYPE / KILL TEST V3 SOURCE READY**, not yet PDPB/PRD.
+Status: **V4 PROTOTYPE / KILL TEST**, not yet PDPB/PRD.
 
 Canonical repo: https://github.com/Faadil1/UNFINISHED
 
-Current public Vercel alias previously served V2:
-https://unfinished-kill-test.vercel.app
+## Core rule
 
-V3 has been committed and deployed, but the Vercel connector switched to a different team scope during redeploy and could not verify the clean alias. Do not use the clean alias for new scored tests until V3 is confirmed there.
+**NO ONE FINISHES WHAT THEY START.**
 
-## Core hypothesis
-A previous real person's unfinished spatial decision can materially shape the current player's play, and the current player can leave an unfinished decision for the next person.
+A visitor inherits a spatial condition created by a previous source, completes it into a playable route, uses the result, then authors the starting constraint for whoever comes next.
 
-Rule: **NO ONE FINISHES WHAT THEY START.**
+Core loop:
 
-## 2×2 scope
+**INHERIT → COMPLETE → PLAY → AUTHOR NEXT → LEAVE**
 
-| Prior stem | Completion | Outcome |
-|---|---|---|
-| ARC | CONNECT | GATEWAY |
-| ARC | RISE | ARCH CLIMB |
-| STEP | CONNECT | CROSSING |
-| STEP | RISE | STAIR TOWER |
+## V4: causal authorship, not attribution theater
 
-## V1 pilot
-Three self-runs + one iPhone recording produced `PILOT_TECH_PASS / USER_GATE_NOT_YET_VALIDATED`.
-They are QA evidence only; they do not count as independent cold testers.
+Earlier prototypes could still be criticized as “MAYA is only a name attached to designer-authored geometry.” V4 changes the primitive.
 
-V1 exposed two test biases: the slogan primed the concept before play, and route use was forced.
+A real prior contributor now chooses two spatial properties:
+- `anchor`: LOW / MID / HIGH
+- `vector`: FLAT / UP
 
-## V2 corrections
-- neutral entry screen;
-- deterministic HUMAN/WORLD × ARC/STEP conditions;
-- voluntary route use;
-- verbatim tester explanation;
-- prior/self contribution fields;
-- Origin / Social / Fun ratings.
+The current visitor chooses CONNECT or RISE. The route is computed from the inherited geometry plus the current completion.
 
-## V3 improvements
-- all tester-facing copy is English;
-- cleaner neutral onboarding;
-- larger, clearer attribution in the world;
-- debug information hidden unless `?debug=1`;
-- more neutral skip action: `I'M DONE HERE`;
-- short transformation animation and optional device haptic feedback;
-- `sourceRecall`: unaided recall of who/what created the starting state;
-- `constraintScore`: how much the inherited shape affected the player's choice;
-- Origin, Social, Fun remain separate measures;
-- reduced-motion preference respected;
-- controlled T1–T5 matrix retained for matched HUMAN/WORLD comparisons.
+Therefore the intended invariant is:
 
-See `TEST-PROTOCOL.md` and `TEST-MATRIX-V3.md`.
+`same current action + different prior human spatial decision = different playable consequence`
 
-## Gates
-1. Recognition — ARC and STEP are perceived as different inherited states.
-2. Counterfactual Authorship — the same completion produces a materially different path depending on the inherited stem.
-3. Human Necessity — HUMAN meaning must outperform matched WORLD meaning.
-4. Playfulness — route engagement must be voluntary, not forced.
-5. Independent comprehension — tester explains source, prior contribution, and self contribution distinctly.
-6. Constraint strength — inherited geometry must materially influence choice, not merely decorate it.
+The V4 export records this under `causalProof`, including counterfactual targets.
 
-## Strong PASS signal
-- >=4/5 independently explain that they transformed/completed something inherited and left a new start;
-- >=4/5 distinguish prior vs self contribution;
-- >=4/5 voluntarily engage with the route;
-- median Fun >=4/5;
-- median Constraint >=4/5;
-- HUMAN matched conditions outperform WORLD on Origin/Social meaning with qualitative support;
-- HUMAN testers recall a person as the source without prompting;
-- ARC vs STEP changes practical traversal consequence.
+## Real prior-state authoring
 
-## KILL/PIVOT
-- described mainly as choosing/building a shape;
-- HUMAN and WORLD feel equivalent;
-- route is not voluntarily used;
-- median Constraint <3/5;
-- ARC vs STEP feels cosmetic;
-- prior contribution is not remembered or cannot be separated from self contribution.
+Operator mode:
 
-## Next mandatory gate
-PASS → **PDPB Builder** → evolving PRD / Spec Kit → architecture/state machine → Decentraland implementation → TRACE → real mobile validation → evidence/submission.
+`/?author=1`
+
+A real person creates a starting state. The prototype then generates:
+- a HUMAN condition using that exact authored geometry;
+- a matched WORLD condition using the exact same geometry.
+
+This allows a clean Human Necessity comparison without changing the path itself.
+
+## V4 evidence gates
+
+1. Recognition — inherited geometry is legible before explanatory copy does the work.
+2. Counterfactual Authorship — changing the prior spatial decision changes the current playable consequence.
+3. Human Necessity — matched HUMAN states outperform WORLD states on meaning/social interpretation.
+4. Playfulness — route use is voluntary.
+5. Independent comprehension — tester separates previous contribution from their own.
+6. Constraint strength — inherited geometry materially affects choice/play.
+7. Causal source — HUMAN testers can explain what the prior person actually changed, not just remember a name.
+
+See `TEST-PROTOCOL.md` and `TEST-MATRIX-V4.md`.
+
+## Ten hidden spots hardened
+
+`HIDDEN-SPOTS-HARDENING-V4.md` converts the ten identified risks into required constraints covering causal authorship, counterfactuals, browser-vs-Decentraland proof, persistence, concurrency, self-completion, identity integrity, retention, lineage scope, and real Decentraland Mobile validation.
+
+## Runtime note
+
+The canonical V4 source is fully English. The previous public Vercel alias lagged behind the repo. A V4 redeploy was attempted after the source update, but the Vercel connector became unavailable before the new public alias could be verified. Do not use an unverified old alias for scored tests.
+
+## Gate discipline
+
+V4 is still a falsification artifact. Passing a browser test does not authorize the final build.
+
+**V4 causal kill test PASS → PDPB Builder → evolving PRD / Spec Kit → state machine + persistence architecture → Decentraland implementation → TRACE → real Decentraland Mobile validation → evidence/submission.**
+
+PDPB Builder remains mandatory before the material Decentraland implementation.
