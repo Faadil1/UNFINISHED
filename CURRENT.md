@@ -3,64 +3,84 @@
 Date: 2026-09-10
 
 ## Status
-**PROTOTYPE_KILL_TEST_V4_SOURCE_READY / LIVE_RUNTIME_REPAIR_PENDING**
+**PROTOTYPE_KILL_TEST_V5_PUSHED / LIVE_REDEPLOY_EXPECTED / USER_GATE_NOT_YET_VALIDATED**
 
 ## Current candidate
-**UNFINISHED — Playable Co-Authorship**
+**UNFINISHED — Intelligent Causal Loop**
 
 Canonical rule: **NO ONE FINISHES WHAT THEY START.**
 
-Core loop: **INHERIT → COMPLETE → PLAY → AUTHOR NEXT → LEAVE**
+Stronger product thesis:
+> **Every player solves one problem and creates the next.**
+
+Core loop:
+**INHERIT → INTERPRET → COMPLETE → PLAY → AUTHOR NEXT → LEAVE → CONSEQUENCE**
+
+## Winning chain
+The required chain is preserved:
+
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+
+PDPB Builder is still blocked until the V5 causal-authorship kill test passes. No production Decentraland implementation is being claimed before that gate.
 
 ## Canonical source
 https://github.com/Faadil1/UNFINISHED
 
-`index.html` is now **Cold Test V4**, English-first and hardened for causal authorship.
+`index.html` is now **V5**, English-first.
 
-## What changed in V4
-The previous user is no longer represented only by `MAYA + ARC/STEP`.
+Latest V5 source commit:
+`13696af2648f7dc7acff3b979b86dc0a42ab9513`
 
-A real prior contributor now authors two spatial parameters:
-- `anchor`: LOW / MID / HIGH
-- `vector`: FLAT / UP
+## V5 — five intelligence improvements
+1. **Solve + create tension** — CONNECT resolves SPAN and creates HEIGHT pressure for the successor; RISE resolves HEIGHT and creates SPAN pressure.
+2. **Physical grammar** — inherited state now carries `anchor + vector + reach + pressure + tension`.
+3. **Embodied intention** — inherited contribution is visually distinct, has an origin mark and arrow direction, and is readable before explanatory prose.
+4. **Delayed consequence proof** — each completed run creates a next-visitor handoff plus a privacy-gated return receipt describing what happened after the prior person left.
+5. **Deterministic adaptation** — recent local lineage can raise/lower successor tension deterministically; no randomness is used, and matched HUMAN/WORLD controls preserve identical engine state.
 
-The next visitor's playable path is computed from those inherited parameters plus the current visitor's CONNECT/RISE completion.
+## Causal-authorship upgrade
+The prior person is no longer a display label attached to a prefab route.
 
-V4 therefore tests the stronger claim:
+A real author chooses spatially in the scene:
+- anchor: LOW / MID / HIGH
+- direction: FLAT / UP
+- reach: SHORT / MEDIUM / LONG (derived from actual endpoint placement)
 
-> A previous real player creates the initial spatial conditions of the next player's playable problem.
+The next playable route is computed from that human-authored geometry plus the next visitor's completion and inherited pressure/tension.
 
-The JSON export includes a `causalProof` object with the inherited spatial decision, actual result, and counterfactual results under changed prior geometry.
+V5 evidence exports counterfactuals for changed anchor, vector, and reach.
 
-## Ten hidden spots
-All ten previously identified hidden spots are now explicit constraints in `HIDDEN-SPOTS-HARDENING-V4.md`:
-1. causal prior author;
-2. real counterfactual authorship;
-3. browser-vs-Decentraland fun separation;
-4. production persistence contract;
-5. deterministic concurrency/versioning;
-6. no self-completion;
-7. authenticated/privacy-safe identity;
-8. consequence-based retention;
-9. capped lineage instead of museum/gallery drift;
-10. actual Decentraland Mobile runtime validation.
+## Previously yellow hidden spots — implementation status
+### 4. Persistence — IMPLEMENTED IN PROTOTYPE / NOT YET PRODUCTION-VALIDATED
+- state handoff survives as a transferable URL;
+- local active state persists in localStorage;
+- lineage is capped to five recent entries;
+- return receipt proves the intended consequence loop.
+- still requires shared durable persistence after PDPB.
 
-## Test artifacts
-- `TEST-PROTOCOL.md` — V4 protocol
-- `TEST-MATRIX-V4.md` — matched HUMAN/WORLD test design
-- operator mode: `/?author=1`
+### 5. Concurrency — IMPLEMENTED IN PROTOTYPE / NOT YET PRODUCTION-VALIDATED
+- state carries id + version;
+- local compare-and-swap refuses stale writes instead of overwriting;
+- evidence records expected/new version.
+- still requires atomic shared CAS in the production backend.
 
-The operator creates a real spatial state once, then V4 produces:
-- HUMAN test link using that person's actual geometry;
-- matched WORLD control using identical geometry.
+### 7. Identity — IMPLEMENTED IN PROTOTYPE / NOT YET PRODUCTION-VALIDATED
+- opaque prototype session id is authoritative;
+- display name is explicitly non-authoritative;
+- a user cannot complete their own state under the same prototype identity;
+- default unauthored root is WORLD, never a fake human.
+- production must replace prototype identity with connected Decentraland identity.
 
-## Live runtime
-The public Vercel runtime previously lagged behind the canonical source. A V4 redeploy was attempted after the source update, but the Vercel connector became unavailable during this session. Therefore **do not claim the old clean alias is V4 until it is verified**.
-
-This is a deployment issue, not a source-language issue: canonical V4 source is fully English.
+### 10. Decentraland Mobile — PREPARED / NOT VALIDATABLE YET
+- four-direction mobile controls;
+- safe-area layout;
+- reduced-motion support;
+- haptics when available;
+- route-following/off-route instrumentation.
+- actual Decentraland Mobile validation remains mandatory after PDPB + implementation.
 
 ## Active gate
-Verify the V4 public runtime, then run the controlled five-person cold test matrix.
+Run real-author matched HUMAN/WORLD cold tests on the verified V5 live runtime.
 
 Required evidence:
 - Recognition
@@ -70,14 +90,15 @@ Required evidence:
 - Independent comprehension
 - Constraint strength
 - Real prior-player causal contribution
+- Successor tension comprehension
 
 ## Decision rule
 - PASS → mandatory **PDPB Builder**
 - PIVOT → modify only the failed primitive and rerun the gate
-- KILL → do not fall back automatically to NEED//RELAY or RELAY ECHO
+- KILL → do not automatically fall back to NEED//RELAY or RELAY ECHO
 
 ## After PASS
-PDPB Builder → evolving PRD / Spec Kit → state machine + persistence architecture → Decentraland implementation → TRACE → real Decentraland Mobile validation → evidence package → submission readiness.
+PDPB Builder → evolving PRD / Spec Kit → state machine + shared persistence/identity architecture → Decentraland implementation → TRACE → real Decentraland Mobile validation → evidence → STORY → DEMO → Q&A → submission readiness.
 
 ## Integrity constraints
-No fake users. Honest WORLD/FOUNDER/GENESIS state only. No delayed-return dependency. No self-completion. Mobile-first. Lineage remains secondary to active play.
+No fake users. No display-name authority. Honest WORLD/FOUNDER seed only. No self-completion. No random adaptive black box. Lineage stays secondary to active play. Evidence must distinguish prototype proof from production proof.
