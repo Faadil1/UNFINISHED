@@ -1,64 +1,105 @@
 # CANONICAL HANDOFF — UNFINISHED
 
 Date: 2026-09-10
+Active version: **V5 Intelligent Causal Loop**
 
-## Competition
-Decentraland Friendzone Mobile Buildathon.
+## Source of truth
+Repository: `Faadil1/UNFINISHED`
+Branch: `main`
 
-## Canonical repo
-https://github.com/Faadil1/UNFINISHED
+Active prototype file: `index.html`
+Active protocol: `TEST-PROTOCOL.md`
+Active matrix: `TEST-MATRIX-V5.md`
+Active hardening: `HIDDEN-SPOTS-HARDENING-V5.md`
+Winning-chain control: `WINNING-CHAIN.md`
+PDPB gate: `PDPB-GATE.md`
 
-## Current status
-**V4 causal-authorship prototype source is ready. Public V4 runtime still needs verification. PDPB Builder is not yet authorized.**
+Older V2/V3/V4 test matrices are historical only.
 
-## Closed decisions
-- FAVOR//RELAY V1: KILL.
-- NEED//RELAY: KILL.
-- RELAY ECHO / KEYSTONE: retained only as design intelligence / backup.
-- UNFINISHED gallery/sculpture-only version: KILL/PIVOT.
-- Current candidate: **UNFINISHED — Playable Co-Authorship**.
+## Current project state
+**PROTOTYPE_KILL_TEST_V5_PUSHED / USER_GATE_NOT_YET_VALIDATED**
 
-## Canonical rule
-**NO ONE FINISHES WHAT THEY START.**
+The previous V4.1 state is superseded.
 
-Core loop:
-**INHERIT → COMPLETE → PLAY → AUTHOR NEXT → LEAVE**
+## Product thesis
+> **Every player solves one problem and creates the next.**
 
-## V4 causal correction
-The previous-person contribution is no longer just `MAYA + ARC/STEP`.
+Rule:
+> **NO ONE FINISHES WHAT THEY START.**
 
-A real prior contributor authors spatial conditions:
-- anchor = LOW / MID / HIGH
-- vector = FLAT / UP
+Problem:
+A low-concurrency World lacks cross-session consequential social continuity when one real visitor's action does not materially shape another real visitor's later session.
 
-The current visitor chooses CONNECT or RISE. The route is computed from both contributions.
+Differentiator under test:
+A previous real player authors the physical starting conditions of the next player's problem; the next player solves it and creates a successor constraint.
 
-Canonical product claim:
+## V5 physical grammar
+Human-authored:
+- anchor
+- vector
+- reach
 
-> A previous real player creates the initial spatial conditions of the next player's playable problem.
+Deterministically carried:
+- pressure
+- tension
 
-V4 operator mode `/?author=1` creates real prior-human states and matched WORLD controls using identical geometry.
+Core state:
+`anchor × vector × reach × pressure × tension`
 
-## Current kill-test gate
-Use `TEST-PROTOCOL.md` + `TEST-MATRIX-V4.md`.
+## V5 loop
+**INHERIT → INTERPRET → COMPLETE → PLAY → AUTHOR NEXT → LEAVE → CONSEQUENCE**
 
-Required proof:
-- recognition;
-- counterfactual authorship;
-- human necessity;
-- voluntary playfulness;
-- independent comprehension;
-- constraint strength;
-- real prior-player causal contribution.
+`CONNECT`: resolves SPAN, creates HEIGHT pressure.
 
-## Ten hidden spots
-All are canonicalized in `HIDDEN-SPOTS-HARDENING-V4.md` and must flow into PDPB if the test passes:
-causal authorship, real counterfactuals, browser-vs-Decentraland proof separation, persistence, concurrency, self-completion, identity integrity, retention, lineage scope, real Decentraland Mobile validation.
+`RISE`: resolves HEIGHT, creates SPAN pressure.
 
-## Runtime
-Canonical source is English. The previous public Vercel alias lagged behind the source. A redeploy attempt was made after V4, but the Vercel connector became unavailable before the new public runtime could be verified. Do not claim the old alias is V4 without verification.
+## Implemented prototype hardening
+- real in-scene authoring of anchor/vector/reach;
+- HUMAN/WORLD matched links with identical geometry/engine state;
+- counterfactual causal evidence;
+- next-visitor handoff URL;
+- local active-state persistence;
+- capped local lineage;
+- return-receipt link;
+- local CAS stale-write refusal;
+- opaque prototype identity separate from display name;
+- self-completion block;
+- unauthored root defaults to WORLD;
+- deterministic adaptive tension with no randomness;
+- route-adherence/off-route instrumentation;
+- four-direction mobile controls;
+- haptics where supported;
+- reduced-motion support.
 
-## Mandatory path
-**V4 kill test PASS → PDPB Builder → evolving PRD/Spec Kit → state machine + persistence architecture → Decentraland build → TRACE → real mobile runtime validation → evidence → submission.**
+## Still yellow until real execution layer
+Do not mark these production-validated yet:
+1. shared durable persistence;
+2. atomic shared concurrency/CAS;
+3. authoritative Decentraland identity;
+4. actual Decentraland Mobile runtime.
 
-Do not skip PDPB Builder. Do not start a large Decentraland build just to compensate for deadline pressure.
+They are prepared in the prototype/contract and must become real only after V5 PASS → PDPB.
+
+## Required chain
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+
+Current gate: **V5 KILL TEST**.
+
+## Immediate next actions
+1. Verify the re-imported Vercel project is serving V5 from `main`.
+2. Open `/?author=1` on the verified V5 runtime.
+3. Have real authors create geometry A/B.
+4. Generate matched HUMAN/WORLD links.
+5. Run five independent cold tests according to `TEST-MATRIX-V5.md`.
+6. Record verbatim responses + evidence JSON.
+7. Issue a hard verdict: PASS / PIVOT / KILL.
+8. If PASS, invoke **PDPB Builder immediately** before any material Decentraland implementation.
+
+## Never do
+- do not resurrect FAVOR//RELAY V1;
+- do not substitute fake human attribution;
+- do not treat localStorage/URL persistence as final backend proof;
+- do not treat browser-mobile testing as Decentraland Mobile proof;
+- do not finalize judge story/demo claims before evidence;
+- do not turn lineage into the primary experience;
+- do not add random/opaque AI generation to the core mechanic.
