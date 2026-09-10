@@ -3,7 +3,7 @@
 Date: 2026-09-10
 
 ## Status
-**PROTOTYPE_KILL_TEST_V5_PUSHED / LIVE_REDEPLOY_EXPECTED / USER_GATE_NOT_YET_VALIDATED**
+**PROTOTYPE_KILL_TEST_V5_DEPLOYED / VERCEL_STATUS_SUCCESS / USER_GATE_NOT_YET_VALIDATED**
 
 ## Current candidate
 **UNFINISHED — Intelligent Causal Loop**
@@ -28,8 +28,21 @@ https://github.com/Faadil1/UNFINISHED
 
 `index.html` is now **V5**, English-first.
 
-Latest V5 source commit:
+V5 source commit:
 `13696af2648f7dc7acff3b979b86dc0a42ab9513`
+
+## Vercel
+The repository was re-imported into the user's current Vercel scope as project `unfinished`.
+
+Observed production domain from the Vercel dashboard:
+`https://unfinished-delta.vercel.app`
+
+GitHub commit status now reports:
+- context: `Vercel`
+- state: `success`
+- project target: `faadil-s-projects/unfinished`
+
+This confirms the new GitHub → Vercel deployment pipeline is working. A final browser smoke-test should confirm the public domain title/UI is V5 before scored external tests begin.
 
 ## V5 — five intelligence improvements
 1. **Solve + create tension** — CONNECT resolves SPAN and creates HEIGHT pressure for the successor; RISE resolves HEIGHT and creates SPAN pressure.
@@ -80,7 +93,7 @@ V5 evidence exports counterfactuals for changed anchor, vector, and reach.
 - actual Decentraland Mobile validation remains mandatory after PDPB + implementation.
 
 ## Active gate
-Run real-author matched HUMAN/WORLD cold tests on the verified V5 live runtime.
+Smoke-test the V5 public runtime, then run real-author matched HUMAN/WORLD cold tests.
 
 Required evidence:
 - Recognition
