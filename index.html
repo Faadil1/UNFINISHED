@@ -4,282 +4,45 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#f2eee4">
-<title>UNFINISHED — Causal Authorship Test</title>
+<title>UNFINISHED — Intelligent Causal Loop</title>
 <style>
-:root{--bg:#f2eee4;--ink:#171717;--muted:#6d685f;--line:rgba(23,23,23,.15);--paper:rgba(255,255,255,.9);--soft:#e3ddcf}
-*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}
-button,input,textarea{font:inherit;color:inherit}.app{height:100%;display:grid;grid-template-rows:auto 1fr auto}.top{padding:calc(10px + env(safe-area-inset-top)) 14px 8px;display:flex;justify-content:space-between;align-items:center}
-.brand{font-size:13px;font-weight:900;letter-spacing:.14em}.phase{font-size:11px;color:var(--muted);letter-spacing:.12em}.scene{position:relative;min-height:0;padding:0 10px}
-canvas{width:100%;height:100%;display:block;border:1px solid var(--line);border-radius:24px;background:linear-gradient(#ebe5d8,#faf8f1)}
-.controls{padding:10px 14px max(18px,env(safe-area-inset-bottom));min-height:150px;display:flex;align-items:center;justify-content:center}
-.card{width:min(660px,100%);max-height:47vh;overflow:auto;background:var(--paper);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:0 18px 50px rgba(0,0,0,.07)}
-.hidden{display:none!important}.prompt{font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;margin-bottom:10px}.neutral{font-size:14px;color:var(--muted);line-height:1.45;margin:0 0 14px}
-.primary,.secondary{width:100%;min-height:50px;padding:13px 16px;border-radius:15px;font-weight:850;letter-spacing:.02em}.primary{border:0;background:#171717;color:white}.secondary{border:1px solid var(--line);background:white}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.choice{min-height:78px;border:1px solid var(--line);background:white;border-radius:18px;padding:11px;text-align:left;transition:transform .12s ease,box-shadow .12s ease}.choice:active{transform:scale(.98)}
-.choice strong{display:block;font-size:14px}.choice span{display:block;font-size:11px;color:var(--muted);margin-top:4px}.choice.sel{outline:2px solid #171717}
-.joyrow{display:flex;justify-content:center;gap:12px}.joy{width:78px;height:78px;border-radius:50%;border:1px solid var(--line);background:white;font-size:24px;font-weight:900;touch-action:none}.joy:active{transform:scale(.96)}
-.badge{position:absolute;top:18px;left:50%;transform:translate(-50%,-5px);background:rgba(255,255,255,.93);border:1px solid var(--line);padding:9px 13px;border-radius:999px;font-size:12px;font-weight:850;opacity:0;transition:.2s;white-space:nowrap}.badge.show{opacity:1;transform:translate(-50%,0)}
-.report textarea,.author input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:13px;padding:10px;background:white}.report textarea{min-height:58px;resize:none}
-.report label,.author label{font-size:12px;font-weight:760;line-height:1.35;display:block;margin-top:10px}.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:6px 0 10px}.scale button{border:1px solid var(--line);background:white;border-radius:10px;padding:9px 0}.scale button.sel{background:#171717;color:white}
-.anchors{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:-7px;margin-bottom:4px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.small{font-size:10px;color:var(--muted);line-height:1.35;margin-top:8px}
-.debug{display:none;position:absolute;right:18px;bottom:18px;font:9px ui-monospace;background:rgba(255,255,255,.8);padding:5px 7px;border-radius:9px;border:1px solid var(--line);color:var(--muted)}.debug.on{display:block}
-.linkbox{width:100%;word-break:break-all;border:1px solid var(--line);background:white;border-radius:12px;padding:9px;font:11px ui-monospace;margin-top:8px}.divider{height:1px;background:var(--line);margin:12px 0}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+:root{--bg:#f2eee4;--ink:#171717;--muted:#6d685f;--line:rgba(23,23,23,.15);--paper:rgba(255,255,255,.91);--soft:#e3ddcf;--ghost:rgba(23,23,23,.28)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}
+button,input,textarea{font:inherit;color:inherit}button{touch-action:manipulation}.app{height:100%;display:grid;grid-template-rows:auto 1fr auto}.top{padding:calc(10px + env(safe-area-inset-top)) 14px 8px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:13px;font-weight:900;letter-spacing:.14em}.phase{font-size:10px;color:var(--muted);letter-spacing:.12em}.scene{position:relative;min-height:0;padding:0 10px}canvas{width:100%;height:100%;display:block;border:1px solid var(--line);border-radius:24px;background:linear-gradient(#ebe5d8,#faf8f1)}.controls{padding:10px 14px max(18px,env(safe-area-inset-bottom));min-height:150px;display:flex;align-items:center;justify-content:center}.card{width:min(680px,100%);max-height:48vh;overflow:auto;background:var(--paper);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:0 18px 50px rgba(0,0,0,.07)}.hidden{display:none!important}.prompt{font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;margin-bottom:10px}.neutral{font-size:14px;color:var(--muted);line-height:1.45;margin:0 0 14px}.primary,.secondary{width:100%;min-height:50px;padding:13px 16px;border-radius:15px;font-weight:850;letter-spacing:.01em}.primary{border:0;background:#171717;color:white}.primary:disabled{opacity:.35}.secondary{border:1px solid var(--line);background:white}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{min-height:82px;border:1px solid var(--line);background:white;border-radius:18px;padding:12px;text-align:left;transition:transform .12s ease,box-shadow .12s ease}.choice:active{transform:scale(.98)}.choice strong{display:block;font-size:15px}.choice span{display:block;font-size:11px;color:var(--muted);margin-top:4px}.pad{width:210px;margin:auto;display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(2,64px);gap:8px;justify-content:center}.joy{width:64px;height:64px;border-radius:18px;border:1px solid var(--line);background:white;font-size:22px;font-weight:900;touch-action:none}.joy:active{transform:scale(.96)}#up{grid-column:2;grid-row:1}#left{grid-column:1;grid-row:2}#down{grid-column:2;grid-row:2}#right{grid-column:3;grid-row:2}.badge{position:absolute;top:18px;left:50%;transform:translate(-50%,-5px);background:rgba(255,255,255,.93);border:1px solid var(--line);padding:9px 13px;border-radius:999px;font-size:12px;font-weight:850;opacity:0;transition:.2s;white-space:nowrap;pointer-events:none}.badge.show{opacity:1;transform:translate(-50%,0)}.report textarea,.author input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:13px;padding:10px;background:white}.report textarea{min-height:58px;resize:none}.report label,.author label{font-size:12px;font-weight:760;line-height:1.35;display:block;margin-top:10px}.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:6px 0 10px}.scale button{border:1px solid var(--line);background:white;border-radius:10px;padding:9px 0}.scale button.sel{background:#171717;color:white}.anchors{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);margin-top:-7px;margin-bottom:4px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.small{font-size:10px;color:var(--muted);line-height:1.42;margin-top:8px}.debug{display:none;position:absolute;right:18px;bottom:18px;font:9px ui-monospace;background:rgba(255,255,255,.82);padding:5px 7px;border-radius:9px;border:1px solid var(--line);color:var(--muted)}.debug.on{display:block}.linkbox{word-break:break-all;border:1px solid var(--line);background:white;border-radius:12px;padding:9px;font:10px ui-monospace;margin-top:8px}.divider{height:1px;background:var(--line);margin:12px 0}.receipt{border:1px solid var(--line);border-radius:16px;padding:12px;background:white;margin-top:10px}.receipt strong{font-size:15px}.receipt p{font-size:12px;color:var(--muted);line-height:1.4;margin:6px 0 0}.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.pill{border:1px solid var(--line);border-radius:999px;padding:5px 8px;font-size:10px;font-weight:800;background:white}.warn{border-left:3px solid #171717;padding-left:10px}@media(max-width:430px){.card{max-height:50vh}.controls{min-height:146px}.choice{min-height:76px}.pad{transform:scale(.94)}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="top"><div class="brand">UNFINISHED</div><div class="phase" id="phase">01 / 04</div></div>
-  <div class="scene">
-    <canvas id="c"></canvas>
-    <div class="badge" id="badge"></div>
-    <div class="debug" id="debug">v4</div>
-  </div>
-  <div class="controls">
-    <div class="card" id="intro">
-      <div class="prompt">Mobile interaction test</div>
-      <p class="neutral">Explore the scene in front of you.</p>
-      <button class="primary" id="start">START</button>
-    </div>
-
-    <div class="card hidden" id="complete">
-      <div class="prompt">Choose one</div>
-      <div class="grid">
-        <button class="choice" data-complete="CONNECT"><strong>↔ CONNECT</strong><span>join the path</span></button>
-        <button class="choice" data-complete="RISE"><strong>↥ RISE</strong><span>take it upward</span></button>
-      </div>
-    </div>
-
-    <div class="card hidden" id="play">
-      <div class="prompt">Your move</div>
-      <div class="joyrow">
-        <button class="joy" id="left" aria-label="Move left">←</button>
-        <button class="joy" id="up" aria-label="Move up">↑</button>
-        <button class="joy" id="right" aria-label="Move right">→</button>
-      </div>
-      <button class="secondary" id="skip" style="margin-top:10px">I'M DONE HERE</button>
-    </div>
-
-    <div class="card hidden" id="leave">
-      <div class="prompt">Leave the next constraint</div>
-      <p class="neutral">Tap a starting socket in the scene, then tap the direction you want to leave behind.</p>
-      <button class="primary" id="leaveCommit" disabled>LEAVE THIS FOR THE NEXT VISITOR</button>
-    </div>
-
-    <div class="card report hidden" id="report">
-      <div class="prompt">Short debrief</div>
-      <label>In your own words, what just happened?</label><textarea id="what" autocomplete="off"></textarea>
-      <label>Who or what do you think created the starting state?</label><textarea id="sourceRecall" autocomplete="off"></textarea>
-      <label>What did the starting state contribute?</label><textarea id="priorText" autocomplete="off"></textarea>
-      <label>What did you contribute?</label><textarea id="selfText" autocomplete="off"></textarea>
-      <label>How much did the starting geometry affect your choice?</label>
-      <div class="scale" id="constraint"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div>
-      <div class="anchors"><span>Not at all</span><span>A lot</span></div>
-      <label>How much did the source of the starting state matter?</label>
-      <div class="scale" id="origin"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div>
-      <div class="anchors"><span>Not at all</span><span>A lot</span></div>
-      <label>How social did this feel?</label>
-      <div class="scale" id="social"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div>
-      <div class="anchors"><span>Not social</span><span>Very social</span></div>
-      <label>How enjoyable was it?</label>
-      <div class="scale" id="fun"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div>
-      <div class="anchors"><span>Not enjoyable</span><span>Very enjoyable</span></div>
-      <div class="actions"><button class="secondary" id="copy">COPY JSON</button><button class="primary" id="restart">NEW TEST</button></div>
-      <div class="small" id="summary"></div>
-    </div>
-
-    <div class="card author hidden" id="author">
-      <div class="prompt">Author a real starting state</div>
-      <p class="neutral">Enter a display name, then tap a starting socket in the scene and tap the direction to leave behind. The next visitor's route is computed from that exact geometry.</p>
-      <label>Display name</label><input id="authorName" value="MAYA" maxlength="24">
-      <button class="primary" id="makeHandoff" style="margin-top:10px" disabled>CREATE HANDOFF</button>
-      <div id="handoffOut" class="hidden">
-        <div class="divider"></div>
-        <div class="small">HUMAN condition — actual authored geometry</div><div class="linkbox" id="humanLink"></div>
-        <div class="small">Matched WORLD control — exact same geometry</div><div class="linkbox" id="worldLink"></div>
-      </div>
-    </div>
-
-    <div class="card hidden" id="ownState">
-      <div class="prompt">This one is yours</div>
-      <p class="neutral">You cannot complete the state you started. Leave it for another visitor.</p>
-      <button class="primary" id="resetOwn">RETURN TO TEST</button>
-    </div>
-  </div>
-</div>
-
+<div class="app"><div class="top"><div class="brand">UNFINISHED</div><div class="phase" id="phase">01 / 04</div></div><div class="scene"><canvas id="c" aria-label="Playable inherited path"></canvas><div class="badge" id="badge"></div><div class="debug" id="debug">v5</div></div><div class="controls">
+<div class="card" id="intro"><div class="prompt">Mobile interaction test</div><p class="neutral">Explore the scene in front of you.</p><button class="primary" id="start">START</button></div>
+<div class="card hidden" id="complete"><div class="prompt">Choose what happens next</div><div class="grid"><button class="choice" data-complete="CONNECT"><strong>↔ CONNECT</strong><span>bridge what is missing</span></button><button class="choice" data-complete="RISE"><strong>↥ RISE</strong><span>push the route upward</span></button></div></div>
+<div class="card hidden" id="play"><div class="prompt">Use what you made</div><div class="pad"><button class="joy" id="up" aria-label="Move up">↑</button><button class="joy" id="left" aria-label="Move left">←</button><button class="joy" id="down" aria-label="Move down">↓</button><button class="joy" id="right" aria-label="Move right">→</button></div><button class="secondary" id="skip" style="margin-top:10px">I'M DONE HERE</button></div>
+<div class="card hidden" id="leave"><div class="prompt">Leave the next starting condition</div><p class="neutral">Tap a socket in the scene, then tap where you want the unfinished segment to point.</p><button class="primary" id="leaveCommit" disabled>LEAVE THIS FOR THE NEXT VISITOR</button></div>
+<div class="card report hidden" id="report"><div class="prompt">Short debrief</div><label>In your own words, what just happened?</label><textarea id="what" autocomplete="off"></textarea><label>Who or what do you think created the starting state?</label><textarea id="sourceRecall" autocomplete="off"></textarea><label>What did the starting state contribute?</label><textarea id="priorText" autocomplete="off"></textarea><label>What did you contribute?</label><textarea id="selfText" autocomplete="off"></textarea><label>How much did the starting geometry affect your choice?</label><div class="scale" id="constraint"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div><div class="anchors"><span>Not at all</span><span>A lot</span></div><label>How much did the source of the starting state matter?</label><div class="scale" id="origin"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div><div class="anchors"><span>Not at all</span><span>A lot</span></div><label>How social did this feel?</label><div class="scale" id="social"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div><div class="anchors"><span>Not social</span><span>Very social</span></div><label>How enjoyable was it?</label><div class="scale" id="fun"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button></div><div class="anchors"><span>Not enjoyable</span><span>Very enjoyable</span></div><div class="receipt" id="nextReceipt"><strong>Your unfinished state is ready.</strong><p>The next visitor link preserves your authored geometry and the consequence created by your choice.</p><div class="linkbox" id="nextLink"></div></div><div class="actions"><button class="secondary" id="copy">COPY EVIDENCE JSON</button><button class="primary" id="copyNext">COPY NEXT VISITOR LINK</button></div><div class="actions"><button class="secondary" id="copyReceipt">COPY RETURN RECEIPT</button><button class="primary" id="restart">NEW TEST</button></div><div class="small" id="summary"></div></div>
+<div class="card author hidden" id="author"><div class="prompt">Author a real starting condition</div><p class="neutral">Choose a start socket in the scene, then place the endpoint. Your exact spatial decision becomes the next visitor's inherited problem.</p><label>Display name</label><input id="authorName" value="" maxlength="24" placeholder="Your display name"><div class="small warn">The display name is presentation only. Prototype authority uses an opaque local session id; the production build must replace it with connected Decentraland identity.</div><button class="primary" id="makeHandoff" style="margin-top:10px" disabled>CREATE MATCHED TEST LINKS</button><div id="handoffOut" class="hidden"><div class="divider"></div><div class="small">HUMAN condition — your actual authored geometry</div><div class="linkbox" id="humanLink"></div><div class="small">WORLD control — identical geometry and engine state</div><div class="linkbox" id="worldLink"></div></div></div>
+<div class="card hidden" id="ownState"><div class="prompt">This one is yours</div><p class="neutral">You cannot complete a starting state authored by this same prototype identity. Leave it for another visitor.</p><button class="primary" id="resetOwn">RETURN</button></div>
+<div class="card hidden" id="staleState"><div class="prompt">State changed</div><p class="neutral">This version has already been advanced in this prototype store. Your stale completion was refused instead of overwriting the newer state.</p><button class="primary" id="loadLatest">LOAD LATEST LOCAL STATE</button></div>
+<div class="card hidden" id="returnReceipt"><div class="prompt">What happened after you left</div><div class="receipt"><strong id="receiptTitle">Your state was used.</strong><p id="receiptBody"></p><div class="pills" id="receiptPills"></div></div><button class="primary" id="receiptContinue" style="margin-top:10px">CONTINUE</button></div>
+</div></div>
 <script>
-const c=document.getElementById('c'),x=c.getContext('2d'),$=id=>document.getElementById(id);
-const cards=['intro','complete','play','leave','report','author','ownState'];
-const qp=new URLSearchParams(location.search);
-let W=0,H=0,S={},leaveDraft={anchor:null,vector:null},authorDraft={anchor:null,vector:null};
-
-function valid(v,a){return a.includes(v)?v:null}
-function cleanName(v){return (v||'MAYA').trim().replace(/[^\w .-]/g,'').slice(0,24)||'MAYA'}
-function cfg(){
-  return {
-    authorMode: qp.get('author')==='1',
-    mode: valid((qp.get('mode')||qp.get('source')||'').toUpperCase(),['HUMAN','WORLD']) || 'HUMAN',
-    anchor: valid((qp.get('anchor')||'').toUpperCase(),['LOW','MID','HIGH']) || 'MID',
-    vector: valid((qp.get('vector')||'').toUpperCase(),['FLAT','UP']) || 'FLAT',
-    name: cleanName(qp.get('name')||'MAYA'),
-    authorId: qp.get('authorId')||'prior-human',
-    viewerId: qp.get('viewer')||'current-viewer',
-    generation: Math.max(1,parseInt(qp.get('g')||'1',10)||1),
-    runLabel: qp.get('run')||null,
-    version: Math.max(1,parseInt(qp.get('version')||'1',10)||1)
-  }
-}
-function show(id){cards.forEach(k=>$(k).classList.toggle('hidden',k!==id))}
-function setPhase(v){$('phase').textContent=v}
-function badge(t){$('badge').textContent=t;$('badge').classList.add('show');setTimeout(()=>$('badge').classList.remove('show'),1800)}
-function haptic(){try{navigator.vibrate?.(24)}catch{}}
-function log(type,e={}){S.events.push({type,t:Math.round(performance.now()-S.t0),...e});$('debug').textContent=`v4 · ${S.mode}/${S.anchor}/${S.vector} · ${type}`}
-function anchorY(a){return a==='LOW'?.72:a==='HIGH'?.42:.57}
-function stemEnd(a,v){const y=anchorY(a);return [.43,Math.max(.18,y+(v==='UP'?-.16:0))]}
-function completionTarget(a,v,complete){
-  const [,ey]=stemEnd(a,v);
-  if(complete==='CONNECT') return [.88,Math.max(.20,Math.min(.78,ey+(a==='LOW'?.03:a==='HIGH'?.09:-.02)))];
-  return [.82,Math.max(.16,ey-.28)]
-}
-function pathFor(a,v,complete){
-  const y0=anchorY(a), e=stemEnd(a,v), t=completionTarget(a,v,complete);
-  if(!complete) return [[.12,y0],[.27,y0],[e[0],e[1]]];
-  const bend1=[.57, e[1]+(complete==='CONNECT'?.02:-.08)];
-  const bend2=[.70, t[1]+(complete==='CONNECT'?.05:.05)];
-  return [[.12,y0],[.27,y0],[e[0],e[1]],bend1,bend2,t]
-}
-function outcomeName(){
-  const vertical=S.complete==='RISE'?'ASCENT':'CROSSING';
-  return `${S.anchor} ${S.vector} ${vertical}`
-}
-function fresh(){
-  const q=cfg();
-  if(q.authorMode){S={events:[],t0:performance.now()};setPhase('AUTHOR');show('author');draw();return}
-  S={version:4,t0:performance.now(),mode:q.mode,anchor:q.anchor,vector:q.vector,name:q.name,authorId:q.authorId,viewerId:q.viewerId,generation:q.generation,stateVersion:q.version,runLabel:q.runLabel,complete:null,outcome:null,avatar:{x:.12,y:anchorY(q.anchor)+.04},events:[],firstPostReveal:null,used:false,skipped:false,next:null,constraintScore:null,originScore:null,socialScore:null,funScore:null,morph:1};
-  leaveDraft={anchor:null,vector:null};
-  ['what','sourceRecall','priorText','selfText'].forEach(id=>$(id).value='');
-  document.querySelectorAll('.scale button,.choice').forEach(b=>b.classList.remove('sel'));
-  $('leaveCommit').disabled=true;
-  $('debug').classList.toggle('on',qp.get('debug')==='1');
-  if(S.mode==='HUMAN' && S.authorId===S.viewerId){setPhase('OWN STATE');show('ownState')}else{setPhase('01 / 04');show('intro')}
-  draw()
-}
-function resize(){const r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);c.width=r.width*d;c.height=r.height*d;W=r.width;H=r.height;x.setTransform(d,0,0,d,0,0);draw()}
-addEventListener('resize',resize);
-
-function start(){
-  S.t0=performance.now();S.events=[];log('START',{mode:S.mode,anchor:S.anchor,vector:S.vector,generation:S.generation,stateVersion:S.stateVersion,runLabel:S.runLabel});
-  setPhase('02 / 04');show('complete');draw();
-  setTimeout(()=>badge(`${S.mode==='HUMAN'?S.name:'WORLD'} · LEFT THIS`),700)
-}
-function first(a){if(!S.firstPostReveal){S.firstPostReveal=a;log('FIRST_POST_REVEAL',{action:a,latency:Math.round(performance.now()-S.reveal)})}}
-function animateMorph(){const st=performance.now(),dur=520;function tick(n){S.morph=Math.min(1,(n-st)/dur);draw();if(S.morph<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}
-function chooseComplete(v){
-  S.complete=v;S.outcome=outcomeName();S.reveal=performance.now();S.morph=0;
-  log('COMPLETE',{completion:v,outcome:S.outcome,inherited:{anchor:S.anchor,vector:S.vector}});
-  setPhase('03 / 04');show('play');haptic();badge(`${S.mode==='HUMAN'?S.name:'WORLD'} + YOU`);animateMorph()
-}
-function move(dx,dy){
-  if(!S.complete||S.used||S.skipped)return;first('MOVE');
-  S.avatar.x=Math.max(.05,Math.min(.95,S.avatar.x+dx));S.avatar.y=Math.max(.12,Math.min(.86,S.avatar.y+dy));
-  log('MOVE',{x:+S.avatar.x.toFixed(2),y:+S.avatar.y.toFixed(2)});
-  const p=pathFor(S.anchor,S.vector,S.complete),g=p[p.length-1];
-  if(Math.hypot(S.avatar.x-g[0],S.avatar.y-g[1])<.13){S.used=true;log('ROUTE_USED',{outcome:S.outcome});haptic();badge('PATH USED');setTimeout(toLeave,450)}
-  draw()
-}
-function skip(){if(S.used)return;first('DONE_WITHOUT_USE');S.skipped=true;log('ROUTE_SKIPPED');toLeave()}
-function toLeave(){setPhase('04 / 04');show('leave');draw()}
-function spatialZone(authoring){return authoring ? {x0:.18,x1:.48} : {x0:.60,x1:.88}}
-function nearestAnchor(ny){return ['LOW','MID','HIGH'].sort((a,b)=>Math.abs(anchorY(a)-ny)-Math.abs(anchorY(b)-ny))[0]}
-function handleSpatialAuthoring(ev){
-  const authoring=cfg().authorMode, leaving=!$('leave').classList.contains('hidden');
-  if(!authoring && !leaving) return;
-  const r=c.getBoundingClientRect(), nx=(ev.clientX-r.left)/r.width, ny=(ev.clientY-r.top)/r.height;
-  const draft=authoring?authorDraft:leaveDraft, z=spatialZone(authoring);
-  if(!draft.anchor){if(Math.abs(nx-z.x0)>.20)return;draft.anchor=nearestAnchor(ny);haptic();draw()}
-  else if(!draft.vector){
-    const y=anchorY(draft.anchor),flat=[z.x1,y],up=[z.x1,Math.max(.18,y-.16)];
-    const df=Math.hypot(nx-flat[0],ny-flat[1]),du=Math.hypot(nx-up[0],ny-up[1]);
-    draft.vector=du<df?'UP':'FLAT';haptic();draw()
-  } else {draft.anchor=null;draft.vector=null;draw();return}
-  if(authoring)$('makeHandoff').disabled=!(draft.anchor&&draft.vector);else $('leaveCommit').disabled=!(draft.anchor&&draft.vector)
-}
-function commitLeave(){
-  S.next={anchor:leaveDraft.anchor,vector:leaveDraft.vector,authorId:S.viewerId,generation:S.generation+1,expectedVersion:S.stateVersion+1};
-  log('NEXT_STATE_AUTHORED',S.next);haptic();badge('LEFT FOR THE NEXT VISITOR');show('report');setPhase('DEBRIEF');summary();draw()
-}
-function summary(){$('summary').textContent=`${S.mode} · inherited ${S.anchor}/${S.vector} · ${S.complete||'—'} · first=${S.firstPostReveal||'NONE'} · used=${S.used?'yes':'no'} · constraint=${S.constraintScore||'—'} · origin=${S.originScore||'—'} · social=${S.socialScore||'—'} · fun=${S.funScore||'—'}`}
-function scale(id,key){[...$(id).children].forEach((b,i)=>b.onclick=()=>{S[key]=i+1;[...$(id).children].forEach(q=>q.classList.remove('sel'));b.classList.add('sel');log('RATING',{key,value:i+1});summary()})}
-scale('constraint','constraintScore');scale('origin','originScore');scale('social','socialScore');scale('fun','funScore');
-
-function makeHandoff(){
-  const name=cleanName($('authorName').value),base=new URL(location.href);
-  base.search=''; base.hash='';
-  const common={anchor:authorDraft.anchor,vector:authorDraft.vector,name,authorId:`human-${Date.now()}`,g:'1',version:'1'};
-  const h=new URL(base),w=new URL(base);
-  Object.entries({...common,mode:'HUMAN'}).forEach(([k,v])=>h.searchParams.set(k,v));
-  Object.entries({...common,mode:'WORLD',name:'WORLD',authorId:'world-seed'}).forEach(([k,v])=>w.searchParams.set(k,v));
-  $('humanLink').textContent=h.toString();$('worldLink').textContent=w.toString();$('handoffOut').classList.remove('hidden')
-}
-
-function draw(){
-  if(!W||!H)return;x.clearRect(0,0,W,H);x.fillStyle='#d9d2c4';x.fillRect(0,H*.82,W,H*.18);const sx=v=>v*W,sy=v=>v*H;x.lineCap='round';x.lineJoin='round';
-  const q=cfg();
-  if(q.authorMode){
-    const z=spatialZone(true);
-    x.fillStyle='rgba(23,23,23,.55)';x.font='700 11px system-ui';
-    if(!authorDraft.anchor){
-      x.fillText('TAP A STARTING SOCKET',16,26);
-      ['LOW','MID','HIGH'].forEach(a=>{x.beginPath();x.arc(sx(z.x0),sy(anchorY(a)),14,0,Math.PI*2);x.fillStyle='rgba(23,23,23,.12)';x.fill();x.strokeStyle='rgba(23,23,23,.45)';x.lineWidth=2;x.stroke()})
-    } else {
-      const y=anchorY(authorDraft.anchor),flat=[z.x1,y],up=[z.x1,Math.max(.18,y-.16)];
-      x.strokeStyle='#171717';x.lineWidth=12;x.beginPath();x.moveTo(sx(z.x0),sy(y));x.lineTo(sx(z.x0+.13),sy(y));
-      if(authorDraft.vector){const t=authorDraft.vector==='UP'?up:flat;x.lineTo(sx(t[0]),sy(t[1]))}x.stroke();
-      if(!authorDraft.vector){
-        x.fillText('TAP A DIRECTION',16,26);
-        [flat,up].forEach(t=>{x.beginPath();x.arc(sx(t[0]),sy(t[1]),13,0,Math.PI*2);x.fillStyle='rgba(23,23,23,.12)';x.fill();x.strokeStyle='rgba(23,23,23,.45)';x.lineWidth=2;x.stroke()})
-      } else x.fillText(`${authorDraft.anchor} / ${authorDraft.vector}`,16,26)
-    }
-    return
-  }
-  if(!$('intro').classList.contains('hidden')||$('ownState').classList.contains('hidden')===false)return;
-  const a=S.anchor,v=S.vector,p=pathFor(a,v,S.complete);
-  x.strokeStyle='#171717';x.lineWidth=16;x.beginPath();
-  const count=S.complete?Math.max(3,Math.ceil(p.length*S.morph)):p.length;
-  p.slice(0,count).forEach((pt,i)=>i?x.lineTo(sx(pt[0]),sy(pt[1])):x.moveTo(sx(pt[0]),sy(pt[1])));x.stroke();
-  if(!S.complete){const e=p[p.length-1];x.strokeStyle='#8c8578';x.lineWidth=4;x.beginPath();x.arc(sx(e[0]+.035),sy(e[1]),10,0,Math.PI*2);x.stroke()}
-  if(S.complete&&S.morph>=1){const g=p[p.length-1];x.fillStyle='#171717';x.beginPath();x.arc(sx(g[0]),sy(g[1]),11,0,Math.PI*2);x.fill()}
-  if(S.complete){x.fillStyle='#625c53';x.beginPath();x.arc(sx(S.avatar.x),sy(S.avatar.y)-8,7,0,Math.PI*2);x.fill();x.fillRect(sx(S.avatar.x)-5,sy(S.avatar.y),10,18)}
-  x.fillStyle='rgba(23,23,23,.78)';x.font='800 14px system-ui';const who=S.mode==='HUMAN'?S.name:'WORLD';
-  x.fillText(S.complete?`${who} + YOU · ${S.outcome}`:`${who} · ${S.anchor}/${S.vector} → ?`,16,28);
-  if($('leave').classList.contains('hidden')===false){
-    const z=spatialZone(false);
-    if(!leaveDraft.anchor){
-      ['LOW','MID','HIGH'].forEach(a=>{x.beginPath();x.arc(sx(z.x0),sy(anchorY(a)),12,0,Math.PI*2);x.fillStyle='rgba(23,23,23,.10)';x.fill();x.strokeStyle='rgba(23,23,23,.35)';x.lineWidth=2;x.stroke()})
-    } else {
-      const ly=anchorY(leaveDraft.anchor),flat=[z.x1,ly],up=[z.x1,Math.max(.18,ly-.16)];
-      x.strokeStyle='rgba(23,23,23,.42)';x.lineWidth=9;x.beginPath();x.moveTo(sx(z.x0),sy(ly));x.lineTo(sx(z.x0+.12),sy(ly));
-      if(leaveDraft.vector){const t=leaveDraft.vector==='UP'?up:flat;x.lineTo(sx(t[0]),sy(t[1]))}x.stroke();
-      if(!leaveDraft.vector)[flat,up].forEach(t=>{x.beginPath();x.arc(sx(t[0]),sy(t[1]),11,0,Math.PI*2);x.fillStyle='rgba(23,23,23,.10)';x.fill();x.strokeStyle='rgba(23,23,23,.35)';x.lineWidth=2;x.stroke()})
-    }
-  }
-}
-
-$('start').onclick=start;document.querySelectorAll('[data-complete]').forEach(b=>b.onclick=()=>chooseComplete(b.dataset.complete));
-$('left').onclick=()=>move(-.07,0);$('right').onclick=()=>move(.07,0);$('up').onclick=()=>move(0,-.07);$('skip').onclick=skip;
-c.addEventListener('pointerdown',handleSpatialAuthoring);
-$('leaveCommit').onclick=commitLeave;
-$('makeHandoff').onclick=makeHandoff;
-$('copy').onclick=()=>{
-  S.whatHappened=$('what').value.trim();S.sourceRecall=$('sourceRecall').value.trim();S.priorContribution=$('priorText').value.trim();S.selfContribution=$('selfText').value.trim();S.completedAt=new Date().toISOString();
-  S.causalProof={priorSpatialDecision:{anchor:S.anchor,vector:S.vector},currentCompletion:S.complete,resultingTarget:completionTarget(S.anchor,S.vector,S.complete),counterfactuals:{sameCompletionDifferentAnchor:completionTarget(S.anchor==='LOW'?'HIGH':'LOW',S.vector,S.complete),sameCompletionDifferentVector:completionTarget(S.anchor,S.vector==='FLAT'?'UP':'FLAT',S.complete)}};
-  const j=JSON.stringify(S,null,2);navigator.clipboard?.writeText(j).then(()=>badge('JSON COPIED')).catch(()=>prompt('Copy this JSON',j))
-};
-$('restart').onclick=fresh;$('resetOwn').onclick=()=>{history.replaceState(null,'',location.pathname);fresh()};
-addEventListener('keydown',e=>{if(e.key==='ArrowLeft')move(-.05,0);if(e.key==='ArrowRight')move(.05,0);if(e.key==='ArrowUp')move(0,-.05)});
-fresh();resize();
+const $=id=>document.getElementById(id),c=$('c'),x=c.getContext('2d');const cards=['intro','complete','play','leave','report','author','ownState','staleState','returnReceipt'];const qp=new URLSearchParams(location.search);const KEYS={session:'unfinished:v5:prototypeSession',active:'unfinished:v5:activeState',lineage:'unfinished:v5:lineage'};let W=0,H=0,S={},authorDraft={anchor:null,vector:null,reach:null,end:null},leaveDraft={anchor:null,vector:null,reach:null,end:null};
+function uuid(){try{return crypto.randomUUID()}catch{return'p-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2)}}function getSessionId(){let v=localStorage.getItem(KEYS.session);if(!v){v=uuid();localStorage.setItem(KEYS.session,v)}return v}function safeJSON(v,fallback=null){try{return JSON.parse(v)}catch{return fallback}}function cleanName(v){return(v||'').trim().replace(/[^\p{L}\p{N} _.-]/gu,'').slice(0,24)||'VISITOR'}function valid(v,a){return a.includes(v)?v:null}function clamp(v,a,b){return Math.max(a,Math.min(b,v))}function show(id){cards.forEach(k=>$(k).classList.toggle('hidden',k!==id))}function setPhase(v){$('phase').textContent=v}function haptic(ms=22){try{navigator.vibrate?.(ms)}catch{}}function badge(t){$('badge').textContent=t;$('badge').classList.add('show');setTimeout(()=>$('badge').classList.remove('show'),1700)}function log(type,e={}){S.events?.push({type,t:Math.round(performance.now()-(S.t0||performance.now())),...e});$('debug').textContent=`v5 · ${type}`}
+function encodePayload(o){const raw=JSON.stringify(o),bytes=new TextEncoder().encode(raw);let bin='';bytes.forEach(b=>bin+=String.fromCharCode(b));return btoa(bin).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}function decodePayload(v){try{const pad='='.repeat((4-v.length%4)%4),raw=atob(v.replace(/-/g,'+').replace(/_/g,'/')+pad),bytes=Uint8Array.from(raw,ch=>ch.charCodeAt(0));return JSON.parse(new TextDecoder().decode(bytes))}catch{return null}}
+function readLineage(){return safeJSON(localStorage.getItem(KEYS.lineage),'')||[]}function writeLineage(entry){const rows=readLineage();rows.unshift(entry);localStorage.setItem(KEYS.lineage,JSON.stringify(rows.slice(0,5)))}function adaptiveLevel(){const rows=readLineage().slice(0,4);if(!rows.length)return 0;const used=rows.filter(r=>r.used).length,skipped=rows.filter(r=>r.skipped).length;if(used>=3&&skipped===0)return 1;if(skipped>=2)return-1;return 0}function pressureFromSeed(anchor,vector,reach){if(vector==='UP'||anchor==='HIGH')return'HEIGHT';if(reach==='LONG')return'SPAN';return'BALANCE'}function reachDx(r){return r==='SHORT'?.16:r==='LONG'?.31:.235}function anchorY(a){return a==='LOW'?.73:a==='HIGH'?.39:.56}function stemEnd(a,v,r){const y=anchorY(a),dx=reachDx(r);return[.18+dx,clamp(y+(v==='UP'?-.16:0),.16,.80)]}function pressureDelta(axis,tension){const t=clamp(Number(tension)||1,0,2);return axis==='SPAN'?{x:.06+.035*t,y:0}:axis==='HEIGHT'?{x:0,y:-.035-.025*t}:{x:.025,y:-.015}}function completionTarget(a,v,r,complete,pressure,tension){const e=stemEnd(a,v,r),d=pressureDelta(pressure,tension);if(complete==='CONNECT')return[clamp(.79+reachDx(r)*.25+d.x,.72,.94),clamp(e[1]+.04+d.y,.16,.80)];return[clamp(.76+reachDx(r)*.16+d.x,.72,.92),clamp(e[1]-.27+d.y,.12,.70)]}function lerp(a,b,t){return a+(b-a)*t}function pathFor(a,v,r,complete,pressure,tension){const y0=anchorY(a),e=stemEnd(a,v,r);if(!complete)return[[.12,y0],[.18,y0],[e[0],e[1]]];const t=completionTarget(a,v,r,complete,pressure,tension);return[[.12,y0],[.18,y0],[e[0],e[1]],[lerp(e[0],t[0],.42),lerp(e[1],t[1],.34)],[lerp(e[0],t[0],.72),lerp(e[1],t[1],.74)],t]}function tradeoffFor(complete){return complete==='CONNECT'?{resolved:'SPAN',created:'HEIGHT',why:'Connecting resolves the current gap but pushes vertical pressure into the successor state.'}:{resolved:'HEIGHT',created:'SPAN',why:'Rising resolves the current elevation problem but pushes span pressure into the successor state.'}}function nextTension(current,used,skipped){const local=adaptiveLevel();return clamp((Number(current)||1)+(used?1:0)-(skipped?1:0)+local,0,2)}
+function config(){const receipt=decodePayload(qp.get('receipt')||'');if(receipt)return{receipt};const authored=qp.get('authored')==='1',requested=valid((qp.get('mode')||'').toUpperCase(),['HUMAN','WORLD']),mode=authored&&requested==='HUMAN'?'HUMAN':'WORLD';return{authorMode:qp.get('author')==='1',mode,anchor:valid((qp.get('anchor')||'').toUpperCase(),['LOW','MID','HIGH'])||'MID',vector:valid((qp.get('vector')||'').toUpperCase(),['FLAT','UP'])||'FLAT',reach:valid((qp.get('reach')||'').toUpperCase(),['SHORT','MEDIUM','LONG'])||'MEDIUM',pressure:valid((qp.get('pressure')||'').toUpperCase(),['SPAN','HEIGHT','BALANCE'])||'BALANCE',tension:clamp(parseInt(qp.get('tension')||'1',10)||1,0,2),name:cleanName(qp.get('name')||(mode==='HUMAN'?'VISITOR':'WORLD')),authorId:qp.get('authorId')||(mode==='WORLD'?'world-seed':'missing-author'),viewerId:getSessionId(),generation:Math.max(1,parseInt(qp.get('g')||'1',10)||1),stateVersion:Math.max(1,parseInt(qp.get('version')||'1',10)||1),stateId:qp.get('stateId')||('seed-'+Date.now().toString(36)),parentStateId:qp.get('parent')||null,runLabel:qp.get('run')||null,controlled:qp.get('run')!==null}}
+function normalizeDraftFromTap(draft,nx,ny,zone){if(!draft.anchor){const anchors=['LOW','MID','HIGH'];draft.anchor=anchors.sort((a,b)=>Math.abs(anchorY(a)-ny)-Math.abs(anchorY(b)-ny))[0];draft.end=null;draft.vector=null;draft.reach=null;return'ANCHOR'}const y=anchorY(draft.anchor),dx=clamp(nx-zone.x0,.12,.35);draft.reach=dx<.20?'SHORT':dx>.285?'LONG':'MEDIUM';draft.vector=ny<y-.07?'UP':'FLAT';draft.end=[zone.x0+reachDx(draft.reach),clamp(y+(draft.vector==='UP'?-.16:0),.16,.80)];return'END'}function zoneFor(authoring){return authoring?{x0:.18,x1:.55}:{x0:.60,x1:.93}}function resetDraft(draft){draft.anchor=null;draft.vector=null;draft.reach=null;draft.end=null}
+function localCASCommit(expectedStateId,expectedVersion,nextState){const current=safeJSON(localStorage.getItem(KEYS.active));if(current&&current.parentStateId===expectedStateId&&current.parentVersion!==expectedVersion)return{ok:false,reason:'STALE_VERSION',current};const envelope={...nextState,parentStateId:expectedStateId,parentVersion:expectedVersion,version:expectedVersion+1,committedAt:new Date().toISOString()};localStorage.setItem(KEYS.active,JSON.stringify(envelope));return{ok:true,state:envelope}}
+function makeStateURL(state,mode='HUMAN',run=null){const u=new URL(location.href);u.search='';u.hash='';const fields={mode,authored:mode==='HUMAN'?'1':'0',anchor:state.anchor,vector:state.vector,reach:state.reach,pressure:state.pressure,tension:String(state.tension),name:mode==='HUMAN'?state.name:'WORLD',authorId:mode==='HUMAN'?state.authorId:'world-seed',g:String(state.generation||1),version:String(state.version||1),stateId:state.stateId,parent:state.parentStateId||''};if(run)fields.run=run;Object.entries(fields).forEach(([k,v])=>{if(v!==''&&v!=null)u.searchParams.set(k,v)});return u.toString()}
+function fresh(){const q=config();if(q.receipt){renderReturnReceipt(q.receipt);return}if(q.authorMode){S={version:5,events:[],t0:performance.now(),authorMode:true,viewerId:getSessionId()};resetDraft(authorDraft);$('authorName').value='';$('makeHandoff').disabled=true;$('handoffOut').classList.add('hidden');setPhase('AUTHOR');show('author');draw();return}S={version:5,t0:performance.now(),mode:q.mode,anchor:q.anchor,vector:q.vector,reach:q.reach,pressure:q.pressure,tension:q.tension,name:q.name,authorId:q.authorId,viewerId:q.viewerId,generation:q.generation,stateVersion:q.stateVersion,stateId:q.stateId,parentStateId:q.parentStateId,runLabel:q.runLabel,controlled:q.controlled,complete:null,outcome:null,tradeoff:null,avatar:{x:.12,y:anchorY(q.anchor)+.04},events:[],firstPostReveal:null,used:false,skipped:false,next:null,cas:null,constraintScore:null,originScore:null,socialScore:null,funScore:null,morph:1,routeProgress:0,offRouteAttempts:0};resetDraft(leaveDraft);['what','sourceRecall','priorText','selfText'].forEach(id=>$(id).value='');document.querySelectorAll('.scale button').forEach(b=>b.classList.remove('sel'));$('leaveCommit').disabled=true;$('debug').classList.toggle('on',qp.get('debug')==='1');if(S.mode==='HUMAN'&&S.authorId===S.viewerId){setPhase('OWN STATE');show('ownState')}else{setPhase('01 / 04');show('intro')}draw()}
+function start(){S.t0=performance.now();S.events=[];log('START',{source:S.mode,stateId:S.stateId,inherited:{anchor:S.anchor,vector:S.vector,reach:S.reach,pressure:S.pressure,tension:S.tension},runLabel:S.runLabel});setPhase('02 / 04');show('complete');draw();setTimeout(()=>badge(S.mode==='HUMAN'?S.name:'WORLD'),650)}function first(a){if(!S.firstPostReveal){S.firstPostReveal=a;log('FIRST_POST_REVEAL',{action:a,latency:Math.round(performance.now()-S.reveal)})}}function outcomeName(){return S.complete==='RISE'?'ELEVATED ROUTE':'CONNECTED ROUTE'}function chooseComplete(v){S.complete=v;S.outcome=outcomeName();S.tradeoff=tradeoffFor(v);S.reveal=performance.now();S.morph=0;log('COMPLETE',{completion:v,tradeoff:S.tradeoff,inherited:{anchor:S.anchor,vector:S.vector,reach:S.reach,pressure:S.pressure,tension:S.tension}});setPhase('03 / 04');show('play');haptic();badge(S.mode==='HUMAN'?`${S.name} + YOU`:'WORLD + YOU');animateMorph()}function animateMorph(){const st=performance.now(),dur=520;function tick(n){S.morph=Math.min(1,(n-st)/dur);draw();if(S.morph<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+function pointSegDist(px,py,ax,ay,bx,by){const vx=bx-ax,vy=by-ay,wx=px-ax,wy=py-ay,c1=vx*wx+vy*wy;if(c1<=0)return Math.hypot(px-ax,py-ay);const c2=vx*vx+vy*vy;if(c2<=c1)return Math.hypot(px-bx,py-by);const t=c1/c2,ix=ax+t*vx,iy=ay+t*vy;return Math.hypot(px-ix,py-iy)}function distanceToPath(px,py,p){let best=Infinity;for(let i=1;i<p.length;i++)best=Math.min(best,pointSegDist(px,py,p[i-1][0],p[i-1][1],p[i][0],p[i][1]));return best}function move(dx,dy){if(!S.complete||S.used||S.skipped)return;first('MOVE');const p=pathFor(S.anchor,S.vector,S.reach,S.complete,S.pressure,S.tension),nx=clamp(S.avatar.x+dx,.04,.96),ny=clamp(S.avatar.y+dy,.10,.88),d=distanceToPath(nx,ny,p);if(d>.115){S.offRouteAttempts++;log('OFF_ROUTE_ATTEMPT',{x:+nx.toFixed(2),y:+ny.toFixed(2),distance:+d.toFixed(3)});haptic(12);return}S.avatar.x=nx;S.avatar.y=ny;log('MOVE',{x:+nx.toFixed(2),y:+ny.toFixed(2),distance:+d.toFixed(3)});const g=p[p.length-1],progress=1-Math.min(1,Math.hypot(nx-g[0],ny-g[1])/.8);S.routeProgress=Math.max(S.routeProgress,progress);if(Math.hypot(nx-g[0],ny-g[1])<.11){S.used=true;S.routeProgress=1;log('ROUTE_USED',{outcome:S.outcome,offRouteAttempts:S.offRouteAttempts});haptic(28);badge('PATH USED');setTimeout(toLeave,420)}draw()}function skip(){if(S.used)return;first('DONE_WITHOUT_USE');S.skipped=true;log('ROUTE_SKIPPED',{progress:S.routeProgress});toLeave()}function toLeave(){setPhase('04 / 04');show('leave');draw()}
+function handleSpatial(ev){const q=config(),authoring=q.authorMode,leaving=!$('leave').classList.contains('hidden');if(!authoring&&!leaving)return;const r=c.getBoundingClientRect(),nx=(ev.clientX-r.left)/r.width,ny=(ev.clientY-r.top)/r.height,draft=authoring?authorDraft:leaveDraft,z=zoneFor(authoring);if(nx<z.x0-.07||nx>z.x1+.07)return;if(draft.anchor&&draft.end){resetDraft(draft);haptic();draw()}else{normalizeDraftFromTap(draft,nx,ny,z);haptic();draw()}if(authoring)$('makeHandoff').disabled=!(draft.anchor&&draft.vector&&draft.reach);else $('leaveCommit').disabled=!(draft.anchor&&draft.vector&&draft.reach)}function successorFromDraft(){const level=nextTension(S.tension,S.used,S.skipped);return{stateId:uuid(),parentStateId:S.stateId,anchor:leaveDraft.anchor,vector:leaveDraft.vector,reach:leaveDraft.reach,pressure:S.tradeoff.created,tension:level,name:'VISITOR',authorId:S.viewerId,generation:S.generation+1,version:S.stateVersion+1,engine:{policy:'deterministic-v1',adaptiveLevel:adaptiveLevel(),derivedFrom:S.complete}}}function commitLeave(){const next=successorFromDraft(),cas=localCASCommit(S.stateId,S.stateVersion,next);S.cas=cas;if(!cas.ok){log('CAS_REFUSED',{reason:cas.reason});setPhase('STALE');show('staleState');return}S.next=next;writeLineage({at:new Date().toISOString(),stateId:S.stateId,source:S.mode,used:S.used,skipped:S.skipped,complete:S.complete,inherited:{anchor:S.anchor,vector:S.vector,reach:S.reach,pressure:S.pressure,tension:S.tension},successor:{anchor:next.anchor,vector:next.vector,reach:next.reach,pressure:next.pressure,tension:next.tension}});log('NEXT_STATE_AUTHORED',{next,cas:{ok:true,expectedVersion:S.stateVersion,newVersion:next.version}});$('nextLink').textContent=makeStateURL(next,'HUMAN');haptic();badge('LEFT FOR THE NEXT VISITOR');show('report');setPhase('DEBRIEF');summary();draw()}
+function makeHandoff(){const name=cleanName($('authorName').value),sid=getSessionId(),stateId=uuid(),state={stateId,parentStateId:null,anchor:authorDraft.anchor,vector:authorDraft.vector,reach:authorDraft.reach,pressure:pressureFromSeed(authorDraft.anchor,authorDraft.vector,authorDraft.reach),tension:1,name,authorId:sid,generation:1,version:1};localStorage.setItem(KEYS.active,JSON.stringify({...state,parentVersion:0,committedAt:new Date().toISOString()}));$('humanLink').textContent=makeStateURL(state,'HUMAN');$('worldLink').textContent=makeStateURL({...state,authorId:'world-seed',name:'WORLD'},'WORLD');$('handoffOut').classList.remove('hidden');log('AUTHOR_HANDOFF_CREATED',{stateId,geometry:{anchor:state.anchor,vector:state.vector,reach:state.reach},pressure:state.pressure})}
+function makeReturnReceipt(){const payload={v:1,forAuthor:S.authorId,parentStateId:S.stateId,sourceName:S.name,resolvedBy:'ANOTHER VISITOR',inherited:{anchor:S.anchor,vector:S.vector,reach:S.reach,pressure:S.pressure,tension:S.tension},completion:S.complete,outcome:S.outcome,successor:S.next?{anchor:S.next.anchor,vector:S.next.vector,reach:S.next.reach,pressure:S.next.pressure,tension:S.next.tension}:null,at:new Date().toISOString()},u=new URL(location.href);u.search='';u.searchParams.set('receipt',encodePayload(payload));return u.toString()}function renderReturnReceipt(r){S={version:5,events:[],t0:performance.now()};const mine=r.forAuthor===getSessionId();$('receiptTitle').textContent=mine?'What you left changed.':'This receipt belongs to another prototype identity.';$('receiptBody').textContent=mine?`${r.resolvedBy} turned your ${r.inherited.anchor.toLowerCase()} ${r.inherited.vector.toLowerCase()} ${r.inherited.reach.toLowerCase()} start into a ${String(r.outcome).toLowerCase()}.`:'The receipt is privacy-gated to the opaque prototype session that authored the original state.';$('receiptPills').innerHTML='';if(mine)[r.completion,r.successor?`NEXT ${r.successor.pressure}`:null].filter(Boolean).forEach(v=>{const el=document.createElement('span');el.className='pill';el.textContent=v;$('receiptPills').appendChild(el)});setPhase('RETURN');show('returnReceipt');draw()}function loadLatest(){const st=safeJSON(localStorage.getItem(KEYS.active));if(!st){history.replaceState(null,'',location.pathname);fresh();return}location.href=makeStateURL(st,st.authorId==='world-seed'?'WORLD':'HUMAN')}
+function summary(){$('summary').textContent=`${S.mode} · inherited ${S.anchor}/${S.vector}/${S.reach} · pressure=${S.pressure}:${S.tension} · ${S.complete||'—'} · used=${S.used?'yes':'no'} · next=${S.next?`${S.next.pressure}:${S.next.tension}`:'—'} · constraint=${S.constraintScore||'—'} · origin=${S.originScore||'—'} · social=${S.socialScore||'—'} · fun=${S.funScore||'—'}`}function scale(id,key){[...$(id).children].forEach((b,i)=>b.onclick=()=>{S[key]=i+1;[...$(id).children].forEach(q=>q.classList.remove('sel'));b.classList.add('sel');log('RATING',{key,value:i+1});summary()})}
+function arrowHead(a,b){const ang=Math.atan2(b[1]-a[1],b[0]-a[0]),len=.022;return[[b[0]-len*Math.cos(ang-.6),b[1]-len*Math.sin(ang-.6)],[b[0]-len*Math.cos(ang+.6),b[1]-len*Math.sin(ang+.6)]]}function creatorMark(sx,sy){const y=anchorY(S.anchor);x.save();x.fillStyle='rgba(255,255,255,.94)';x.strokeStyle='rgba(23,23,23,.35)';x.lineWidth=1.5;x.beginPath();x.arc(sx(.10),sy(y),13,0,Math.PI*2);x.fill();x.stroke();x.fillStyle='#171717';x.font='900 10px system-ui';x.textAlign='center';x.textBaseline='middle';x.fillText(S.mode==='HUMAN'?(S.name[0]||'H').toUpperCase():'◌',sx(.10),sy(y)+.5);x.restore()}function drawDraft(draft,z,sx,sy){x.save();if(!draft.anchor){['LOW','MID','HIGH'].forEach(a=>{x.beginPath();x.arc(sx(z.x0),sy(anchorY(a)),13,0,Math.PI*2);x.fillStyle='rgba(23,23,23,.08)';x.fill();x.strokeStyle='rgba(23,23,23,.32)';x.lineWidth=2;x.stroke()});x.restore();return}const y=anchorY(draft.anchor);x.strokeStyle='#171717';x.lineWidth=12;x.lineCap='round';x.beginPath();x.moveTo(sx(z.x0),sy(y));if(draft.end)x.lineTo(sx(draft.end[0]),sy(draft.end[1]));else x.lineTo(sx(z.x0+.07),sy(y));x.stroke();if(!draft.end){x.setLineDash([4,6]);x.strokeStyle='rgba(23,23,23,.35)';x.lineWidth=2;x.beginPath();x.arc(sx(z.x0+.22),sy(y-.05),32,0,Math.PI*2);x.stroke();x.setLineDash([])}else{const ah=arrowHead([z.x0,y],draft.end);x.fillStyle='#171717';x.beginPath();x.moveTo(sx(draft.end[0]),sy(draft.end[1]));x.lineTo(sx(ah[0][0]),sy(ah[0][1]));x.lineTo(sx(ah[1][0]),sy(ah[1][1]));x.closePath();x.fill()}x.restore()}
+function draw(){if(!W||!H)return;x.clearRect(0,0,W,H);x.fillStyle='#d9d2c4';x.fillRect(0,H*.82,W,H*.18);const sx=v=>v*W,sy=v=>v*H;x.lineCap='round';x.lineJoin='round';const q=config();if(q.receipt)return;if(q.authorMode){drawDraft(authorDraft,zoneFor(true),sx,sy);x.fillStyle='rgba(23,23,23,.58)';x.font='800 11px system-ui';x.fillText(!authorDraft.anchor?'TAP A START SOCKET':!authorDraft.end?'TAP THE ENDPOINT':'TAP AGAIN TO REDO',16,26);return}if(!$('intro').classList.contains('hidden')||!$('ownState').classList.contains('hidden')||!$('staleState').classList.contains('hidden'))return;if(!$('leave').classList.contains('hidden')){const p=pathFor(S.anchor,S.vector,S.reach,S.complete,S.pressure,S.tension);drawFullPath(p,sx,sy,true);drawDraft(leaveDraft,zoneFor(false),sx,sy);x.fillStyle='rgba(23,23,23,.58)';x.font='800 11px system-ui';x.fillText(!leaveDraft.anchor?'TAP A START SOCKET':!leaveDraft.end?'TAP THE ENDPOINT':'TAP AGAIN TO REDO',16,26);return}drawFullPath(pathFor(S.anchor,S.vector,S.reach,S.complete,S.pressure,S.tension),sx,sy,false)}function drawFullPath(p,sx,sy,dim){const inherited=p.slice(0,3);x.save();x.strokeStyle=dim?'rgba(23,23,23,.45)':'#171717';x.lineWidth=16;x.beginPath();inherited.forEach((pt,i)=>i?x.lineTo(sx(pt[0]),sy(pt[1])):x.moveTo(sx(pt[0]),sy(pt[1])));x.stroke();const ah=arrowHead(inherited[inherited.length-2],inherited[inherited.length-1]),e=inherited[inherited.length-1];x.fillStyle=dim?'rgba(23,23,23,.45)':'#171717';x.beginPath();x.moveTo(sx(e[0]),sy(e[1]));x.lineTo(sx(ah[0][0]),sy(ah[0][1]));x.lineTo(sx(ah[1][0]),sy(ah[1][1]));x.closePath();x.fill();creatorMark(sx,sy);if(S.complete){const extension=p.slice(2),count=Math.max(2,Math.ceil(extension.length*S.morph));x.strokeStyle=dim?'rgba(23,23,23,.26)':'rgba(23,23,23,.72)';x.lineWidth=10;x.beginPath();extension.slice(0,count).forEach((pt,i)=>i?x.lineTo(sx(pt[0]),sy(pt[1])):x.moveTo(sx(pt[0]),sy(pt[1])));x.stroke();if(S.morph>=1){const g=p[p.length-1];x.fillStyle='#171717';x.beginPath();x.arc(sx(g[0]),sy(g[1]),11,0,Math.PI*2);x.fill()}x.fillStyle='#625c53';x.beginPath();x.arc(sx(S.avatar.x),sy(S.avatar.y)-8,7,0,Math.PI*2);x.fill();x.fillRect(sx(S.avatar.x)-5,sy(S.avatar.y),10,18)}else{x.strokeStyle='rgba(23,23,23,.25)';x.lineWidth=2;x.setLineDash([4,5]);x.beginPath();x.arc(sx(e[0]+.035),sy(e[1]),11,0,Math.PI*2);x.stroke();x.setLineDash([])}x.restore()}
+function resize(){const r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);c.width=r.width*d;c.height=r.height*d;W=r.width;H=r.height;x.setTransform(d,0,0,d,0,0);draw()}addEventListener('resize',resize);c.addEventListener('pointerdown',handleSpatial);$('start').onclick=start;document.querySelectorAll('[data-complete]').forEach(b=>b.onclick=()=>chooseComplete(b.dataset.complete));$('left').onclick=()=>move(-.055,0);$('right').onclick=()=>move(.055,0);$('up').onclick=()=>move(0,-.055);$('down').onclick=()=>move(0,.055);$('skip').onclick=skip;$('leaveCommit').onclick=commitLeave;$('makeHandoff').onclick=makeHandoff;$('copy').onclick=()=>{S.whatHappened=$('what').value.trim();S.sourceRecall=$('sourceRecall').value.trim();S.priorContribution=$('priorText').value.trim();S.selfContribution=$('selfText').value.trim();S.completedAt=new Date().toISOString();S.causalProof={priorHumanAuthored:S.mode==='HUMAN',priorSpatialDecision:{anchor:S.anchor,vector:S.vector,reach:S.reach,pressure:S.pressure,tension:S.tension},currentCompletion:S.complete,tradeoff:S.tradeoff,actualTarget:completionTarget(S.anchor,S.vector,S.reach,S.complete,S.pressure,S.tension),counterfactuals:{sameCompletionDifferentAnchor:completionTarget(S.anchor==='LOW'?'HIGH':'LOW',S.vector,S.reach,S.complete,S.pressure,S.tension),sameCompletionDifferentVector:completionTarget(S.anchor,S.vector==='FLAT'?'UP':'FLAT',S.reach,S.complete,S.pressure,S.tension),sameCompletionDifferentReach:completionTarget(S.anchor,S.vector,S.reach==='LONG'?'SHORT':'LONG',S.complete,S.pressure,S.tension)},successorConstraint:S.next,cas:S.cas,engine:{policy:'deterministic-v1',adaptiveLevel:adaptiveLevel(),randomness:false}};S.identityProof={authority:'opaque-prototype-session',displayNameAuthoritative:false,productionRequirement:'connected Decentraland identity'};S.persistenceProof={prototype:'URL handoff + localStorage lineage + local CAS',productionRequirement:'shared durable backend after PDPB'};const j=JSON.stringify(S,null,2);navigator.clipboard?.writeText(j).then(()=>badge('EVIDENCE COPIED')).catch(()=>prompt('Copy this JSON',j))};$('copyNext').onclick=()=>{const v=$('nextLink').textContent;navigator.clipboard?.writeText(v).then(()=>badge('NEXT LINK COPIED')).catch(()=>prompt('Copy this link',v))};$('copyReceipt').onclick=()=>{const v=makeReturnReceipt();navigator.clipboard?.writeText(v).then(()=>badge('RETURN RECEIPT COPIED')).catch(()=>prompt('Copy this receipt link',v))};$('restart').onclick=()=>{history.replaceState(null,'',location.pathname);fresh()};$('resetOwn').onclick=()=>{history.replaceState(null,'',location.pathname+'?author=1');fresh()};$('loadLatest').onclick=loadLatest;$('receiptContinue').onclick=()=>{history.replaceState(null,'',location.pathname+'?author=1');fresh()};scale('constraint','constraintScore');scale('origin','originScore');scale('social','socialScore');scale('fun','funScore');addEventListener('keydown',e=>{if(e.key==='ArrowLeft')move(-.05,0);if(e.key==='ArrowRight')move(.05,0);if(e.key==='ArrowUp')move(0,-.05);if(e.key==='ArrowDown')move(0,.05)});fresh();resize();
 </script>
 </body>
 </html>
