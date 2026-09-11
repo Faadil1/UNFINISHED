@@ -97,6 +97,7 @@ Spawn camera target now frames the Memory Beacon immediately.
 - `4de82db146329592724bae1fe6621fce29862ea8` — game integration
 - `47099928c0698cfd81558a950e79d593c5106adc` — entry framing
 - `ab698acf138e2b8c569aaa700f7cbebc3ff6a728` — visual build evidence
+- `c6a9daf5ce348d00127b5f02f34f6db4011ac18a` — canonical handover
 
 GitHub Actions run `34634950496`: **SUCCESS**.
 
