@@ -1,10 +1,9 @@
-# UNFINISHED — V5.2 Matched Cold-Test Matrix
+# UNFINISHED — V5.2.2 Matched Cold-Test Matrix
 
-Use only after `https://unfinished-delta.vercel.app` is verified to serve V5.2.
+Use only after runtime smoke PASS.
 
 ## Operator preparation
-Open:
-`/?author=1`
+Open `https://unfinished-delta.vercel.app/?author=1`.
 
 Create at least two genuinely different authored geometries using **drag-from-socket** gestures.
 
@@ -13,17 +12,7 @@ Generate one real authored state and use:
 - T1 — HUMAN A
 - T2 — WORLD A
 
-The pair must match on:
-- anchor
-- vector
-- reach
-- pressure
-- tension
-- engineBias
-- generation
-- state version
-
-HUMAN and WORLD intentionally use separate `chainId/stateId` test lanes so the A/B experiment does not create a false stale-write collision.
+The pair must match on anchor, vector, reach, pressure, tension, engineBias, generation and state version.
 
 ## T3 / T4 — Geometry B
 Create a second real authored state that differs from A in at least two spatial dimensions, preferably including reach.
@@ -35,20 +24,18 @@ Generate:
 Again hold geometry and engine state constant inside the pair.
 
 ## T5 — HUMAN replication
-Use either:
-- a third real geometry C, or
-- a deliberate HUMAN repeat of the strongest prior HUMAN condition.
+Use either a third real geometry C or a deliberate HUMAN repeat of the strongest prior HUMAN condition.
 
 ## Instruction only
 > **Try this and tell me what you think is happening.**
 
 ## Tester eligibility
-Every slot must be a different English-speaking cold tester who has never seen V1–V5.2 and has not been briefed on the concept.
+Every slot must be a different English-speaking cold tester who has never seen V1–V5.2.2 and has not been briefed on the concept.
 
 ## Evidence labels
 Record per tester:
 - T1–T5 label
-- source condition HUMAN/WORLD
+- HUMAN/WORLD condition
 - pairId
 - chainId/stateId/version
 - anchor/vector/reach
@@ -77,9 +64,12 @@ Causal geometry comparison:
 - same completion across A vs B should produce materially different target/topology because the prior human gesture changed.
 
 Interaction check:
-- scene-choice vs button-choice and avatar-drag vs D-pad are instrumentation dimensions, not different product conditions. Do not intentionally coach one tester into a specific method.
+- scene-choice vs button-choice and avatar-drag vs D-pad are instrumentation dimensions, not different product conditions. Do not coach one tester into a specific method.
 
 T5 checks replication of the strongest HUMAN signal.
 
-## V5.2 observer-only perceptual notes
-For T1–T5, separately record whether the tester spontaneously treats the inherited object as a physical route/structure, whether traversal feedback is noticed, and whether pressure/tension differences are perceived without naming the internal engine terms. These notes supplement — never replace — the existing quantitative and verbatim evidence.
+## Observer-only perceptual notes
+Separately record whether the tester spontaneously treats the inherited object as a physical route/structure, whether traversal feedback is noticed, and whether pressure/tension differences are perceived without naming internal engine terms.
+
+## Gate
+After T1–T5: hard verdict PASS / PIVOT / KILL. PASS → **PDPB Builder immediately**.

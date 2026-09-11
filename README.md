@@ -7,12 +7,12 @@ UNFINISHED is an asynchronous social-play concept for the Decentraland Friendzon
 > **NO ONE FINISHES WHAT THEY START.**
 
 ## Current status
-**V5.2.1 — 2.5D Tactile Prototype / Kill Test**
+**V5.2.2 — Runtime Smoke PASS / Cold-Test Preparation**
 
 Production prototype: `https://unfinished-delta.vercel.app`
 Operator authoring: `https://unfinished-delta.vercel.app/?author=1`
 
-This is not yet the production Decentraland build. PDPB and material implementation remain locked until the cold-test gate passes.
+The V5.2.2 root-runtime fix has passed fresh/private QA in both WORLD and HUMAN lanes. The next gate is Geometry A/B → T1–T5 independent cold tests. This is not yet the production Decentraland build. PDPB and material implementation remain locked until the cold-test gate passes.
 
 ## Causal grammar
 Human-authored: `anchor + vector + reach`.
@@ -23,15 +23,12 @@ Deterministically carried: `pressure + tension + engineBias`.
 
 The prior human is therefore intended to be a causal author of the next visitor's playable problem, not a display name attached to a prefab level.
 
-## V5.2.1
-V5.2 added embodied 2.5D structure, pressure/tension cues, direct traversal, route-constrained avatar movement, drag-from-socket authorship, successor handoff, local persistence/CAS, receipt, and instrumentation.
-
-V5.2.1 is a narrow QA hardening pass:
-- blocks interaction until the V5.2 layers are fully loaded;
-- neutralizes explicit HUMAN/WORLD source badges before debrief;
-- adds dedicated COPY/OPEN controls for each matched HUMAN/WORLD link.
-
-Use those operator buttons rather than manually selecting long URLs.
+## Runtime
+- canonical public entry: `/` → `index.html`
+- frozen V5.1 causal core: `core-v51.html`
+- embodied 2.5D layer: `v52-patch.js`
+- source-neutral/operator QA layer: `v521-fix.js`
+- legacy `/v52.html` redirects to `/`.
 
 ## Still yellow until real execution
 Browser proof does not make these production-green:
@@ -41,6 +38,6 @@ Browser proof does not make these production-green:
 - real Decentraland Mobile runtime.
 
 ## Required chain
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.2.1 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.2.2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
-Canonical state: `CURRENT.md` + `CANONICAL-HANDOFF.md`. Active test protocol: `TEST-PROTOCOL.md`. Active gate: GitHub Issue #1.
+Canonical state: `CURRENT.md` + `CANONICAL-HANDOFF.md`. Active matrix: `TEST-MATRIX-V5.md`. Active gate: GitHub Issue #1.

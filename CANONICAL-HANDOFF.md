@@ -1,7 +1,7 @@
 # CANONICAL HANDOFF — UNFINISHED
 
 Date: 2026-09-10
-Active version: **V5.2.2 — Root Runtime Fix / Intelligent Causal Loop**
+Active version: **V5.2.2 — Intelligent Causal Loop / Runtime Smoke PASS**
 
 ## Start here in a new conversation
 Read:
@@ -14,10 +14,10 @@ Read:
 7. `HIDDEN-SPOTS-HARDENING-V5.md`
 8. GitHub Issue #1
 
-GitHub is the source of truth.
+GitHub is the source of truth. Do not reconstruct state from memory alone.
 
 ## Current gate
-**V5.2.2 RUNTIME SMOKE / USER_GATE_NOT_YET_VALIDATED**
+**V5.2.2 COLD-TEST PREPARATION / USER_GATE_NOT_YET_VALIDATED**
 
 Mandatory order:
 **RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.2.2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
@@ -25,7 +25,7 @@ Mandatory order:
 Do not start material Decentraland implementation before kill-test PASS + PDPB output.
 
 ## Product primitive
-A prior real person authors `anchor × vector × reach`.
+A prior real person authors `anchor × vector × reach` through a spatial drag gesture.
 The carried deterministic state contains `pressure × tension × engineBias`.
 
 `CONNECT`: resolves SPAN → creates HEIGHT.
@@ -33,20 +33,27 @@ The carried deterministic state contains `pressure × tension × engineBias`.
 
 The next visitor therefore inherits a problem causally shaped by the previous human plus the deterministic world state.
 
-## Runtime architecture after V5.2.2
+## Runtime architecture
+- production: `https://unfinished-delta.vercel.app`
+- author mode: `/?author=1`
 - canonical public path: `/`
-- `index.html` is the only public bootstrap;
-- frozen V5.1 causal core lives at `core-v51.html`;
-- `index.html` fetches the core with `cache: no-store`;
-- the document remains hidden/non-interactive until `v52-patch.js` and `v521-fix.js` have executed;
-- readiness is identified as `window.__UNFINISHED_RUNTIME__ = "5.2.2"`;
+- `index.html` is the readiness-gated public bootstrap;
+- frozen V5.1 causal core: `core-v51.html`;
+- perceptual 2.5D layer: `v52-patch.js`;
+- source-neutral/operator QA layer: `v521-fix.js`;
 - `/v52.html` redirects to `/` preserving query/hash;
-- the old Vercel root rewrite is removed.
+- runtime marker: `window.__UNFINISHED_RUNTIME__ = "5.2.2"`.
 
-This change is routing/readiness hardening only. It does not change the causal engine or invalidate earlier QA.
+## V5.2.2 smoke result — PASS
+The root-routing leak is resolved. Fresh/private QA proved:
+- author mode exposes dedicated COPY/OPEN controls for both matched conditions;
+- WORLD test displays only `STARTING CONDITION` before debrief;
+- HUMAN test opened from another browser identity also displays only `STARTING CONDITION` before debrief;
+- explicit `WORLD STATE` / `<name> LEFT THIS` priming is gone from the tested flow;
+- self-completion prevention remains intact;
+- stale-write/CAS refusal was already confirmed in prior QA.
 
-## Root cause evidence
-A fresh InPrivate recording showed V5.2 visuals but still displayed `WORLD STATE` and omitted V5.2.1 operator buttons. Because this happened in a fresh session, cache/stale-tab alone cannot explain it. The public root was not reliably reaching the V5.2.1 bootstrap. V5.2.2 makes the root itself the bootstrap.
+All of this remains **QA evidence**, not T1–T5 user evidence.
 
 ## Hidden spots still yellow
 Do not mark these production-green from browser proof:
@@ -55,17 +62,32 @@ Do not mark these production-green from browser proof:
 3. authoritative Decentraland identity;
 4. actual Decentraland Mobile runtime.
 
-## Evidence discipline
-T1–T5 require five independent English-speaking cold testers who have never seen the concept. Operator says only:
+## Cold-test design
+T1–T5 require five different English-speaking cold testers who have never seen V1–V5.2.2 and do not know the concept.
+
+Operator says only:
 > **Try this and tell me what you think is happening.**
 
-Matched HUMAN/WORLD pairs must hold geometry, pressure, tension, engineBias, generation and version constant. Capture full JSON + verbatim debrief.
+Planned matrix:
+- T1 — HUMAN Geometry A
+- T2 — WORLD matched Geometry A
+- T3 — HUMAN Geometry B
+- T4 — WORLD matched Geometry B
+- T5 — HUMAN replication of strongest HUMAN condition or real Geometry C
 
-## Immediate next action
-Fresh/private smoke on `/?author=1&v=522` → verify COPY/OPEN controls → open fresh WORLD lane → verify no source-revealing badge → verify HUMAN lane likewise → if PASS, Geometry A/B → T1–T5 → hard verdict → PASS means **PDPB Builder immediately**.
+Geometry B must differ from A in at least two authored spatial dimensions, preferably including reach. HUMAN/WORLD inside each pair must hold geometry, pressure, tension, engineBias, generation and version constant.
+
+Capture per tester: full evidence JSON, sourceRecall, prior/self contribution, constraint/origin/social/fun, choice, route use, successor constraint, CAS, causalProof and observer notes.
+
+## Decision rules
+Strong PASS requires the existing Issue #1 criteria: causal comprehension, prior/self distinction, voluntary route engagement, strong Constraint/Fun medians, qualitative HUMAN>WORLD social/source signal, and successor-problem understanding.
+
+PIVOT only the failed primitive. KILL if prior-human causal relevance still collapses or HUMAN/WORLD remain meaningfully equivalent.
+
+PASS → **PDPB Builder immediately**, before PRD/build.
 
 ## Build-budget rule
-Vercel Hobby quota is shared with other projects. One atomic deployable commit per substantive gate/batch. No documentation-only commits to `main`; record deployment/smoke evidence in Issue #1.
+Vercel Hobby quota is shared with other projects. Treat deployments as scarce: batch changes, avoid bookkeeping-only deployments, and store runtime/test evidence in Issue #1 whenever possible.
 
 ## Never do
 - no fake human attribution;
@@ -73,6 +95,6 @@ Vercel Hobby quota is shared with other projects. One atomic deployable commit p
 - no opaque/random AI in the causal core;
 - no treating URL/localStorage as production persistence;
 - no treating browser 2.5D as Decentraland Mobile proof;
-- no final story/demo claims before evidence;
+- no final STORY/DEMO claims before evidence;
 - no gallery drift;
-- no bookkeeping-only Vercel builds.
+- no skipping PDPB after a PASS.
