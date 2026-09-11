@@ -1,5 +1,5 @@
 import { Color4 } from '@dcl/sdk/math'
-import { Button, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
+import { Button, Label, ReactEcs, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import {
   chooseCompletion,
   chooseNextPressure,
