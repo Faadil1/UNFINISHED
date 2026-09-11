@@ -10,7 +10,7 @@ import {
 import { getLastNetworkError } from './shared'
 
 const HANDOFF_LINK = 'decentraland://?realm=unfinished.dcl.eth&dclenv=org'
-const HANDOFF_SHARE_PAGE = 'https://unfinished-delta.vercel.app/handoff.html'
+const HANDOFF_SHARE_PAGE = 'https://unfinished.pages.dev/handoff.html'
 
 const PANEL = Color4.create(0.075, 0.025, 0.095, 0.94)
 const PANEL_SOFT = Color4.create(0.17, 0.055, 0.2, 0.9)
