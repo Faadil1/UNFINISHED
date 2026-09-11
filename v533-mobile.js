@@ -53,12 +53,12 @@
 
   function patchRevealNames(){
     if(!S?.demo || S?.testMode) return;
-    requestAnimationFrame(()=>{
+    setTimeout(()=>{
       const r=document.querySelector('.v531-reveal');
       if(!r) return;
       const sub=r.querySelector('span');
       if(sub) sub.textContent=`${human533(S?.name||'Maya')} + ${contributorName()}`;
-    });
+    },140);
   }
 
   function bindKeyboardSafety(root=document){
