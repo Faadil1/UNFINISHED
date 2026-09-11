@@ -1,0 +1,4 @@
+/* V5.3.4 layout corrections */
+.app{grid-template-rows:auto auto minmax(0,1fr) auto!important}
+.demo-mode .v531-demo-actions,.demo-mode .v533-share-note{display:none!important}
+.v534-boundary{grid-row:auto}
