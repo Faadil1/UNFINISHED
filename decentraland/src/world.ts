@@ -22,8 +22,8 @@ const COLORS = {
   ash: Color4.create(0.29, 0.22, 0.33, 1)
 }
 
-const BEACON_Z = 13.05
-const ALTAR_Z = 12.25
+const BEACON_Z = 12.85
+const ALTAR_Z = 11.95
 
 const worldEntities: Entity[] = []
 const memoryEntities: Entity[] = []
@@ -84,41 +84,49 @@ function addSquareHalo(
 
 function buildBridge() {
   worldEntities.push(
-    spawnVisualBox(Vector3.create(5.0, 0.2, 7.45), Vector3.create(0.08, 0.12, 10.2), COLORS.rose, 2.9),
-    spawnVisualBox(Vector3.create(11.0, 0.2, 7.45), Vector3.create(0.08, 0.12, 10.2), COLORS.rose, 2.9),
-    spawnVisualBox(Vector3.create(5.22, 0.24, 7.45), Vector3.create(0.17, 0.08, 10.2), COLORS.mulberry, 0),
-    spawnVisualBox(Vector3.create(10.78, 0.24, 7.45), Vector3.create(0.17, 0.08, 10.2), COLORS.mulberry, 0),
-    spawnVisualBox(Vector3.create(8, 0.09, 7.5), Vector3.create(0.06, 0.035, 10.0), COLORS.ivory, 1.2)
+    spawnVisualBox(Vector3.create(5.08, 0.2, 7.28), Vector3.create(0.075, 0.12, 9.95), COLORS.rose, 3.0),
+    spawnVisualBox(Vector3.create(10.92, 0.2, 7.28), Vector3.create(0.075, 0.12, 9.95), COLORS.rose, 3.0),
+    spawnVisualBox(Vector3.create(5.28, 0.24, 7.28), Vector3.create(0.14, 0.08, 9.95), COLORS.mulberry, 0),
+    spawnVisualBox(Vector3.create(10.72, 0.24, 7.28), Vector3.create(0.14, 0.08, 9.95), COLORS.mulberry, 0),
+    spawnVisualBox(Vector3.create(8, 0.095, 7.35), Vector3.create(0.055, 0.035, 9.85), COLORS.ivory, 1.45)
   )
 
-  const bridgeMarks = [3.0, 4.85, 6.7, 8.55, 10.4, 11.65]
+  const bridgeMarks = [2.95, 4.65, 6.35, 8.05, 9.75, 11.25]
   bridgeMarks.forEach((z, index) => {
     const last = index === bridgeMarks.length - 1
     worldEntities.push(
       spawnVisualBox(
         Vector3.create(8, 0.11, z),
-        Vector3.create(last ? 4.9 : 3.85, 0.035, last ? 0.1 : 0.07),
+        Vector3.create(last ? 5.0 : 3.95, 0.035, last ? 0.11 : 0.065),
         last ? COLORS.coral : index % 2 === 0 ? COLORS.lilac : COLORS.rose,
-        last ? 2.2 : 1.35
+        last ? 2.55 : 1.45
       )
     )
   })
 
-  ;[4.1, 6.15, 8.2, 10.25].forEach((z, index) => {
+  const relayZ = [3.85, 5.65, 7.45, 9.25, 10.85]
+  relayZ.forEach((z, index) => {
     const tint = index % 2 === 0 ? COLORS.coral : COLORS.lilac
+    const h = 0.55 + index * 0.055
     worldEntities.push(
-      spawnVisualBox(Vector3.create(5.0, 0.52, z), Vector3.create(0.12, 0.62, 0.12), tint, 1.45),
-      spawnVisualBox(Vector3.create(11.0, 0.52, z), Vector3.create(0.12, 0.62, 0.12), tint, 1.45)
+      spawnVisualBox(Vector3.create(5.08, 0.25 + h / 2, z), Vector3.create(0.11, h, 0.11), tint, 1.7),
+      spawnVisualBox(Vector3.create(10.92, 0.25 + h / 2, z), Vector3.create(0.11, h, 0.11), tint, 1.7)
     )
   })
+
+  // A quiet arrival threshold before the altar.
+  worldEntities.push(
+    spawnVisualBox(Vector3.create(6.25, 0.29, 11.45), Vector3.create(0.18, 0.26, 0.18), COLORS.ivory, 1.4),
+    spawnVisualBox(Vector3.create(9.75, 0.29, 11.45), Vector3.create(0.18, 0.26, 0.18), COLORS.ivory, 1.4)
+  )
 }
 
 function buildChainMonument() {
   const pillars = [
-    [3.55, 2.2, 11.5, 0.7, 4.4],
-    [12.45, 2.2, 11.5, 0.7, 4.4],
-    [4.55, 1.72, 13.65, 0.58, 3.45],
-    [11.45, 1.72, 13.65, 0.58, 3.45]
+    [3.7, 2.08, 10.95, 0.58, 4.15],
+    [12.3, 2.08, 10.95, 0.58, 4.15],
+    [4.62, 1.62, 13.35, 0.5, 3.2],
+    [11.38, 1.62, 13.35, 0.5, 3.2]
   ]
 
   pillars.forEach((p, index) => {
@@ -127,21 +135,39 @@ function buildChainMonument() {
     worldEntities.push(
       spawnVisualBox(
         Vector3.create(p[0], p[1], p[2]),
-        Vector3.create(p[3], p[4], 0.62),
+        Vector3.create(p[3], p[4], 0.52),
         tint,
         0
       ),
       spawnVisualBox(
-        Vector3.create(p[0], p[1] + 0.18, p[2] - 0.33),
-        Vector3.create(0.055, p[4] * 0.5, 0.04),
+        Vector3.create(p[0], p[1] + 0.12, p[2] - 0.285),
+        Vector3.create(0.05, p[4] * 0.54, 0.035),
         glowTint,
-        2.5
+        2.7
       ),
       spawnVisualBox(
-        Vector3.create(p[0], p[1] + p[4] * 0.34, p[2] - 0.36),
-        Vector3.create(0.28, 0.055, 0.04),
+        Vector3.create(p[0], p[1] + p[4] * 0.31, p[2] - 0.305),
+        Vector3.create(0.24, 0.05, 0.035),
         COLORS.ivory,
-        1.15
+        1.25
+      )
+    )
+  })
+
+  // Small memorial ticks make the monument read as cumulative memory rather than generic columns.
+  const memoryTicks = [
+    [4.25, 0.72, 12.05],
+    [4.25, 1.28, 12.05],
+    [11.75, 0.72, 12.05],
+    [11.75, 1.28, 12.05]
+  ]
+  memoryTicks.forEach((p, index) => {
+    worldEntities.push(
+      spawnVisualBox(
+        Vector3.create(p[0], p[1], p[2]),
+        Vector3.create(0.34, 0.045, 0.06),
+        index % 2 === 0 ? COLORS.rose : COLORS.lilac,
+        1.6
       )
     )
   })
@@ -149,62 +175,71 @@ function buildChainMonument() {
 
 function buildBeacon() {
   worldEntities.push(
-    spawnVisualBox(Vector3.create(8, 0.3, 12.72), Vector3.create(5.2, 0.16, 2.2), COLORS.mulberry, 0),
-    spawnVisualBox(Vector3.create(8, 0.52, 12.94), Vector3.create(3.95, 0.22, 1.55), COLORS.plum, 0),
-    spawnVisualBox(Vector3.create(8, 0.76, 13.12), Vector3.create(2.65, 0.23, 0.96), COLORS.violet, 0)
+    spawnVisualBox(Vector3.create(8, 0.3, 12.46), Vector3.create(5.25, 0.16, 2.18), COLORS.mulberry, 0),
+    spawnVisualBox(Vector3.create(8, 0.52, 12.7), Vector3.create(4.0, 0.22, 1.5), COLORS.plum, 0),
+    spawnVisualBox(Vector3.create(8, 0.76, 12.88), Vector3.create(2.62, 0.23, 0.92), COLORS.violet, 0)
   )
 
   const towerLeft = spawnVisualBox(
-    Vector3.create(7.5, 3.65, BEACON_Z),
-    Vector3.create(0.72, 5.85, 0.78),
+    Vector3.create(7.53, 3.66, BEACON_Z),
+    Vector3.create(0.64, 5.9, 0.7),
     COLORS.plum,
     0
   )
   const towerRight = spawnVisualBox(
-    Vector3.create(8.5, 3.65, BEACON_Z),
-    Vector3.create(0.72, 5.85, 0.78),
+    Vector3.create(8.47, 3.66, BEACON_Z),
+    Vector3.create(0.64, 5.9, 0.7),
     COLORS.plum,
     0
   )
   worldEntities.push(towerLeft, towerRight)
 
   const core = spawnVisualBox(
-    Vector3.create(8, 3.86, BEACON_Z - 0.02),
-    Vector3.create(0.18, 6.95, 0.2),
+    Vector3.create(8, 3.9, BEACON_Z - 0.02),
+    Vector3.create(0.17, 7.05, 0.18),
     COLORS.coral,
-    3.9
+    4.1
   )
   worldEntities.push(core)
   beaconGlowEntities.push(core)
 
   const altarCore = spawnVisualBox(
-    Vector3.create(8, 1.55, ALTAR_Z),
-    Vector3.create(0.62, 0.62, 0.62),
+    Vector3.create(8, 1.52, ALTAR_Z),
+    Vector3.create(0.64, 0.64, 0.64),
     COLORS.coral,
-    3.5
+    3.7
   )
   worldEntities.push(altarCore)
   beaconGlowEntities.push(altarCore)
 
   const crown = spawnVisualBox(
-    Vector3.create(8, 6.85, BEACON_Z),
-    Vector3.create(0.52, 0.52, 0.52),
+    Vector3.create(8, 6.93, BEACON_Z),
+    Vector3.create(0.48, 0.48, 0.48),
     COLORS.rose,
-    2.6
+    2.9
   )
   worldEntities.push(crown)
   beaconGlowEntities.push(crown)
 
-  addSquareHalo(4.72, BEACON_Z, 4.45, 0.12, COLORS.rose, 2.35)
-  addSquareHalo(5.85, BEACON_Z, 3.05, 0.1, COLORS.lilac, 2.15)
+  // The double halo is the visual signature: one large memory field, one tighter handoff ring.
+  addSquareHalo(4.76, BEACON_Z, 4.55, 0.105, COLORS.rose, 2.55)
+  addSquareHalo(5.92, BEACON_Z, 3.08, 0.09, COLORS.lilac, 2.3)
+
+  // Split side fins create a ritual silhouette without enclosing the player in another box frame.
+  worldEntities.push(
+    spawnVisualBox(Vector3.create(6.18, 2.22, 12.72), Vector3.create(0.18, 2.65, 0.18), COLORS.mulberry, 0),
+    spawnVisualBox(Vector3.create(9.82, 2.22, 12.72), Vector3.create(0.18, 2.65, 0.18), COLORS.mulberry, 0),
+    spawnVisualBox(Vector3.create(6.18, 3.32, 12.7), Vector3.create(0.06, 1.1, 0.04), COLORS.coral, 2.1),
+    spawnVisualBox(Vector3.create(9.82, 3.32, 12.7), Vector3.create(0.06, 1.1, 0.04), COLORS.lilac, 2.1)
+  )
 
   const floaters = [
-    [5.88, 4.25, 12.35, 0.4],
-    [10.12, 4.05, 12.55, 0.5],
-    [6.45, 5.8, 13.95, 0.33],
-    [9.62, 6.15, 12.05, 0.39],
-    [5.95, 5.45, 14.45, 0.28],
-    [10.15, 5.25, 14.25, 0.3]
+    [5.95, 4.2, 12.25, 0.36],
+    [10.05, 4.0, 12.42, 0.46],
+    [6.5, 5.75, 13.75, 0.3],
+    [9.55, 6.1, 11.98, 0.35],
+    [6.0, 5.42, 14.2, 0.26],
+    [10.02, 5.22, 14.05, 0.27]
   ]
 
   floaters.forEach((p, index) => {
@@ -213,29 +248,51 @@ function buildBeacon() {
         Vector3.create(p[0], p[1], p[2]),
         Vector3.create(p[3], p[3] * 1.15, p[3]),
         index % 2 === 0 ? COLORS.rose : COLORS.violet,
-        index < 2 ? 1.2 : 0.45
+        index < 2 ? 1.25 : 0.5
       )
     )
   })
 }
 
 function buildRitualFrames() {
-  const frameZ = [4.25, 8.35]
-  frameZ.forEach((z, index) => {
-    const h = index === 0 ? 4.25 : 4.7
-    const capWidth = index === 0 ? 10.7 : 9.7
+  // Deliberately incomplete portal fragments: they guide the eye but never cross the beacon sightline.
+  const frames = [
+    { z: 4.15, h: 3.95, arm: 2.35 },
+    { z: 8.15, h: 4.45, arm: 2.05 }
+  ]
+
+  frames.forEach((frame, index) => {
+    const leftX = index === 0 ? 2.85 : 3.05
+    const rightX = 16 - leftX
+    const capY = frame.h
+    const tint = index === 0 ? COLORS.plum : COLORS.mulberry
+
     worldEntities.push(
-      spawnVisualBox(Vector3.create(2.7, h / 2, z), Vector3.create(0.3, h, 0.34), COLORS.plum, 0),
-      spawnVisualBox(Vector3.create(13.3, h / 2, z), Vector3.create(0.3, h, 0.34), COLORS.plum, 0),
-      spawnVisualBox(Vector3.create(8, h, z), Vector3.create(capWidth, 0.18, 0.32), COLORS.plum, 0)
+      spawnVisualBox(Vector3.create(leftX, frame.h / 2, frame.z), Vector3.create(0.22, frame.h, 0.28), tint, 0),
+      spawnVisualBox(Vector3.create(rightX, frame.h / 2, frame.z), Vector3.create(0.22, frame.h, 0.28), tint, 0),
+      spawnVisualBox(
+        Vector3.create(leftX + frame.arm / 2, capY, frame.z),
+        Vector3.create(frame.arm, 0.14, 0.25),
+        tint,
+        0
+      ),
+      spawnVisualBox(
+        Vector3.create(rightX - frame.arm / 2, capY, frame.z),
+        Vector3.create(frame.arm, 0.14, 0.25),
+        tint,
+        0
+      ),
+      spawnVisualBox(Vector3.create(leftX + 0.18, frame.h * 0.58, frame.z - 0.16), Vector3.create(0.045, 1.45, 0.035), COLORS.coral, 2.1),
+      spawnVisualBox(Vector3.create(rightX - 0.18, frame.h * 0.58, frame.z - 0.16), Vector3.create(0.045, 1.45, 0.035), COLORS.lilac, 2.1)
     )
   })
 
+  // Floating keystones echo the beacon without recreating a full rectangular cage.
   worldEntities.push(
-    spawnVisualBox(Vector3.create(3.35, 2.05, 8.35), Vector3.create(0.58, 2.6, 0.11), COLORS.mulberry, 0),
-    spawnVisualBox(Vector3.create(12.65, 2.05, 8.35), Vector3.create(0.58, 2.6, 0.11), COLORS.mulberry, 0),
-    spawnVisualBox(Vector3.create(3.35, 2.05, 8.27), Vector3.create(0.055, 1.55, 0.04), COLORS.coral, 2.25),
-    spawnVisualBox(Vector3.create(12.65, 2.05, 8.27), Vector3.create(0.055, 1.55, 0.04), COLORS.coral, 2.25)
+    spawnVisualBox(Vector3.create(7.45, 4.18, 4.15), Vector3.create(0.44, 0.09, 0.18), COLORS.rose, 1.5),
+    spawnVisualBox(Vector3.create(8.55, 4.18, 4.15), Vector3.create(0.44, 0.09, 0.18), COLORS.lilac, 1.5),
+    spawnVisualBox(Vector3.create(7.58, 4.7, 8.15), Vector3.create(0.36, 0.08, 0.16), COLORS.lilac, 1.4),
+    spawnVisualBox(Vector3.create(8.42, 4.7, 8.15), Vector3.create(0.36, 0.08, 0.16), COLORS.rose, 1.4)
   )
 }
 
@@ -258,29 +315,29 @@ export function refreshMemoryBridge(authors: string[]) {
     const leftSide = index % 2 === 0
     const pair = Math.floor(index / 2)
     const x = leftSide ? 4.62 : 11.38
-    const z = 3.65 + pair * 2.55
+    const z = 3.55 + pair * 2.5
     const newest = index === visible.length - 1
-    const height = 0.95 + Math.min(index, 5) * 0.11
+    const height = 0.92 + Math.min(index, 5) * 0.11
 
     memoryEntities.push(
-      spawnVisualBox(Vector3.create(x, 0.15, z), Vector3.create(0.74, 0.18, 0.74), COLORS.plum, 0),
+      spawnVisualBox(Vector3.create(x, 0.15, z), Vector3.create(0.7, 0.16, 0.7), COLORS.plum, 0),
       spawnVisualBox(
-        Vector3.create(x, 0.31 + height / 2, z),
-        Vector3.create(0.42, height, 0.17),
+        Vector3.create(x, 0.29 + height / 2, z),
+        Vector3.create(0.38, height, 0.15),
         newest ? COLORS.rose : COLORS.violet,
-        newest ? 1.0 : 0
+        newest ? 1.05 : 0
       ),
       spawnVisualBox(
-        Vector3.create(x, 0.33 + height, z - 0.1),
-        Vector3.create(0.09, height * 0.58, 0.035),
+        Vector3.create(x, 0.31 + height, z - 0.09),
+        Vector3.create(0.075, height * 0.6, 0.03),
         newest ? COLORS.ivory : COLORS.lilac,
-        newest ? 2.3 : 1.25
+        newest ? 2.45 : 1.3
       ),
       spawnVisualBox(
-        Vector3.create(x, 0.37 + height * 0.66, z - 0.11),
-        Vector3.create(0.25, 0.045, 0.035),
+        Vector3.create(x, 0.35 + height * 0.66, z - 0.1),
+        Vector3.create(0.22, 0.04, 0.03),
         newest ? COLORS.coral : COLORS.lilac,
-        newest ? 1.9 : 1.0
+        newest ? 2.0 : 1.05
       )
     )
   })
@@ -291,29 +348,31 @@ export function showChoiceSignature(kind: Completion | null) {
   if (!kind) return
 
   if (kind === 'CONNECT') {
-    ;[5.1, 7.0, 8.9, 10.8].forEach((z, index) => {
+    const connectZ = [5.0, 6.85, 8.7, 10.55]
+    connectZ.forEach((z, index) => {
       choiceEntities.push(
         spawnVisualBox(
           Vector3.create(8, 0.27 + index * 0.025, z),
-          Vector3.create(5.8, 0.055, 0.11),
+          Vector3.create(5.75, 0.05, 0.1),
           index % 2 === 0 ? COLORS.coral : COLORS.lilac,
-          2.35
+          2.45
         )
       )
     })
   } else {
-    ;[
-      [10.35, 0.6, 5.15],
-      [10.55, 0.94, 7.0],
-      [10.75, 1.28, 8.85],
-      [10.95, 1.62, 10.7]
-    ].forEach((p, index) => {
+    const riseNodes = [
+      [10.25, 0.6, 5.0],
+      [10.45, 0.93, 6.85],
+      [10.65, 1.27, 8.7],
+      [10.85, 1.61, 10.55]
+    ]
+    riseNodes.forEach((p, index) => {
       choiceEntities.push(
         spawnVisualBox(
           Vector3.create(p[0], p[1], p[2]),
-          Vector3.create(0.12, 1.0 + index * 0.22, 0.12),
+          Vector3.create(0.11, 0.95 + index * 0.22, 0.11),
           index % 2 === 0 ? COLORS.lilac : COLORS.coral,
-          2.45
+          2.55
         )
       )
     })
@@ -331,7 +390,7 @@ export function setBeaconState(state: BeaconState) {
           : state === 'LIVE'
             ? COLORS.coral
             : COLORS.rose
-  const intensity = state === 'HANDOFF' ? 5.0 : state === 'LIVE' ? 3.9 : state === 'OFFLINE' ? 0.25 : 2.25
+  const intensity = state === 'HANDOFF' ? 5.1 : state === 'LIVE' ? 4.0 : state === 'OFFLINE' ? 0.25 : 2.3
 
   for (const entity of beaconGlowEntities) {
     Material.setPbrMaterial(entity, {
@@ -346,14 +405,14 @@ export function setBeaconState(state: BeaconState) {
   clearEntities(handoffEntities)
   if (state === 'HANDOFF') {
     handoffEntities.push(
-      spawnVisualBox(Vector3.create(7.15, 2.05, ALTAR_Z), Vector3.create(0.22, 0.22, 0.22), COLORS.ivory, 3.7),
-      spawnVisualBox(Vector3.create(8.85, 2.05, ALTAR_Z), Vector3.create(0.22, 0.22, 0.22), COLORS.ivory, 3.7),
-      spawnVisualBox(Vector3.create(8, 2.38, ALTAR_Z), Vector3.create(0.2, 0.2, 0.2), COLORS.coral, 4.0),
-      spawnVisualBox(Vector3.create(8, 0.34, 11.85), Vector3.create(5.15, 0.05, 0.12), COLORS.ivory, 3.0)
+      spawnVisualBox(Vector3.create(7.15, 2.02, ALTAR_Z), Vector3.create(0.2, 0.2, 0.2), COLORS.ivory, 3.8),
+      spawnVisualBox(Vector3.create(8.85, 2.02, ALTAR_Z), Vector3.create(0.2, 0.2, 0.2), COLORS.ivory, 3.8),
+      spawnVisualBox(Vector3.create(8, 2.36, ALTAR_Z), Vector3.create(0.18, 0.18, 0.18), COLORS.coral, 4.2),
+      spawnVisualBox(Vector3.create(8, 0.34, 11.55), Vector3.create(5.2, 0.05, 0.11), COLORS.ivory, 3.2)
     )
   } else if (state === 'WAITING') {
     handoffEntities.push(
-      spawnVisualBox(Vector3.create(8, 0.31, 11.85), Vector3.create(4.2, 0.05, 0.1), COLORS.lilac, 1.9)
+      spawnVisualBox(Vector3.create(8, 0.31, 11.55), Vector3.create(4.25, 0.05, 0.095), COLORS.lilac, 2.0)
     )
   }
 }
