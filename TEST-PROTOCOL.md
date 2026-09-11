@@ -1,151 +1,86 @@
-# Cold Test Protocol — V5.2 Intelligent Causal Loop
+# Cold Test Protocol — V5.2.1 Intelligent Causal Loop
 
 ## Purpose
-Test whether a real prior person's spatial decision changes the next visitor's playable problem **and** whether the visitor understands that their own solution/authoring changes what comes after them.
+Test whether a real prior person's spatial decision changes the next visitor's playable problem, whether the visitor experiences the route voluntarily, and whether they understand that their own solution creates a successor condition.
 
-## V5.2 perceptual gates before scored testing
-Before consuming T1–T5, one QA pass on the live build must confirm:
-1. the inherited object reads as a traversable structure/platform rather than a graph line;
-2. movement produces visible progression, junction feedback and lightweight camera response;
-3. HUMAN/WORLD provenance is expressed through embodied residue without explicit source-label priming before debrief;
-4. SPAN/HEIGHT pressure and tension create visibly different physical conditions without requiring the tester to know those internal terms.
+## Release-blocking smoke check
+Before consuming any T1–T5 slot:
+1. load `https://unfinished-delta.vercel.app/?author=1`;
+2. author a real gesture and generate the matched pair;
+3. verify dedicated COPY + OPEN controls exist for HUMAN and WORLD;
+4. open each using those controls — do not manually select the long raw URL;
+5. before debrief, no explicit `HUMAN`, `WORLD`, `LEFT BY`, or equivalent source-answering badge may appear;
+6. subtle in-scene provenance may remain;
+7. confirm the pair matches on anchor/vector/reach/pressure/tension/engineBias/generation/version.
 
-If any item fails, fix it before consuming a scored cold tester.
+If any check fails: stop. Fix QA before scored testing.
 
 ## Tester instruction
-Use a phone when possible. Say only:
-
+Say only:
 > **Try this and tell me what you think is happening.**
 
-Do not say social, co-author, previous player, unfinished, persistence, lineage, causal authorship, pressure, tension, next visitor, successor, or the slogan before the debrief is submitted.
+Do not say social, previous player, co-author, unfinished, persistence, pressure, tension, lineage, or the slogan before the run.
 
-Do not count anyone who has seen V1–V5.2 or already knows the concept.
+Do not count anyone who has seen V1–V5.2.1 or already knows the concept.
 
-## Authoring preparation
-Open:
-`/?author=1`
+## Operator preparation
+Use `/?author=1`.
+A real author:
+1. enters a display name;
+2. drags from a scene socket;
+3. releases where the unfinished segment should end.
 
-Have a real person:
-1. enter their display name;
-2. press a visible start socket;
-3. drag and release an endpoint in the scene.
-
-V5.2 derives from the physical gesture:
-- `anchor`: LOW / MID / HIGH
-- `vector`: FLAT / UP
-- `reach`: SHORT / MEDIUM / LONG
-
-It also freezes the deterministic engine state for a matched pair:
-- pressure
-- tension
-- engineBias
+The gesture derives `anchor + vector + reach`.
+The engine carries deterministic `pressure + tension + engineBias`.
 
 The operator receives:
-- HUMAN link — real authored geometry;
-- WORLD link — identical geometry/engine state, separate test lane.
+- HUMAN link — real authored geometry, dedicated COPY + OPEN controls;
+- WORLD link — identical causal state, separate test lane, dedicated COPY + OPEN controls.
 
 Never hand-write a fake HUMAN state.
 
-## Five scored cold tests
-Use `TEST-MATRIX-V5.md`.
+## Scored matrix
+Use `TEST-MATRIX-V5.md`:
+- T1 HUMAN geometry A
+- T2 WORLD matched A
+- T3 HUMAN geometry B
+- T4 WORLD matched B
+- T5 HUMAN replication / geometry C
 
-- T1/T2: matched HUMAN/WORLD geometry A.
-- T3/T4: matched HUMAN/WORLD geometry B.
-- T5: HUMAN replication or geometry C.
+Use five different independent English-speaking cold testers.
 
-Use five different independent English-speaking testers.
+## Observe silently
+Record whether the tester:
+- treats the inherited object as a physical route/structure rather than a diagram;
+- distinguishes inherited vs self-created structure;
+- voluntarily traverses rather than immediately exits;
+- notices meaningful geometry/constraint differences;
+- can explain prior contribution vs own contribution;
+- recalls a human source in HUMAN without prompting;
+- treats final authoring as creating the next person's condition rather than decoration;
+- understands that their solution changes what comes next.
 
-## Interaction behavior to observe silently
-1. Does the inherited segment read as an intentional act rather than a prefab object?
-2. Does the tester distinguish inherited geometry from the extension they create?
-3. Does prior `anchor/vector/reach` influence CONNECT/RISE reasoning?
-4. Do they choose through the scene or buttons, and how quickly?
-5. After the route appears, do they drag the avatar / use controls voluntarily?
-6. Does the topology physically constrain the avatar?
-7. Do off-route rejections help communicate that the geometry matters?
-8. Can they explain prior contribution vs self contribution?
-9. In HUMAN conditions, can they recall a person as source without observer prompting?
-10. Does final drag-from-socket authoring feel like creating a consequential state, not decoration?
-11. Before explicit post-debrief explanation, do they infer that something is being left behind?
+## Evidence
+Capture full exported JSON and verbatim debrief, including sourceRecall, priorContribution, selfContribution, Constraint/Origin/Social/Fun, routeProgress, used/skipped, offRouteAttempts, choice source/latency, direct drag/D-pad activity, CAS result, successor state, and causal counterfactuals.
 
-## Debrief integrity
-V5.2 intentionally hides explicit successor explanation until the built-in debrief is submitted.
-
-The tester must complete:
-- what happened;
-- source recall;
-- prior contribution;
-- self contribution;
-- Constraint 1–5;
-- Origin 1–5;
-- Social 1–5;
-- Fun 1–5.
-
-Only after submission may the prototype reveal the next-visitor link / return receipt explanation.
-
-## Built-in evidence
-Export can include:
-- `sourceRecall`
-- `priorContribution`
-- `selfContribution`
-- constraint/origin/social/fun scores
-- first post-reveal action + latency
-- completion choice latency
-- completion choice source: button vs scene
-- routeProgress
-- used/skipped
-- direct drag starts/samples
-- D-pad moves
-- offRouteAttempts
-- route completion latency
-- play duration
-- author/leave gesture time + distance
-- debrief duration
-- inherited anchor/vector/reach/pressure/tension/engineBias
-- tradeoff resolved/created
-- successor constraint
-- exact local CAS result
-- causal counterfactuals
-- identity/persistence classification
-
-Capture tester language verbatim.
-
-## Strong PASS signal
-- >=4/5 independently explain an inherited unfinished spatial condition was changed/completed and something was left behind;
-- >=4/5 distinguish prior contribution from self contribution;
+## Strong PASS
+- >=4/5 explain the inherited → changed → used → left-next-condition loop;
+- >=4/5 distinguish prior vs self contribution;
 - >=4/5 voluntarily engage with the route;
 - median Fun >=4/5;
 - median Constraint >=4/5;
-- HUMAN matched conditions outperform WORLD on Origin and/or Social meaning with qualitative support;
-- HUMAN testers recall a person as source without observer prompting;
-- same current completion + changed prior anchor/vector/reach produces materially different geometry;
-- >=3/5 infer before explicit post-debrief explanation that their final action affects what comes after them;
-- no evidence that 2.5D spectacle alone is creating fun while prior-human causality remains weak.
+- HUMAN meaning outperforms matched WORLD on Origin and/or Social with qualitative support;
+- same current action + changed prior geometry produces materially different topology;
+- >=3/5 understand their solution changes the next visitor's problem.
 
-## PIVOT / KILL signals
-- 2+ describe it mainly as a drawing/configuration tool;
-- HUMAN and matched WORLD are effectively equivalent;
-- fewer than 4/5 voluntarily engage with the route;
+## PIVOT/KILL signals
+- 2+ describe a shape/configuration tool;
+- HUMAN and WORLD feel equivalent;
+- fewer than 4/5 voluntarily engage;
 - median Constraint <3/5;
-- prior human is remembered as a name but not as causal author;
+- attribution remembered but causal contribution not understood;
 - anchor/vector/reach feel cosmetic;
-- successor pressure is not perceptible in the resulting topology;
-- final authoring feels decorative;
-- direct interaction is confusing enough that it masks the primitive;
-- Fun remains high while Human Necessity remains low.
+- successor pressure is invisible/meaningless;
+- fun remains high while human causality is low.
 
-## Yellow hidden spots
-This gate can test prototype behavior for persistence, concurrency, identity separation and mobile interaction, but cannot turn them production-green.
-
-Production-green requires:
-- shared durable persistence;
-- atomic shared CAS;
-- authoritative Decentraland identity;
-- real Decentraland Mobile validation.
-
-## Decision
-PASS → **PDPB Builder immediately**.
-
-PIVOT → modify only the failed primitive and rerun.
-
-KILL → do not automatically fall back to NEED//RELAY or RELAY ECHO.
+PASS → **PDPB Builder immediately**. PIVOT → modify only failed primitive and retest. KILL → do not resurrect FAVOR//RELAY or automatically fall back to prior concepts.
