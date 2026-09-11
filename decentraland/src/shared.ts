@@ -32,12 +32,27 @@ const JSON_HEADERS = {
   'Content-Type': 'application/json'
 }
 
+let lastNetworkError = ''
+
+function errorText(error: unknown) {
+  if (error instanceof Error) return `${error.name}: ${error.message}`
+  return String(error)
+}
+
+export function getLastNetworkError() {
+  return lastNetworkError
+}
+
 function runNetworkTask<T>(work: () => Promise<T>): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     executeTask(async () => {
       try {
-        resolve(await work())
+        const result = await work()
+        lastNetworkError = ''
+        resolve(result)
       } catch (error) {
+        lastNetworkError = errorText(error)
+        console.error('[UNFINISHED][NEON]', lastNetworkError)
         reject(error)
       }
     })
@@ -52,7 +67,8 @@ export function fetchLatestState(): Promise<SharedStateRow | null> {
     )
 
     if (!response.ok) {
-      throw new Error(`latest_chain_state ${response.status}`)
+      const detail = await response.text()
+      throw new Error(`latest_chain_state ${response.status}: ${detail.slice(0, 180)}`)
     }
 
     const rows = (await response.json()) as SharedStateRow[]
@@ -68,7 +84,8 @@ export function fetchChainAuthors(): Promise<string[]> {
     )
 
     if (!response.ok) {
-      throw new Error(`chain_history ${response.status}`)
+      const detail = await response.text()
+      throw new Error(`chain_history ${response.status}: ${detail.slice(0, 180)}`)
     }
 
     const rows = (await response.json()) as ChainHistoryRow[]
@@ -114,7 +131,7 @@ export function appendNextState(input: {
 
     if (!response.ok) {
       const detail = await response.text()
-      throw new Error(`append ${response.status}: ${detail.slice(0, 160)}`)
+      throw new Error(`append ${response.status}: ${detail.slice(0, 180)}`)
     }
   })
 }
