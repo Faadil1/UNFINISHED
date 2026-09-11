@@ -6,7 +6,7 @@ This file is the compact resume point for the next conversation. If chat context
 
 ## Current verdict
 
-**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON SOURCE + CI ARTIFACT PROVEN / PUBLISHED WORLD STILL SERVING OLD VISUAL BUNDLE / DEPLOYMENT-PATH VERIFICATION NEXT / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
+**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON SOURCE + CI ARTIFACT PROVEN / LOCAL REPO NOW SYNCED / FRESH LOCAL BUNDLE CONFIRMED TO CONTAIN MEMORY BEACON / LOCAL PREVIEW SERVER RUNNING / VISUAL PREVIEW CONFIRMATION NEXT / PUBLISHED-WORLD REPUBLISH AFTER LOCAL VISUAL PASS / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
 
 ## Product
 
@@ -108,61 +108,43 @@ GitHub Actions run `34634950496`: **SUCCESS**.
 Artifact: `unfinished-dcl-build`, id `10276754589`, digest `sha256:6c0617f97b4e5b42446ac204b85cb106d406bcedd2771a3cf82420a197eedcb4`.
 The compiled artifact was inspected and contains `buildMemoryBeaconWorld`, `refreshMemoryBridge`, `setBeaconState`, and `showChoiceSignature`.
 
-## Latest published-world visual smoke
+## Deployment mismatch diagnosis
 
-User video uploaded after the Memory Beacon implementation still shows the **old visual environment**:
-- old rectangular gate architecture remains;
-- no Memory Beacon tower;
-- no suspended halos;
-- no Memory Bridge rails/steles;
-- no Chain Monument pillars.
+A first published-world retest still showed the old environment. Investigation found the user's local repo was 17 commits behind `origin/main`, so the published bundle had been compiled from the old local source.
 
-At the same time the runtime still shows `LIVE CHAIN` and the self-handoff UI (`YOUR HANDOFF IS WAITING`, `Maya -> Faadil`).
+The user then stashed the local `scene.json` edit and fast-forwarded successfully.
 
-Conclusion:
-**The latest source and CI artifact are correct, but the published World is still serving an older scene bundle. This is a deployment/local-project mismatch, not a design-code failure.**
+Confirmed locally after sync:
+- `HEAD == origin/main == 5ca52fd8d9c528cb08f68d7c62418b96c094390a`;
+- `decentraland/src/world.ts` exists;
+- `game.ts` imports and calls `buildMemoryBeaconWorld()`;
+- fresh `npm run build` passes with zero type errors;
+- `bin/index.js` contains `buildMemoryBeaconWorld`, `showChoiceSignature`, and `setBeaconState` plus their runtime call sites;
+- `npm run start` launches the local preview server successfully on `127.0.0.1:8000` and emits the Decentraland desktop-client deep link.
+
+This eliminates stale-local-source as the remaining cause. The next evidence needed is visual confirmation inside the local preview client.
 
 ## Exact next gate
 
-Do not change visual design or backend yet.
+Do not republish yet.
 
-1. Verify the local repo actually matches `origin/main`:
+1. Keep `npm run start` running.
+2. Open the emitted Decentraland desktop-client link:
 
-```powershell
-cd $HOME\UNFINISHED
-git fetch origin
-git status --short
-git rev-parse HEAD
-git rev-parse origin/main
-```
+`decentraland://realm=http%3A%2F%2F127.0.0.1%3A8000&position=0%2C0&dclenv=org&local-scene=true`
 
-2. Confirm the Memory Beacon source exists locally:
-
-```powershell
-Select-String -Path .\decentraland\src\game.ts -Pattern "buildMemoryBeaconWorld"
-Select-String -Path .\decentraland\src\world.ts -Pattern "buildMemoryBeaconWorld"
-```
-
-3. Build from the exact repo folder:
-
-```powershell
-cd $HOME\UNFINISHED\decentraland
-npm run build
-Select-String -Path .\bin\index.js -Pattern "buildMemoryBeaconWorld"
-```
-
-4. Before publishing, run local preview from that same folder:
-
-```powershell
-npm run start
-```
-
-5. If local preview shows the Memory Beacon, Creator Hub must be pointed to exactly:
-`C:\Users\fboussari\UNFINISHED\decentraland`
-
-6. Republish only from that exact project/folder.
-7. Re-enter `unfinished.dcl.eth` and verify the landmark visually.
-8. Only after the published-world Memory Beacon is confirmed: full desktop smoke -> mobile smoke -> cross-user PASS C.
+3. Confirm visually in local preview:
+   - Memory Beacon tower visible;
+   - suspended halos visible;
+   - Memory Bridge / glowing side rails visible;
+   - Chain Monument pillars visible;
+   - spawn not blocked;
+   - inheritance UI remains readable;
+   - `LIVE CHAIN` still resolves.
+4. If local visual preview passes, republish from exactly:
+   `C:\Users\fboussari\UNFINISHED\decentraland`
+5. Then re-enter `unfinished.dcl.eth` and verify the new visual layer is live.
+6. Only after published-world visual pass: full desktop smoke -> mobile smoke -> cross-user PASS C.
 
 ## Visual constraints
 
