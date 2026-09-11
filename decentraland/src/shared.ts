@@ -47,9 +47,7 @@ function runNetworkTask<T>(work: () => Promise<T>): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     executeTask(async () => {
       try {
-        const result = await work()
-        lastNetworkError = ''
-        resolve(result)
+        resolve(await work())
       } catch (error) {
         lastNetworkError = errorText(error)
         console.error('[UNFINISHED][NEON]', lastNetworkError)
