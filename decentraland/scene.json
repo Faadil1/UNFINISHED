@@ -31,5 +31,14 @@
     "voiceChat": "enabled",
     "portableExperiences": "enabled"
   },
-  "landscapeTerrain": false
+  "landscapeTerrain": false,
+  "worldConfiguration": {
+    "name": "unfinished.dcl.eth",
+    "skyboxConfig": {
+      "fixedTime": 64800
+    },
+    "placesConfig": {
+      "optOut": false
+    }
+  }
 }
