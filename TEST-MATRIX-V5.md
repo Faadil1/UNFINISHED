@@ -1,75 +1,42 @@
-# UNFINISHED — V5.2.2 Matched Cold-Test Matrix
+# UNFINISHED — V5.3 Matched Cold-Test Matrix
 
-Use only after runtime smoke PASS.
+Use only after V5.3 runtime smoke PASS.
 
-## Operator preparation
+## Operator
 Open `https://unfinished-delta.vercel.app/?author=1`.
+Use a real alphabetic name/alias. Matched links are generated as opaque tokens and become neutral `?play=<fingerprint>` URLs after load.
 
-Create at least two genuinely different authored geometries using **drag-from-socket** gestures.
+## Locked A
+- Geometry: `HIGH / FLAT / SHORT`
+- Pressure: `HEIGHT`
+- Tension: `1`
+- Engine bias: `0`
+- T1 = HUMAN A
+- T2 = WORLD matched A
 
-## T1 / T2 — Geometry A
-Generate one real authored state and use:
-- T1 — HUMAN A
-- T2 — WORLD A
+## Locked B
+- Geometry: `LOW / UP / SHORT`
+- Pressure: `HEIGHT`
+- Tension: `1`
+- Engine bias: `0`
+- T3 = HUMAN B
+- T4 = WORLD matched B
 
-The pair must match on anchor, vector, reach, pressure, tension, engineBias, generation and state version.
+Inside each pair, hold geometry, pressure, tension, engineBias, generation and version constant.
 
-## T3 / T4 — Geometry B
-Create a second real authored state that differs from A in at least two spatial dimensions, preferably including reach.
-
-Generate:
-- T3 — HUMAN B
-- T4 — WORLD B
-
-Again hold geometry and engine state constant inside the pair.
-
-## T5 — HUMAN replication
-Use either a third real geometry C or a deliberate HUMAN repeat of the strongest prior HUMAN condition.
+## T5
+HUMAN replication of the strongest HUMAN condition, or Geometry C if time permits. If using C, prefer a LONG/SPAN condition to broaden grammar coverage.
 
 ## Instruction only
 > **Try this and tell me what you think is happening.**
 
-## Tester eligibility
-Every slot must be a different English-speaking cold tester who has never seen V1–V5.2.2 and has not been briefed on the concept.
+## Eligibility
+Different English-speaking cold testers who have never seen the concept. Prefer real phones. No coaching after the instruction.
 
-## Evidence labels
-Record per tester:
-- T1–T5 label
-- HUMAN/WORLD condition
-- pairId
-- chainId/stateId/version
-- anchor/vector/reach
-- pressure/tension/engineBias
-- CONNECT/RISE
-- choice source + latency
-- first post-reveal action + latency
-- routeProgress
-- direct drag / D-pad metrics
-- used/skipped
-- offRouteAttempts
-- successor constraint
-- CAS result
-- sourceRecall
-- priorContribution
-- selfContribution
-- constraint/origin/social/fun
-- full `causalProof`
+## Primary comparisons
+- T1 vs T2 = source effect with A held constant.
+- T3 vs T4 = source effect with B held constant.
+- A vs B with same completion = counterfactual spatial authorship.
 
-## Comparisons
-Primary source-effect comparisons:
-- T1 vs T2: source effect with geometry + engine held constant.
-- T3 vs T4: source effect with second geometry + engine held constant.
-
-Causal geometry comparison:
-- same completion across A vs B should produce materially different target/topology because the prior human gesture changed.
-
-Interaction check:
-- scene-choice vs button-choice and avatar-drag vs D-pad are instrumentation dimensions, not different product conditions. Do not coach one tester into a specific method.
-
-T5 checks replication of the strongest HUMAN signal.
-
-## Observer-only perceptual notes
-Separately record whether the tester spontaneously treats the inherited object as a physical route/structure, whether traversal feedback is noticed, and whether pressure/tension differences are perceived without naming internal engine terms.
-
-## Gate
-After T1–T5: hard verdict PASS / PIVOT / KILL. PASS → **PDPB Builder immediately**.
+## Deadline honesty
+If submission timing prevents five valid testers, report partial evidence. QA videos/self-runs do not fill missing cold-test slots.
