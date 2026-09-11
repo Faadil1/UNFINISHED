@@ -1,0 +1,35 @@
+{
+  "ecs7": true,
+  "runtimeVersion": "7",
+  "display": {
+    "title": "UNFINISHED",
+    "description": "Another real person's unfinished decision becomes the level you have to play."
+  },
+  "main": "bin/index.js",
+  "tags": ["game", "social"],
+  "scene": {
+    "parcels": ["0,0"],
+    "base": "0,0"
+  },
+  "spawnPoints": [
+    {
+      "name": "entry",
+      "default": true,
+      "position": {
+        "x": [7, 9],
+        "y": [0, 0],
+        "z": [1, 2]
+      },
+      "cameraTarget": {
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    }
+  ],
+  "featureToggles": {
+    "voiceChat": "enabled",
+    "portableExperiences": "enabled"
+  },
+  "landscapeTerrain": false
+}
