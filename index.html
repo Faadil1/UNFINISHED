@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ebe4d7">
+<meta name="theme-color" content="#241429">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>UNFINISHED — Web Sandbox</title>
 <meta name="description" content="Start from Maya, complete an unfinished spatial condition, use what your choice creates, then leave a local branch behind. The real shared chain lives in Decentraland.">
@@ -15,7 +15,7 @@
 <style>
 html:not(.v534ready) body{visibility:hidden;pointer-events:none}
 html.boot-failed body{visibility:visible;pointer-events:auto}
-body{margin:0;background:#ebe4d7;color:#211b1b;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{margin:0;background:#241429;color:#fff2f7;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 #bootError{display:none;padding:24px}html.boot-failed #bootError{display:block}
 </style>
 </head>
@@ -27,7 +27,7 @@ body{margin:0;background:#ebe4d7;color:#211b1b;font:14px system-ui,-apple-system
     const r=await fetch('/runtime/core-v51.html',{cache:'no-store'});
     if(!r.ok)throw new Error('core '+r.status);
     let html=await r.text();
-    const head=`<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#ebe4d7"><meta name="description" content="Start from Maya in the playable 2.5D web sandbox, then continue the real shared chain in Decentraland."><link rel="stylesheet" href="/runtime/v53-submission.css"><link rel="stylesheet" href="/runtime/v531-final.css"><link rel="stylesheet" href="/runtime/v532-experience.css"><link rel="stylesheet" href="/runtime/v533-mobile.css"><link rel="stylesheet" href="/runtime/v533-r2.css"><link rel="stylesheet" href="/runtime/v534-web-sandbox.css"><link rel="stylesheet" href="/runtime/v534-web-sandbox-fix.css"><style>html:not(.v534ready) body{visibility:hidden;pointer-events:none}</style>`;
+    const head=`<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#241429"><meta name="description" content="Start from Maya in the playable 2.5D web sandbox, then continue the real shared chain in Decentraland."><link rel="stylesheet" href="/runtime/v53-submission.css"><link rel="stylesheet" href="/runtime/v531-final.css"><link rel="stylesheet" href="/runtime/v532-experience.css"><link rel="stylesheet" href="/runtime/v533-mobile.css"><link rel="stylesheet" href="/runtime/v533-r2.css"><link rel="stylesheet" href="/runtime/v534-web-sandbox.css"><link rel="stylesheet" href="/runtime/v534-web-sandbox-fix.css"><style>html:not(.v534ready) body{visibility:hidden;pointer-events:none}</style>`;
     const patches=`<script src="/runtime/v52-patch.js"><\/script><script src="/runtime/v521-fix.js"><\/script><script src="/runtime/v53-submission.js"><\/script><script src="/runtime/v531-final.js"><\/script><script src="/runtime/v532-experience.js"><\/script><script src="/runtime/v533-mobile.js"><\/script><script src="/runtime/v533-r2.js"><\/script><script src="/runtime/v534-web-sandbox.js"><\/script><script>(function(){if(!document.documentElement.classList.contains('v534ready')){document.documentElement.classList.add('boot-failed');document.body.innerHTML='<pre style="font:14px system-ui;padding:24px">UNFINISHED web sandbox readiness check failed.</pre>';return;}window.__UNFINISHED_RUNTIME__='5.3.4-web-sandbox';document.title='UNFINISHED — Web Sandbox';if(window.S)S.version='5.3.4-web-sandbox';})();<\/script>`;
     html=html.replace('</head>',head+'</head>').replace('</body>',patches+'</body>');
     document.open();document.write(html);document.close();
