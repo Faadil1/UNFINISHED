@@ -1,7 +1,7 @@
 # CANONICAL HANDOFF — UNFINISHED
 
 Date: 2026-09-11
-Active version: **V5.3.2 — Final Experience Translation**
+Active version: **V5.3.3 — Mobile Finish**
 
 ## Start here in a new conversation
 Read, in order:
@@ -17,25 +17,24 @@ Read, in order:
 GitHub is canonical. Do not reconstruct state from memory alone.
 
 ## Current gate
-**V5.3.2 DEPLOY + SUBMISSION SMOKE / USER_GATE_NOT_YET_VALIDATED**
+**V5.3.3 DEPLOY + FINAL MOBILE SMOKE / USER_GATE_NOT_YET_VALIDATED**
 
 Required order:
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.3 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
 PDPB remains mandatory after PASS and before material production implementation.
 
 ## Product primitive
-A previous real person authors a spatial condition through `anchor × vector × reach`. The deterministic state carries `pressure × tension × engineBias`. The next person completes and uses that condition, then authors the next one.
+A previous real person authors `anchor × vector × reach`. Deterministic state carries `pressure × tension × engineBias`. The next person completes and uses that condition, then authors the next one.
 
 `CONNECT`: SPAN → HEIGHT.
 `RISE`: HEIGHT → SPAN.
 
-V5.3.2 adds a **human continuity layer** without changing that engine:
-- prior author name/alias may be visible in demo/organic play;
-- each successor can optionally add their name and a short note;
-- state transfer can carry a capped human chain (`Maya → Faadil → Benita → …`);
-- anonymous participation remains allowed;
-- authority is still the opaque session identity, not the display name.
+Human continuity is presentation/social metadata:
+- prior name/alias and optional note may travel in demo/organic handoff;
+- successors may optionally add their own name;
+- human chain is capped and transferable;
+- display names never become authority.
 
 ## Runtime architecture
 - `/` → judge/demo experience;
@@ -43,30 +42,42 @@ V5.3.2 adds a **human continuity layer** without changing that engine:
 - `core-v51.html` → frozen causal core;
 - `v52-patch.js` → embodied route/authoring;
 - `v521-fix.js` → source-neutral/operator QA;
-- `v53-submission.*` → opaque links, hold-to-commit, TRACE UI base;
+- `v53-submission.*` → opaque links, hold-to-commit, TRACE base;
 - `v531-final.*` → architectural world + judge-fast demo;
-- `v532-experience.*` → final world-first translation + human chain + optional successor identity/note + simplified causal receipt.
+- `v532-experience.*` → human chain + world-first translation;
+- `v533-mobile.*` → final mobile fit, traveler/avatar polish, socket polish, keyboard safety, safe judge handoff sharing.
 
-Expected runtime marker: `5.3.2-final-experience`.
+Expected runtime marker: `5.3.3-mobile-finish`.
 
-## Mobile acceptance spec
-The two Sep-11 mobile recordings are baseline regression evidence. Final smoke must show:
-1. the world dominates the screen; UI behaves like an in-world bottom sheet;
-2. inherited provenance is human and legible in demo mode;
-3. the inherited condition is visibly present in the world;
-4. completion has a tactile hold interaction and visible payoff;
-5. the resulting route is actually traversed;
-6. successor authoring exposes a live spatial condition preview;
-7. successor can optionally sign with a name and note;
-8. creation receipt tells the causal human story without exposing long tokens;
-9. session chain visibly continues when names are supplied;
-10. cold-test mode hides provenance/chain until debrief.
+## Findings from the Sep-11 02:39 + 02:41 mobile recordings
+V5.3.2 is a clear improvement and the causal loop completes on mobile. Remaining issues were presentational:
+- stick-figure traveler weakened the cinematic world;
+- large white sockets looked like debug/test controls;
+- successor keyboard state consumed too much usable viewport;
+- receipt layout left too much empty world above;
+- following the next state in the same session surfaced the correct but judge-hostile `THIS ONE IS YOURS` protection;
+- human identity became legible too late.
+
+V5.3.3 addresses those gaps without changing the causal model.
+
+## Final mobile acceptance spec
+Before runtime freeze, verify:
+1. inherited Maya provenance is visible in demo;
+2. current player can optionally sign their contribution before completion;
+3. reveal attribution uses prior + current identity where available;
+4. route traveler is a world-native cloaked silhouette;
+5. successor sockets are luminous/holographic rather than white debug circles;
+6. successor name/note fields remain reachable with mobile keyboard open;
+7. receipt fits materially better in the viewport;
+8. session chain reflects supplied names;
+9. demo action shares/copies the handoff instead of self-opening it;
+10. cold-test mode still hides source/name/chain until debrief.
 
 ## Cold-test protection
-Matched test links must be regenerated after V5.3.2 freeze. Inside each HUMAN/WORLD pair, geometry + engine state stay matched. Testers receive only:
+Matched test links stay opaque. HUMAN/WORLD geometry + engine state must match within each pair. Testers receive only:
 > **Try this and tell me what you think is happening.**
 
-Do not reveal names, source, human chain or demo narrative before debrief in cold-test mode.
+Do not reveal names, source, human chain or demo narrative before debrief.
 
 ## Hidden spots still yellow
 Do not claim production proof for:
@@ -75,8 +86,8 @@ Do not claim production proof for:
 - authoritative Decentraland identity;
 - real Decentraland Mobile runtime/performance;
 - offline/reconnect recovery;
-- moderation/griefing controls for names, notes and authored states;
-- dead-end recovery at shared-world scale.
+- moderation/griefing controls;
+- dead-end shared-world recovery.
 
 ## Next decision
-If submission smoke passes: **freeze runtime**. Use remaining time on available cold tests and STORY → DEMO → Q&A packaging. Do not keep polishing after freeze.
+If V5.3.3 mobile smoke passes: **freeze runtime immediately**. Then cold tests if practical, followed by STORY → DEMO → Q&A → submission. No further aesthetic iteration after freeze.
