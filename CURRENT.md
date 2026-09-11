@@ -1,92 +1,106 @@
 # CURRENT — UNFINISHED
 
 Date: 2026-09-11
-Status: **V5_3_1_FINAL_DEMO_POLISH / DEPLOY_PENDING / USER_GATE_NOT_YET_VALIDATED**
+Status: **V5_3_2_FINAL_EXPERIENCE_TRANSLATION / DEPLOY_PENDING / USER_GATE_NOT_YET_VALIDATED**
 
 ## Candidate
-**UNFINISHED — Intelligent Causal Loop V5.3.1 Final Demo Build**
+**UNFINISHED — Final Experience Build V5.3.2**
 
 Rule: **NO ONE FINISHES WHAT THEY START.**
 
 Thesis:
 > **Every player solves one problem and creates the next.**
 
-Loop:
-**INHERIT → INTERPRET → COMPLETE → PLAY → AUTHOR NEXT → LEAVE → CONSEQUENCE**
+Human loop:
+**CREATE → INHERIT → COMPLETE → USE → AUTHOR NEXT → CONTINUE**
 
-## Required winning chain
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.1 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+Required winning chain:
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
-Current gate: **submission smoke + opportunistic cold tests**. PDPB Builder remains blocked until the user gate PASS.
+PDPB remains blocked until the user gate PASS.
 
 ## Canonical runtime
-- Repo: `Faadil1/UNFINISHED`
-- Branch: `main`
-- Production: `https://unfinished-delta.vercel.app`
-- Operator: `https://unfinished-delta.vercel.app/?author=1`
-- Public entry: `index.html`
-- Frozen causal core: `core-v51.html`
-- Embodied causal layer: `v52-patch.js`
-- source-neutral/operator QA layer: `v521-fix.js`
-- TRACE submission layer: `v53-submission.css` + `v53-submission.js`
-- final demo/world layer: `v531-final.css` + `v531-final.js`
-- expected runtime marker: `5.3.1-final-demo`
+- repo: `Faadil1/UNFINISHED`
+- production: `https://unfinished-delta.vercel.app`
+- operator: `https://unfinished-delta.vercel.app/?author=1`
+- frozen causal core: `core-v51.html`
+- embodied layer: `v52-patch.js`
+- source-neutral QA layer: `v521-fix.js`
+- TRACE submission layer: `v53-submission.*`
+- architectural demo layer: `v531-final.*`
+- **final experience layer: `v532-experience.css` + `v532-experience.js`**
+- expected runtime marker: `5.3.2-final-experience`
 
-## Recording review that triggered V5.3.1
-The 127s V5.3 QA recording proved the new plum/mauve UI direction is live and the causal flow completes, but exposed two remaining submission risks:
-1. the world still looked too abstract (floating disks + beam) compared with the approved TRACE architectural direction;
-2. the public judge demo could still fall into the research debrief, which is correct for cold tests but wrong for a fast judge path.
+## Why V5.3.2 exists
+Two real mobile recordings were compared directly against the approved TRACE direction. The mechanics worked, but the implementation still behaved too much like a recolored prototype: abstract geometry, form-heavy cards, weak human provenance, weak chain continuity, and receipts dominated by technical state rather than people and outcomes.
 
-V5.3.1 therefore changes **presentation and demo routing only**. The causal engine remains frozen.
+V5.3.2 treats those recordings as regression evidence and translates the chosen direction into the runtime.
 
-## V5.3.1 final demo upgrades
-- architectural floating-world canvas: stone islands, arches, towers, haze, sunset depth, parallax and dust;
-- route beams gain masonry/resin texture and a warmer readable active edge;
-- demo completion triggers a short ceremonial `A new route is born` reveal;
-- public demo skips the research survey after successor authoring and goes directly to a judge-readable creation receipt;
-- demo receipt shows prior author → completion → outcome → next inherited pressure;
-- technical evidence/copy controls are hidden in demo mode and replaced with `REPLAY` + `FOLLOW THE NEXT CONDITION`;
-- cold-test mode still keeps the full debrief and experiment-integrity protections unchanged;
-- operator technical copy is softened and opaque links are visually de-emphasized.
+## Implemented experience translation
+- stronger architectural floating world with irregular stone ledges, ruins, pillars, sunset depth and world-first composition;
+- inherited condition rendered as a tangible holographic spatial object, not only a label;
+- authoring shows a live authored gesture and a human-readable `anchor · vector · reach` preview;
+- world/interaction phase rail: `CREATE → INHERIT → COMPLETE → CONTINUE`;
+- human provenance card in demo/organic mode, including prior author and optional carried note;
+- richer condition interpretation UI without exposing debug syntax;
+- successor stage now offers **optional name + optional note**;
+- human continuity is transferable in the opaque state token: e.g. `Maya → Faadil → Benita → …`;
+- if no name is provided, the contribution remains valid as `Anonymous`;
+- creation receipt is human-readable: prior author → completion → outcome → next inherited pressure → session chain;
+- technical URL/token content remains hidden from judge-facing demo UI;
+- demo replay receives a fresh per-page chain id so stale local CAS cannot break the replay;
+- demo mode preserves names/notes/chain; cold-test mode does not reveal source or chain before debrief;
+- mobile layout gives more screen to the world and overlaps controls as an in-world bottom sheet rather than `canvas + form`.
 
-## Experiment integrity — preserve
-- matched cold-test links use opaque state tokens;
-- cold-test HUMAN/WORLD provenance remains neutral before debrief;
-- HUMAN authoring requires a real alphabetic alias;
-- evidence keeps condition fingerprint/runtime/pair/run metadata;
-- no operator coaching beyond: **“Try this and tell me what you think is happening.”**
+## Causal engine — unchanged
+Human-authored variables remain `anchor + vector + reach`.
+Carried deterministic variables remain `pressure + tension + engineBias`.
 
-## Causal model — unchanged
-Prior human authors: `anchor + vector + reach`.
-Carried deterministic state: `pressure + tension + engineBias`.
+`CONNECT` resolves SPAN → creates HEIGHT.
+`RISE` resolves HEIGHT → creates SPAN.
 
-`CONNECT` resolves SPAN and creates HEIGHT pressure.
-`RISE` resolves HEIGHT and creates SPAN pressure.
+Names, notes, receipts and human-chain continuity are social/presentation metadata; they do not secretly authorize or randomize the causal engine.
 
-## Hidden spots — still yellow until actual execution
+## Experiment integrity
+- matched cold-test links remain opaque;
+- HUMAN/WORLD cold-test lanes remain source-neutral before debrief;
+- matched conditions do not carry human-chain metadata;
+- user-facing names are presentation metadata; authority remains the opaque prototype session id;
+- full cold-test debrief remains intact;
+- demo mode may explicitly tell the social story and skips the research survey.
+
+## Hidden spots — current truth
+Hardened in prototype:
+- causal authorship + counterfactuals;
+- no self-completion;
+- stale-state/local CAS refusal;
+- identity/display-name separation;
+- transferable handoff + capped lineage;
+- optional human chain and notes;
+- return/creation receipts;
+- opaque cold-test conditions + evidence fingerprint;
+- reduced-motion and mobile-safe controls.
+
+Still yellow until production execution:
 - shared durable persistence;
 - atomic shared concurrency/CAS;
 - authoritative Decentraland identity;
 - actual Decentraland Mobile camera/avatar/collision/performance;
 - reconnect/offline recovery;
-- abuse/griefing/moderation;
+- abuse/griefing/moderation of names, notes and authored states;
 - impossible/dead-end shared-world recovery.
 
-## Locked cold-test geometries
-- A: `HIGH / FLAT / SHORT`, pressure `HEIGHT`, tension `1`, engineBias `0`.
-- B: `LOW / UP / SHORT`, pressure `HEIGHT`, tension `1`, engineBias `0`.
-- T5: HUMAN replication or Geometry C if time allows.
-
 ## Immediate next action
-1. Wait for the single V5.3.1 deployment.
-2. Smoke `/` as a judge: no survey; complete the full causal loop to creation receipt.
-3. Smoke `/?author=1` and one matched pair.
-4. Confirm cold-test mode still shows the full debrief and no source-answering cue before it.
-5. If no release-blocking defect: freeze runtime.
-6. Use remaining time on cold tests only if practical, otherwise preserve honest QA evidence and move to STORY → DEMO → Q&A submission packaging.
+1. Wait for the **single** V5.3.2 Vercel deploy.
+2. Smoke `/` on real mobile: Maya provenance → hold choice → reveal → traversal → successor authoring → optional name/note → creation receipt.
+3. Smoke `/?author=1`: live gesture preview + matched link creation.
+4. Generate **new** Geometry A/B matched pairs after V5.3.2 freeze; old pre-V5.3 links are QA only.
+5. If practical, run independent English cold tests. If not, do not fabricate evidence.
+6. Freeze runtime unless a release-blocking bug exists.
+7. Move remaining time to STORY → DEMO → Q&A → submission.
 
 ## Build-budget discipline
-No follow-up deploy unless smoke exposes a release-blocking defect. Vercel Hobby quota is shared with other projects.
+No documentation-only deployment. No further deploy unless V5.3.2 smoke exposes a release-blocking defect.
 
 ## Canonical discipline
-Every substantive transition updates this file and `CANONICAL-HANDOFF.md` together. GitHub remains the source of truth.
+Every substantive gate transition updates `CURRENT.md` + `CANONICAL-HANDOFF.md` together. GitHub is the source of truth.

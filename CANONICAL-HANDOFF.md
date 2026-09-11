@@ -1,86 +1,82 @@
 # CANONICAL HANDOFF — UNFINISHED
 
 Date: 2026-09-11
-Active version: **V5.3.1 — Final Demo Polish / Deploy Pending**
+Active version: **V5.3.2 — Final Experience Translation**
 
 ## Start here in a new conversation
-Read:
+Read, in order:
 1. `CURRENT.md`
 2. `CANONICAL-HANDOFF.md`
 3. `WINNING-CHAIN.md`
 4. `PDPB-GATE.md`
-5. `TEST-PROTOCOL.md`
-6. `TEST-MATRIX-V5.md`
-7. `HIDDEN-SPOTS-HARDENING-V5.md`
+5. `HIDDEN-SPOTS-HARDENING-V5.md`
+6. `TEST-PROTOCOL.md`
+7. `TEST-MATRIX-V5.md`
 8. GitHub Issue #1
 
-GitHub is the source of truth. Do not reconstruct state from memory alone.
+GitHub is canonical. Do not reconstruct state from memory alone.
 
 ## Current gate
-**FINAL SUBMISSION SMOKE / USER_GATE_NOT_YET_VALIDATED**
+**V5.3.2 DEPLOY + SUBMISSION SMOKE / USER_GATE_NOT_YET_VALIDATED**
 
-Mandatory chain:
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.1 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+Required order:
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+
+PDPB remains mandatory after PASS and before material production implementation.
 
 ## Product primitive
-A prior real person authors `anchor × vector × reach` through a spatial gesture. The deterministic carried state is `pressure × tension × engineBias`.
+A previous real person authors a spatial condition through `anchor × vector × reach`. The deterministic state carries `pressure × tension × engineBias`. The next person completes and uses that condition, then authors the next one.
 
-`CONNECT`: resolves SPAN → creates HEIGHT.
-`RISE`: resolves HEIGHT → creates SPAN.
+`CONNECT`: SPAN → HEIGHT.
+`RISE`: HEIGHT → SPAN.
 
-Do not change this engine during final submission polish.
+V5.3.2 adds a **human continuity layer** without changing that engine:
+- prior author name/alias may be visible in demo/organic play;
+- each successor can optionally add their name and a short note;
+- state transfer can carry a capped human chain (`Maya → Faadil → Benita → …`);
+- anonymous participation remains allowed;
+- authority is still the opaque session identity, not the display name.
 
 ## Runtime architecture
-- production: `https://unfinished-delta.vercel.app`
-- operator: `/?author=1`
-- `core-v51.html`: frozen causal engine
-- `v52-patch.js`: 2.5D embodied interaction
-- `v521-fix.js`: source-neutral/operator QA
-- `v53-submission.js/css`: TRACE design + experiment integrity
-- `v531-final.js/css`: final architectural world + judge-demo routing
-- `index.html`: readiness-gated bootstrap
+- `/` → judge/demo experience;
+- `/?author=1` → operator authoring / matched test generation;
+- `core-v51.html` → frozen causal core;
+- `v52-patch.js` → embodied route/authoring;
+- `v521-fix.js` → source-neutral/operator QA;
+- `v53-submission.*` → opaque links, hold-to-commit, TRACE UI base;
+- `v531-final.*` → architectural world + judge-fast demo;
+- `v532-experience.*` → final world-first translation + human chain + optional successor identity/note + simplified causal receipt.
 
-## V5.3 recording finding
-The first V5.3 recording showed successful plum/mauve design, opaque-test flow, traversal, successor authoring and receipt, but the world still read as abstract floating platforms and the demo path still risked exposing the research survey. V5.3.1 addresses only those two release-level issues.
+Expected runtime marker: `5.3.2-final-experience`.
 
-## V5.3.1 expected judge path
-`/` → Maya inherited condition → press/hold completion → ceremonial route reveal → traverse → author next → **creation receipt directly** → follow next/replay.
+## Mobile acceptance spec
+The two Sep-11 mobile recordings are baseline regression evidence. Final smoke must show:
+1. the world dominates the screen; UI behaves like an in-world bottom sheet;
+2. inherited provenance is human and legible in demo mode;
+3. the inherited condition is visibly present in the world;
+4. completion has a tactile hold interaction and visible payoff;
+5. the resulting route is actually traversed;
+6. successor authoring exposes a live spatial condition preview;
+7. successor can optionally sign with a name and note;
+8. creation receipt tells the causal human story without exposing long tokens;
+9. session chain visibly continues when names are supplied;
+10. cold-test mode hides provenance/chain until debrief.
 
-The judge must not be forced through the cold-test questionnaire.
-
-## Cold-test path
-Matched HUMAN/WORLD links remain research-safe:
-- opaque state token;
-- neutral provenance before debrief;
-- full debrief after play;
-- evidence fingerprint + causal proof;
-- five independent testers if time permits.
-
-Instruction only:
+## Cold-test protection
+Matched test links must be regenerated after V5.3.2 freeze. Inside each HUMAN/WORLD pair, geometry + engine state stay matched. Testers receive only:
 > **Try this and tell me what you think is happening.**
+
+Do not reveal names, source, human chain or demo narrative before debrief in cold-test mode.
 
 ## Hidden spots still yellow
 Do not claim production proof for:
-1. durable shared persistence;
-2. atomic shared concurrency;
-3. Decentraland identity;
-4. actual Decentraland Mobile runtime;
-5. offline/reconnect;
-6. moderation/griefing;
-7. impossible-state recovery.
+- durable shared persistence;
+- atomic shared CAS;
+- authoritative Decentraland identity;
+- real Decentraland Mobile runtime/performance;
+- offline/reconnect recovery;
+- moderation/griefing controls for names, notes and authored states;
+- dead-end recovery at shared-world scale.
 
-## Final submission priority
-1. release-blocking smoke only;
-2. opportunistic 3–5 cold tests if feasible;
-3. evidence packaging;
-4. judge story + 60–90s demo;
-5. Q&A defense;
-6. PDPB only after actual user-gate PASS.
-
-## Never do
-- no fake human attribution;
-- no claiming browser proof as Decentraland production proof;
-- no opaque/random AI in the causal core;
-- no last-minute feature expansion;
-- no gallery drift;
-- no skipping PDPB after PASS.
+## Next decision
+If submission smoke passes: **freeze runtime**. Use remaining time on available cold tests and STORY → DEMO → Q&A packaging. Do not keep polishing after freeze.

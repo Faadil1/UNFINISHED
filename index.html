@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#241429">
-<title>UNFINISHED — Every solution becomes someone else’s beginning</title>
+<title>UNFINISHED — Leave something real for what’s next</title>
 <style>
-html:not(.v531ready) body{visibility:hidden;pointer-events:none}
+html:not(.v532ready) body{visibility:hidden;pointer-events:none}
 html.boot-failed body{visibility:visible;pointer-events:auto}
 body{margin:0;background:#241429;color:#fff8fb;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 #bootError{display:none;padding:24px}html.boot-failed #bootError{display:block}
@@ -20,8 +20,8 @@ body{margin:0;background:#241429;color:#fff8fb;font:14px system-ui,-apple-system
     const r=await fetch('/core-v51.html',{cache:'no-store'});
     if(!r.ok)throw new Error('core '+r.status);
     let html=await r.text();
-    const head=`<link rel="stylesheet" href="/v53-submission.css"><link rel="stylesheet" href="/v531-final.css"><style>html:not(.v531ready) body{visibility:hidden;pointer-events:none}</style>`;
-    const patches=`<script src="/v52-patch.js"><\/script><script src="/v521-fix.js"><\/script><script src="/v53-submission.js"><\/script><script src="/v531-final.js"><\/script><script>(function(){if(!document.documentElement.classList.contains('v531ready')){document.documentElement.classList.add('boot-failed');document.body.innerHTML='<pre style="font:14px system-ui;padding:24px">UNFINISHED V5.3.1 readiness check failed.</pre>';return;}window.__UNFINISHED_RUNTIME__='5.3.1-final-demo';document.title='UNFINISHED — Every solution becomes someone else’s beginning';if(window.S)S.version='5.3.1-final-demo';if(document.getElementById('debug'))document.getElementById('debug').textContent='v5.3.1';})();<\/script>`;
+    const head=`<link rel="stylesheet" href="/v53-submission.css"><link rel="stylesheet" href="/v531-final.css"><link rel="stylesheet" href="/v532-experience.css"><style>html:not(.v532ready) body{visibility:hidden;pointer-events:none}</style>`;
+    const patches=`<script src="/v52-patch.js"><\/script><script src="/v521-fix.js"><\/script><script src="/v53-submission.js"><\/script><script src="/v531-final.js"><\/script><script src="/v532-experience.js"><\/script><script>(function(){if(!document.documentElement.classList.contains('v532ready')){document.documentElement.classList.add('boot-failed');document.body.innerHTML='<pre style="font:14px system-ui;padding:24px">UNFINISHED V5.3.2 readiness check failed.</pre>';return;}window.__UNFINISHED_RUNTIME__='5.3.2-final-experience';document.title='UNFINISHED — Leave something real for what’s next';if(window.S)S.version='5.3.2-final-experience';if(document.getElementById('debug'))document.getElementById('debug').textContent='v5.3.2';})();<\/script>`;
     html=html.replace('</head>',head+'</head>').replace('</body>',patches+'</body>');
     document.open();document.write(html);document.close();
   }catch(err){
