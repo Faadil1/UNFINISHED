@@ -15,6 +15,12 @@ import {
   fetchLatestState,
   SharedStateRow
 } from './shared'
+import {
+  buildMemoryBeaconWorld,
+  refreshMemoryBridge,
+  setBeaconState,
+  showChoiceSignature
+} from './world'
 
 export type GamePhase = 'INHERIT' | 'TRAVERSE' | 'AUTHOR' | 'RECEIPT'
 export type Completion = 'CONNECT' | 'RISE'
@@ -72,7 +78,6 @@ let routeEndpoint = Vector3.create(8, 0.8, 12)
 
 const routeEntities: Entity[] = []
 const conditionEntities: Entity[] = []
-const memoryEntities: Entity[] = []
 const environmentEntities: Entity[] = []
 
 const COLORS = {
@@ -83,8 +88,7 @@ const COLORS = {
   lilac: Color4.create(0.72, 0.54, 0.9, 1),
   coral: Color4.create(0.98, 0.39, 0.42, 1),
   rose: Color4.create(0.9, 0.25, 0.53, 1),
-  ivory: Color4.create(1, 0.94, 0.82, 1),
-  ash: Color4.create(0.34, 0.28, 0.37, 1)
+  ivory: Color4.create(1, 0.94, 0.82, 1)
 }
 
 function spawnBox(
@@ -114,62 +118,17 @@ function spawnEnvironment() {
   if (environmentEntities.length) return
 
   environmentEntities.push(
-    spawnBox(Vector3.create(8, -0.08, 8), Vector3.create(16, 0.16, 16), COLORS.night, true)
-  )
-  environmentEntities.push(
-    spawnBox(Vector3.create(8, 0.02, 8), Vector3.create(8.6, 0.08, 14), COLORS.plum, false)
-  )
-
-  const gateZ = [3.2, 8.1, 13.1]
-  gateZ.forEach((z, index) => {
-    const height = index === 1 ? 3.8 : 3.1
-    const tint = index === 1 ? COLORS.mulberry : COLORS.violet
-    environmentEntities.push(
-      spawnBox(Vector3.create(2.1, height / 2, z), Vector3.create(0.48, height, 0.48), tint, false),
-      spawnBox(Vector3.create(13.9, height / 2, z), Vector3.create(0.48, height, 0.48), tint, false),
-      spawnBox(Vector3.create(8, height, z), Vector3.create(12.2, 0.32, 0.42), tint, false)
-    )
-  })
-
-  const lanterns = [
-    [4.2, 1.15, 3.1],
-    [11.8, 1.5, 5.7],
-    [3.7, 1.75, 9.5],
-    [12.2, 1.2, 11.6]
-  ]
-  lanterns.forEach((p, index) => {
-    environmentEntities.push(
-      spawnBox(
-        Vector3.create(p[0], p[1], p[2]),
-        Vector3.create(0.34, 0.34, 0.34),
-        index % 2 === 0 ? COLORS.coral : COLORS.lilac,
-        false
-      )
-    )
-  })
-
-  environmentEntities.push(
+    spawnBox(Vector3.create(8, -0.08, 8), Vector3.create(16, 0.16, 16), COLORS.night, true),
+    spawnBox(Vector3.create(8, 0.02, 7.9), Vector3.create(8.4, 0.08, 13.9), COLORS.plum, false),
     spawnBox(Vector3.create(8, 0.14, 1.8), Vector3.create(5.8, 0.24, 1.7), COLORS.mulberry, true),
-    spawnBox(Vector3.create(8, 0.16, 14.1), Vector3.create(5.8, 0.28, 1.5), COLORS.mulberry, true)
+    spawnBox(Vector3.create(8, 0.16, 14.05), Vector3.create(5.8, 0.28, 1.55), COLORS.mulberry, true)
   )
+
+  buildMemoryBeaconWorld()
 }
 
 function spawnMemoryTrail() {
-  clearEntities(memoryEntities)
-  const visible = sharedAuthors.slice(-6)
-
-  visible.forEach((_, index) => {
-    const x = 4.2 + index * 0.76
-    const height = 0.35 + index * 0.09
-    memoryEntities.push(
-      spawnBox(
-        Vector3.create(x, 0.32 + height / 2, 2.1),
-        Vector3.create(0.34, height, 0.34),
-        index === visible.length - 1 ? COLORS.coral : COLORS.lilac,
-        false
-      )
-    )
-  })
+  refreshMemoryBridge(sharedAuthors)
 }
 
 function spawnInheritedCondition() {
@@ -208,16 +167,19 @@ function spawnInheritedCondition() {
       Vector3.create(reachScale * 0.52, 0.24, 0.95),
       partialColor,
       false
+    ),
+    spawnBox(
+      Vector3.create(8, 0.86 + vectorLift, 4.55),
+      Vector3.create(0.22, 1.45, 0.22),
+      COLORS.ivory,
+      false
     )
-  )
-
-  conditionEntities.push(
-    spawnBox(Vector3.create(8, 0.86 + vectorLift, 4.55), Vector3.create(0.22, 1.45, 0.22), COLORS.ivory, false)
   )
 }
 
 function spawnRoute(kind: Completion) {
   clearEntities(routeEntities)
+  showChoiceSignature(kind)
 
   const positions = [4.1, 5.9, 7.7, 9.5, 11.3, 12.7]
   const spanAmplitude = inherited.pressure === 'SPAN' ? 0.58 + inherited.tension * 0.04 : 0.26
@@ -251,21 +213,6 @@ function spawnRoute(kind: Completion) {
     (inherited.pressure === 'HEIGHT' ? baseRise * (positions.length - 1) : 0)
 
   routeEndpoint = Vector3.create(kind === 'CONNECT' ? 8.58 : 8.75, endY, 12.7)
-
-  routeEntities.push(
-    spawnBox(
-      Vector3.create(routeEndpoint.x, Math.max(1.5, endY + 0.55), 13.7),
-      Vector3.create(0.32, 2.9, 0.32),
-      COLORS.ivory,
-      false
-    ),
-    spawnBox(
-      Vector3.create(routeEndpoint.x, Math.max(2.75, endY + 1.75), 13.7),
-      Vector3.create(1.6, 0.22, 0.32),
-      COLORS.coral,
-      false
-    )
-  )
 }
 
 function routeUseSystem() {
@@ -303,6 +250,8 @@ function mapRow(row: SharedStateRow, chain: string[]): HandoffState {
 async function hydrateSharedState() {
   syncStatus = 'LOADING'
   syncMessage = 'Loading the latest human handoff…'
+  setBeaconState('IDLE')
+  showChoiceSignature(null)
 
   try {
     const [latest, authors] = await Promise.all([fetchLatestState(), fetchChainAuthors()])
@@ -319,6 +268,7 @@ async function hydrateSharedState() {
     clearEntities(routeEntities)
     spawnInheritedCondition()
     spawnMemoryTrail()
+    setBeaconState(isSelfBlocked() ? 'WAITING' : 'LIVE')
   } catch (error) {
     inherited = { ...seedState, chain: [...seedState.chain] }
     sharedAuthors = ['Maya']
@@ -331,6 +281,7 @@ async function hydrateSharedState() {
     clearEntities(routeEntities)
     spawnInheritedCondition()
     spawnMemoryTrail()
+    setBeaconState('OFFLINE')
   }
 }
 
@@ -338,6 +289,7 @@ async function persistNextState(candidate: HandoffState) {
   if (!inherited.id) {
     syncStatus = 'OFFLINE'
     syncMessage = 'Played locally · shared handoff was unavailable'
+    setBeaconState('OFFLINE')
     return
   }
 
@@ -368,9 +320,11 @@ async function persistNextState(candidate: HandoffState) {
 
     syncStatus = 'SAVED'
     syncMessage = 'Shared handoff saved · pass the world to another person'
+    setBeaconState('HANDOFF')
   } catch (error) {
     syncStatus = 'CONFLICT'
     syncMessage = 'Someone else continued first · refresh to inherit their handoff'
+    setBeaconState('LIVE')
   }
 }
 
@@ -390,6 +344,7 @@ export function chooseCompletion(kind: Completion) {
   if (phase !== 'INHERIT' || syncStatus === 'LOADING' || isSelfBlocked()) return
 
   completion = kind
+  setBeaconState('LIVE')
   spawnRoute(kind)
   phase = 'TRAVERSE'
 }
@@ -423,6 +378,7 @@ export function chooseNextPressure(pressure: Pressure) {
 
 export function reloadSharedHandoff() {
   clearEntities(routeEntities)
+  showChoiceSignature(null)
   void hydrateSharedState()
 }
 
