@@ -6,7 +6,7 @@ This file is the compact resume point for the next conversation. Start here, the
 
 ## Current verdict
 
-**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON SECOND LOCAL PREVIEW PASS CONFIRMED / LANDMARK + BRIDGE HIERARCHY MATERIALLY IMPROVED / FINAL RITUAL-SILHOUETTE POLISH PUSHED / CI RUN #18 PENDING / ONE FINAL LOCAL PREVIEW BEFORE REPUBLISH / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
+**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON SECOND LOCAL PREVIEW CONFIRMED / LANDMARK + BRIDGE HIERARCHY MATERIALLY IMPROVED / FINAL RITUAL-SILHOUETTE POLISH BUILD PASS / ONE FINAL LOCAL PREVIEW BEFORE REPUBLISH / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
 
 ## Product
 
@@ -60,22 +60,21 @@ The Memory Beacon layer was runtime-real, but the first composition was rejected
 
 GitHub Actions run #17 `34638864974`: **SUCCESS**.
 
-### Second local preview — current user video
+### Second local preview — user video
 The correction materially improved the composition.
 
 Observed:
-- beacon is now clearly visible and centered;
+- beacon clearly visible and centered;
 - luminous vertical core reads from entry;
 - bridge rails and center spine visibly lead toward the ritual core;
 - Chain Monument pillars frame rather than fully obscure the destination;
-- halo / floating geometry is visible;
-- self-handoff UI remains intact;
-- `LIVE CHAIN` remains intact;
-- no gameplay/backend regression observed in the local preview.
+- halo / floating geometry visible;
+- self-handoff UI intact;
+- `LIVE CHAIN` intact;
+- no gameplay/backend regression observed.
 
-Residual visual issue:
-- the remaining complete rectangular portal frames still read somewhat like test/scaffolding architecture;
-- the world is recognizable and functional, but the ritual identity can be cleaner and more authored before freeze.
+Residual issue:
+- remaining complete rectangular portal frames still read somewhat like test/scaffolding architecture.
 
 ## Final polish pass
 
@@ -85,24 +84,25 @@ Commit:
 Changes in `decentraland/src/world.ts`:
 - replaces full portal rectangles with incomplete side fragments so no dark bar crosses the beacon axis;
 - keeps floating luminous keystones as spatial rhythm instead of a full cage;
-- strengthens the bridge spine, relay cadence, and arrival threshold;
-- refines Chain Monument proportions and adds memorial ticks so it reads as cumulative memory;
-- tightens the beacon tower, core, crown, halos, side fins, altar, and floating fragments;
+- strengthens bridge spine, relay cadence, floor marks, and arrival threshold;
+- refines Chain Monument proportions and adds memorial ticks;
+- tightens beacon tower, core, crown, halos, side fins, altar, and floating fragments;
 - preserves dynamic author steles;
 - preserves CONNECT horizontal signature and RISE vertical signature;
 - preserves LIVE / HANDOFF / WAITING / OFFLINE beacon states;
 - no gameplay or backend architecture changes.
 
 GitHub Actions run #18:
-`34639594369` — pending at time of this handover update.
+`34639594369` — **SUCCESS**.
+
+All SDK7 build/type-check/artifact steps passed.
 
 ## Exact next gate
 
-Do **not** republish yet.
+Do **not** republish until one final local visual preview confirms the polish.
 
-1. Wait for CI run #18 to pass.
-2. Stop local preview with `Ctrl+C`.
-3. Pull latest main and restart preview:
+1. Stop local preview with `Ctrl+C`.
+2. Pull latest main and restart preview:
 
 ```powershell
 cd $HOME\UNFINISHED
@@ -112,8 +112,8 @@ npm run build
 npm run start
 ```
 
-4. Open the emitted local-scene deep link.
-5. Final local visual PASS requires:
+3. Open the emitted local-scene deep link.
+4. Final local visual PASS requires:
    - no full dark crossbar across the central sightline;
    - beacon immediately recognizable and dominant;
    - bridge clearly leads to altar/beacon;
@@ -121,8 +121,8 @@ npm run start
    - spawn clear;
    - UI readable;
    - `LIVE CHAIN` intact.
-6. If that passes, republish from exactly `C:\Users\fboussari\UNFINISHED\decentraland`.
-7. Then published desktop smoke -> mobile smoke -> cross-user PASS C.
+5. If that passes, republish from exactly `C:\Users\fboussari\UNFINISHED\decentraland`.
+6. Then published desktop smoke -> mobile smoke -> cross-user PASS C.
 
 ## Canonical operational thread
 
