@@ -1,16 +1,46 @@
 # UNFINISHED — Decentraland SDK7 World
 
-This folder contains the native Decentraland port of UNFINISHED.
+This folder contains the canonical native Decentraland runtime for UNFINISHED.
 
-The core in-world loop is:
+World:
 
-**INHERIT → COMPLETE → USE → AUTHOR NEXT → CONTINUE**
+```text
+unfinished.dcl.eth
+```
 
-The scene uses Decentraland SDK7 primitives only, reads the current Decentraland player name for authorship, and requires the avatar to physically reach the end of the generated route before the next problem can be authored.
+Deep link:
+
+```text
+decentraland://?realm=unfinished.dcl.eth&dclenv=org
+```
+
+Core loop:
+
+**INHERIT → COMPLETE → USE → AUTHOR NEXT → HANDOFF**
+
+## What is live
+
+The current World implements:
+
+- shared Supabase-backed handoff state;
+- inherited spatial conditions;
+- causal `CONNECT` / `RISE` completion;
+- generated traversable routes;
+- avatar-position verification before successor authoring unlocks;
+- `HEIGHT` / `SPAN` successor authoring;
+- Decentraland player/wallet authorship;
+- recent human-chain memory;
+- self-handoff refusal;
+- conflict / latest-state recovery;
+- Memory Beacon / Memory Bridge / Chain Monument world language;
+- creation receipt;
+- mobile-safe controls and share/open fallback.
+
+The live backend has persisted a linked generation 1 → 2 → 3 chain where generation 2 and 3 use different wallet author IDs.
 
 ## Run locally
 
-Requirements: Node.js 20+.
+Requirements: Node.js 22+ and npm 10+.
 
 ```bash
 cd decentraland
@@ -19,43 +49,55 @@ npm run build
 npm run start
 ```
 
-## Preview on Decentraland Mobile
+## Build gate
 
 ```bash
-npm run start -- --mobile
+npm run build
 ```
 
-Scan the QR code from a phone on the same Wi-Fi network. This is the required validation path for mobile controls, layout, camera and performance.
+The repository also runs the SDK7 build through `.github/workflows/dcl-build.yml` for Decentraland source changes.
 
-## Deploy to a Decentraland World
+## Publish to the World
 
-Before publishing, add the World owned by the deploying wallet to `scene.json`:
+The target is already configured in `scene.json`:
 
 ```json
 "worldConfiguration": {
-  "name": "YOUR-NAME.dcl.eth"
+  "name": "unfinished.dcl.eth"
 }
 ```
 
-Then either publish from Creator Hub using **PUBLISH TO WORLD**, or run:
+Publish from Creator Hub with **PUBLISH TO WORLD** using the wallet that owns or has permission for the World.
 
-```bash
-npm run deploy
+The intended release sequence is:
+
+```text
+npm run build
+→ local smoke
+→ Creator Hub publish
+→ published desktop smoke
+→ published mobile smoke
 ```
 
-The wallet signing the deployment must own the Decentraland NAME / ENS domain or have deployment permission for that World.
+## Shared-state boundary
 
-## Current implementation
+The stable deep link does not contain a handoff ID. Every recipient enters the same World and inherits the latest canonical state from Supabase.
 
-The native World scene already implements:
+That is intentional for this submission’s single shared human chain.
 
-- inherited spatial condition;
-- causal `CONNECT` / `RISE` completion;
-- generated traversable route;
-- avatar-position verification that the route was actually used;
-- successor `HEIGHT` / `SPAN` authoring;
-- Decentraland player-name attribution;
-- creation receipt and visible human chain;
-- mobile-safe large controls and lightweight geometry.
+Not claimed here:
 
-The next deployment step is connecting the handoff state adapter to shared cross-session persistence, then running the real mobile preview and World publish gate.
+- arbitrary parallel chain routing;
+- unique per-handoff World URLs;
+- production-grade multi-writer concurrency guarantees;
+- large-scale moderation / abuse handling.
+
+## Public web companion
+
+The separate 2.5D web sandbox is available at:
+
+```text
+https://unfinished.pages.dev/
+```
+
+It always starts from Maya and remains local to the browser. It does not read or write the canonical Supabase chain.
