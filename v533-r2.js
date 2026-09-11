@@ -72,9 +72,9 @@
   async function shareNext(){
     const url=nextVisitorURL();
     if(!url) return;
-    const data={title:'UNFINISHED',text:'I left something unfinished for you.',url};
+    const data={url};
     try{
-      if(navigator.share){await navigator.share(data);log('HANDOFF_SHARED',{mode:'native'});}
+      if(navigator.share){await navigator.share(data);log('HANDOFF_SHARED',{mode:'native-url-only'});}
       else{await navigator.clipboard.writeText(url);badge('NEXT PLAYER LINK COPIED');log('HANDOFF_SHARED',{mode:'clipboard'});}
     }catch(err){
       if(err?.name!=='AbortError'){
