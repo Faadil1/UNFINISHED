@@ -8,6 +8,7 @@
   },
   "main": "bin/index.js",
   "tags": ["game", "social", "mobile", "cooperative"],
+  "requiredPermissions": ["USE_FETCH"],
   "scene": {
     "parcels": ["0,0"],
     "base": "0,0"
