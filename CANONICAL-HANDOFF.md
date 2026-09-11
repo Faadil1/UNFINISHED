@@ -1,7 +1,7 @@
 # CANONICAL HANDOFF — UNFINISHED
 
 Date: 2026-09-11
-Active version: **V5.3.3 — Mobile Finish**
+Active version: **V5.3.3 R2 — Final Handoff Fix**
 
 ## Start here in a new conversation
 Read, in order:
@@ -17,10 +17,10 @@ Read, in order:
 GitHub is canonical. Do not reconstruct state from memory alone.
 
 ## Current gate
-**V5.3.3 DEPLOY + FINAL MOBILE SMOKE / USER_GATE_NOT_YET_VALIDATED**
+**V5.3.3 R2 FINAL MOBILE SMOKE / USER_GATE_NOT_YET_VALIDATED**
 
 Required order:
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.3 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.3 R2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
 PDPB remains mandatory after PASS and before material production implementation.
 
@@ -30,7 +30,7 @@ A previous real person authors `anchor × vector × reach`. Deterministic state 
 `CONNECT`: SPAN → HEIGHT.
 `RISE`: HEIGHT → SPAN.
 
-Human continuity is presentation/social metadata:
+Human continuity is social/presentation metadata only:
 - prior name/alias and optional note may travel in demo/organic handoff;
 - successors may optionally add their own name;
 - human chain is capped and transferable;
@@ -45,33 +45,33 @@ Human continuity is presentation/social metadata:
 - `v53-submission.*` → opaque links, hold-to-commit, TRACE base;
 - `v531-final.*` → architectural world + judge-fast demo;
 - `v532-experience.*` → human chain + world-first translation;
-- `v533-mobile.*` → final mobile fit, traveler/avatar polish, socket polish, keyboard safety, safe judge handoff sharing.
+- `v533-mobile.*` → mobile fit, traveler/socket polish, keyboard safety;
+- `v533-r2.*` → direct-debrief interception, final receipt, safe sharing, persistent co-author attribution.
 
-Expected runtime marker: `5.3.3-mobile-finish`.
+Expected runtime marker: `5.3.3-mobile-finish-r2`.
 
-## Findings from the Sep-11 02:39 + 02:41 mobile recordings
-V5.3.2 is a clear improvement and the causal loop completes on mobile. Remaining issues were presentational:
-- stick-figure traveler weakened the cinematic world;
-- large white sockets looked like debug/test controls;
-- successor keyboard state consumed too much usable viewport;
-- receipt layout left too much empty world above;
-- following the next state in the same session surfaced the correct but judge-hostile `THIS ONE IS YOURS` protection;
-- human identity became legible too late.
+## Findings from the 07:33 + 07:35 mobile recordings
+The public demo is materially improved, but the direct `beginDebrief()` path still bypassed the later decorators. Observable effects:
+- final demo still showed `FOLLOW THE NEXT CONDITION`;
+- tapping it correctly triggered `THIS ONE IS YOURS` in the same session;
+- the expected human-readable creation receipt was missing/displaced;
+- the handoff retained too much empty world above the card because `postReport` layout state was not being applied.
 
-V5.3.3 addresses those gaps without changing the causal model.
+The cold-test recording behaved correctly: provenance remained neutral, full research debrief was present, and technical evidence actions remained available after debrief. Do not apply demo storytelling to that path.
 
-## Final mobile acceptance spec
-Before runtime freeze, verify:
-1. inherited Maya provenance is visible in demo;
-2. current player can optionally sign their contribution before completion;
-3. reveal attribution uses prior + current identity where available;
-4. route traveler is a world-native cloaked silhouette;
-5. successor sockets are luminous/holographic rather than white debug circles;
-6. successor name/note fields remain reachable with mobile keyboard open;
-7. receipt fits materially better in the viewport;
-8. session chain reflects supplied names;
-9. demo action shares/copies the handoff instead of self-opening it;
-10. cold-test mode still hides source/name/chain until debrief.
+## R2 acceptance spec
+Before freeze, verify on real mobile:
+1. Maya provenance visible in public demo;
+2. optional current contributor name visible before completion;
+3. reveal/play screen keeps persistent `prior + current contributor` attribution;
+4. route remains traversable;
+5. successor name/note fields remain reachable with keyboard open;
+6. final screen shows compact **CREATION RECEIPT** without large empty world dominating the viewport;
+7. receipt shows prior author, current completion, outcome, route usage, next inherited pressure, and human chain;
+8. judge action says **SHARE NEXT PLAYER LINK**, never `FOLLOW THE NEXT CONDITION`;
+9. share action uses native share/clipboard and does not self-open the state;
+10. `THIS ONE IS YOURS` remains intact if someone manually tries to consume their own handoff;
+11. matched cold-test lanes remain source-neutral before debrief.
 
 ## Cold-test protection
 Matched test links stay opaque. HUMAN/WORLD geometry + engine state must match within each pair. Testers receive only:
@@ -90,4 +90,4 @@ Do not claim production proof for:
 - dead-end shared-world recovery.
 
 ## Next decision
-If V5.3.3 mobile smoke passes: **freeze runtime immediately**. Then cold tests if practical, followed by STORY → DEMO → Q&A → submission. No further aesthetic iteration after freeze.
+If R2 mobile smoke passes: **freeze runtime immediately**. Then cold tests if practical, followed by STORY → DEMO → Q&A → submission. No further aesthetic iteration after freeze.

@@ -1,10 +1,10 @@
 # CURRENT — UNFINISHED
 
 Date: 2026-09-11
-Status: **V5_3_3_MOBILE_FINISH / DEPLOY_PENDING / USER_GATE_NOT_YET_VALIDATED**
+Status: **V5_3_3_R2_FINAL_HANDOFF_FIX / FINAL_MOBILE_SMOKE_PENDING / USER_GATE_NOT_YET_VALIDATED**
 
 ## Candidate
-**UNFINISHED — Mobile Finish V5.3.3**
+**UNFINISHED — Mobile Finish V5.3.3 R2**
 
 Rule: **NO ONE FINISHES WHAT THEY START.**
 
@@ -15,7 +15,7 @@ Human loop:
 **CREATE → INHERIT → COMPLETE → USE → AUTHOR NEXT → CONTINUE**
 
 Required winning chain:
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.3 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.3.3 R2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
 PDPB remains blocked until the user gate PASS.
 
@@ -29,31 +29,26 @@ PDPB remains blocked until the user gate PASS.
 - TRACE submission layer: `v53-submission.*`
 - architectural demo layer: `v531-final.*`
 - final experience layer: `v532-experience.*`
-- **mobile finish layer: `v533-mobile.css` + `v533-mobile.js`**
-- expected runtime marker: `5.3.3-mobile-finish`
+- mobile finish layer: `v533-mobile.*`
+- **handoff correction layer: `v533-r2.css` + `v533-r2.js`**
+- expected runtime marker: `5.3.3-mobile-finish-r2`
 
-## Why V5.3.3 exists
-Two real mobile recordings of V5.3.2 were reviewed after the main experience translation. V5.3.2 is materially better, but the recordings exposed a final set of presentation/interaction gaps rather than a conceptual failure.
+## Why R2 exists
+Two new real-mobile recordings exposed one remaining runtime/composition defect in the public demo: the V5.3.1 `beginDebrief()` path displays the handoff directly and bypasses later V5.3.2/V5.3.3 decorators. This caused:
+- the judge-facing button to revert to `FOLLOW THE NEXT CONDITION`;
+- same-session navigation to hit the correct but judge-hostile `THIS ONE IS YOURS` refusal;
+- the human-readable creation receipt to be skipped or displaced;
+- `postReport` mobile layout rules not to activate, leaving too much empty world above the handoff.
 
-Observed gaps:
-1. the route traveler still read as a generic stick figure rather than part of the world;
-2. large white authoring sockets broke the approved visual language;
-3. successor name/note entry was cramped by the mobile keyboard;
-4. the creation receipt required too much scrolling while an empty world area stayed visible;
-5. the judge-facing `FOLLOW THE NEXT CONDITION` action could intentionally hit self-completion refusal in the same browser;
-6. human-chain identity appeared mostly at the end, making continuity weaker than the approved direction.
-
-## V5.3.3 adjustments
-- replaces the route stick figure with a small cloaked traveler silhouette;
-- replaces large white authoring sockets with luminous in-world sockets and a holographic endpoint;
-- adds optional current-player identity in the demo intro so the chain is legible earlier;
-- reveal attribution can show `prior author + current contributor`;
-- successor identity is prefilled from the current contribution and explains the optional human lineage;
-- keyboard-aware mobile layout shrinks the world and keeps the active successor fields reachable;
-- handoff receipt uses more of the viewport and hides redundant empty-world labels;
-- judge demo replaces `FOLLOW THE NEXT CONDITION` with **SHARE NEXT PLAYER LINK**, preserving no-self-completion instead of walking a judge into an expected refusal;
-- self-completion protection remains intact for real state transitions;
-- cold-test mode remains source-neutral and does not expose human chain before debrief.
+## R2 fixes
+- wraps the actual `beginDebrief()` path after it renders;
+- forces a compact human-readable creation receipt: prior author → completion → outcome → route → next inherited pressure;
+- renders the visible human chain in the receipt;
+- permanently replaces demo navigation with `SHARE NEXT PLAYER LINK` and native share/clipboard fallback;
+- preserves self-completion refusal rather than routing the judge into it;
+- forces the compact mobile handoff layout after the direct debrief render;
+- adds persistent co-author attribution on the reveal/play card (`Maya + current contributor`);
+- keeps cold-test mode unchanged and source-neutral.
 
 ## Causal engine — unchanged
 Human-authored variables remain `anchor + vector + reach`.
@@ -86,15 +81,15 @@ Still yellow until production execution:
 - impossible/dead-end shared-world recovery.
 
 ## Immediate next action
-1. Wait for the single V5.3.3 Vercel deploy.
-2. Smoke `/` on real mobile: Maya provenance → optional current name → hold choice → reveal → traversal → successor authoring → creation receipt → share next player link.
-3. Smoke `/?author=1`: author card must remain readable on mobile and luminous sockets must replace the white circles.
-4. Confirm cold-test matched lane still hides provenance/chain before debrief.
-5. If no release-blocking defect: **freeze runtime**.
+1. Smoke `/` on real mobile: Maya provenance → optional current name → hold choice → reveal with co-author attribution → traversal → successor authoring → compact creation receipt → **SHARE NEXT PLAYER LINK**.
+2. Verify the share action does not open the next state in the same session.
+3. Smoke `/?author=1` only for authoring regression.
+4. Confirm a matched cold-test lane still shows the full neutral debrief and no source/name chain before debrief.
+5. If no release-blocking defect: **freeze runtime immediately**.
 6. Use remaining time on cold tests if practical and STORY → DEMO → Q&A → submission.
 
 ## Build-budget discipline
-No documentation-only deployment. No further deploy unless V5.3.3 smoke exposes a release-blocking defect.
+No documentation-only deployment. No further deploy unless R2 smoke exposes a release-blocking defect.
 
 ## Canonical discipline
 Every substantive gate transition updates `CURRENT.md` + `CANONICAL-HANDOFF.md` together. GitHub is the source of truth.
