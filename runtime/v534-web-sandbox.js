@@ -14,10 +14,30 @@
   const oldConfig534=config;
   const oldShow534=show;
   const oldFresh534=fresh;
+  const oldChooseComplete534=chooseComplete;
 
   function isRootSandbox(q){
     const p=new URLSearchParams(location.search);
     return !!q?.demo && !q?.testMode && !q?.authorMode && !p.get('s') && !p.get('play') && !p.get('receipt');
+  }
+
+  function routeStart(){
+    const y=anchorY(MAYA.anchor);
+    return {x:.12,y:y+.035};
+  }
+
+  function snapAvatarToRouteStart(){
+    if(!S || !S.avatar) return;
+    const start=routeStart();
+    S.avatar.x=start.x;
+    S.avatar.y=start.y;
+    S.routeProgress=0;
+    S.offRouteAttempts=0;
+    if(S.metrics){
+      S.metrics.dpadMoves=0;
+      S.metrics.dragStarts=0;
+      S.metrics.dragSamples=0;
+    }
   }
 
   config=function(){
@@ -39,6 +59,7 @@
     S.authorId='web-maya-seed';
     S.humanChain=[{name:'Maya',role:'started'}];
     S.runLabel='WEB SANDBOX';
+    snapAvatarToRouteStart();
   }
 
   function addBoundary(){
@@ -136,7 +157,20 @@
 
   show=function(id){
     const r=oldShow534(id);
+    if(id==='play' && S?.demo && !S?.testMode){
+      snapAvatarToRouteStart();
+      try{draw()}catch{}
+    }
     decorate(id);
+    return r;
+  };
+
+  chooseComplete=function(v,source='button'){
+    const r=oldChooseComplete534(v,source);
+    if(S?.demo && !S?.testMode){
+      snapAvatarToRouteStart();
+      try{draw()}catch{}
+    }
     return r;
   };
 
@@ -150,7 +184,6 @@
 
   applyMayaToCurrentState();
   decorate(document.body.dataset.v532Phase||document.body.dataset.phase||'intro');
-  // Re-run the visible phase decoration after correcting the initial Maya seed.
   const visible=['intro','complete','play','leave','postReport','author','ownState','staleState','returnReceipt'].find(id=>{const el=$(id);return el&&!el.classList.contains('hidden')});
   if(visible) try{show(visible)}catch{}
   try{draw()}catch{}
