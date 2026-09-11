@@ -1,6 +1,6 @@
 import { Color4 } from '@dcl/sdk/math'
 import { Button, Label, ReactEcs, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
-import { copyToClipboard } from '~system/RestrictedActions'
+import { copyToClipboard, openExternalUrl } from '~system/RestrictedActions'
 import {
   chooseCompletion,
   chooseNextPressure,
@@ -10,6 +10,7 @@ import {
 import { getLastNetworkError } from './shared'
 
 const HANDOFF_LINK = 'decentraland://?realm=unfinished.dcl.eth&dclenv=org'
+const HANDOFF_SHARE_PAGE = 'https://unfinished-delta.vercel.app/handoff.html'
 
 const PANEL = Color4.create(0.075, 0.025, 0.095, 0.94)
 const PANEL_SOFT = Color4.create(0.17, 0.055, 0.2, 0.9)
@@ -22,6 +23,7 @@ const LILAC = Color4.create(0.78, 0.63, 0.95, 1)
 const IVORY = Color4.create(1, 0.9, 0.72, 1)
 
 let handoffCopied = false
+let handoffCopyFailed = false
 
 function dedupeNames(names: string[]) {
   return names.filter((name, index) => index === 0 || name !== names[index - 1])
@@ -152,13 +154,35 @@ function MiniChainMemory(props: {
 }
 
 function copyHandoffLink() {
+  handoffCopyFailed = false
   void copyToClipboard({ text: HANDOFF_LINK })
     .then(() => {
       handoffCopied = true
+      handoffCopyFailed = false
     })
     .catch(() => {
       handoffCopied = false
+      handoffCopyFailed = true
     })
+}
+
+function openHandoffSharePage() {
+  void openExternalUrl({ url: HANDOFF_SHARE_PAGE })
+}
+
+function ShareActions() {
+  const copyLabel = handoffCopied
+    ? 'LINK COPIED ✓'
+    : handoffCopyFailed
+      ? 'COPY UNAVAILABLE'
+      : 'COPY WORLD LINK'
+
+  return (
+    <UiEntity uiTransform={{ width: 500, height: 76, flexDirection: 'row' }}>
+      <ActionButton label={copyLabel} onPress={copyHandoffLink} width={238} />
+      <ActionButton label="SHARE / OPEN LINK" onPress={openHandoffSharePage} secondary width={238} />
+    </UiEntity>
+  )
 }
 
 function WorldLinkStrip() {
@@ -263,11 +287,7 @@ function InheritPanel() {
           uiTransform={{ width: 500, height: 42 }}
         />
         <WorldLinkStrip />
-        <ActionButton
-          label={handoffCopied ? 'WORLD LINK COPIED ✓' : 'COPY WORLD LINK'}
-          onPress={copyHandoffLink}
-          width={300}
-        />
+        <ShareActions />
       </UiEntity>
     )
   }
@@ -407,16 +427,13 @@ function ReceiptPanel() {
         />
       ) : null}
       {saved ? (
-        <ActionButton
-          label={handoffCopied ? 'WORLD LINK COPIED ✓' : 'COPY WORLD LINK'}
-          onPress={copyHandoffLink}
-          width={300}
-        />
+        <ShareActions />
       ) : conflict ? (
         <ActionButton
           label="INHERIT LATEST"
           onPress={() => {
             handoffCopied = false
+            handoffCopyFailed = false
             reloadSharedHandoff()
           }}
           width={280}
