@@ -6,7 +6,7 @@ This file is the compact resume point for the next conversation. If chat context
 
 ## Current verdict
 
-**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON SOURCE + CI ARTIFACT PROVEN / LOCAL REPO SYNCED / FRESH LOCAL BUNDLE CONFIRMED TO CONTAIN MEMORY BEACON / LOCAL PREVIEW SERVER RUNNING WITH ZERO ERRORS / VISUAL PREVIEW CONFIRMATION NEXT / REPUBLISH ONLY AFTER LOCAL VISUAL PASS / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
+**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON LOCAL PREVIEW CONFIRMED / FIRST VISUAL PASS TOO OBSTRUCTED / SILHOUETTE + BRIDGE HIERARCHY CORRECTION PUSHED / CI RUN #17 IN PROGRESS / RE-PREVIEW REQUIRED BEFORE REPUBLISH / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
 
 ## Product
 
@@ -60,83 +60,75 @@ Coherent merge of:
 - Memory Bridge -> visible human lineage/transmission path;
 - Chain Monument -> cumulative spatial memory.
 
-## Memory Beacon implementation
+## Local preview result
 
-`decentraland/src/world.ts` implements:
-- Memory Beacon tower;
-- emissive core;
-- suspended halos;
-- handoff altar;
-- floating fragments;
-- Memory Bridge lighting;
-- recent-author memory steles;
-- Chain Monument pillars;
-- ritual frames;
-- CONNECT horizontal signature;
-- RISE ascending signature;
-- beacon states: idle/live/handoff/waiting/offline.
+The fresh synced local bundle was finally confirmed in the Decentraland desktop preview.
 
-`decentraland/src/game.ts` imports/calls:
-- `buildMemoryBeaconWorld()`
-- `refreshMemoryBridge()`
-- `setBeaconState()`
-- `showChoiceSignature()`
+Observed PASS:
+- Memory Beacon tower/core are present;
+- floating halo geometry is present;
+- bridge lighting is present;
+- monument pillars are present;
+- `LIVE CHAIN` still resolves;
+- self-handoff state still works (`YOUR HANDOFF IS WAITING`, `Maya -> Faadil`, `COPY HANDOFF LINK`).
 
-`decentraland/scene.json` frames the Memory Beacon on entry.
+Observed visual issues:
+- large ritual frame crossbars obscure the beacon silhouette at normal camera height;
+- beacon sits too close to the far parcel edge and reads smaller than intended;
+- bridge/steles are visually subordinate to the dark frame mass;
+- landmark hierarchy is materially weaker than the selected concept art.
 
-## Build proof
+Conclusion:
+**The Memory Beacon concept is runtime-real, but the first local visual pass is not strong enough to publish yet.**
 
-Implementation commits:
-- `0279f9eebdeec2f1a34c27f40559e02dda5f088a`
-- `4de82db146329592724bae1fe6621fce29862ea8`
-- `47099928c0698cfd81558a950e79d593c5106adc`
+## Correction pass
 
-GitHub Actions run `34634950496`: **SUCCESS**.
-Artifact `unfinished-dcl-build` contains the Memory Beacon functions.
+Commit:
+`7266184779b082bd15ccb9d3b15da529a1064d48` — `feat: strengthen Memory Beacon silhouette and bridge hierarchy`
 
-## Local sync + fresh build proof
+Changes in `decentraland/src/world.ts`:
+- moved beacon/altar forward for stronger framing;
+- narrowed the dark tower columns and increased luminous core prominence;
+- added a glowing crown element;
+- retained two suspended halos but positioned them around the stronger beacon center;
+- raised ritual-frame crossbars substantially so they no longer cut through the landmark at eye level;
+- reduced frame dominance and opened the central sightline;
+- strengthened Memory Bridge rails, center spine, floor marks, and low relay posts;
+- increased Chain Monument separation and luminous inscriptions;
+- strengthened recent-author steles;
+- preserved `CONNECT`, `RISE`, `HANDOFF`, `WAITING`, and `OFFLINE` state behaviors;
+- no backend/gameplay architecture changes.
 
-The stale deployment was traced to the user's local repo being 17 commits behind `origin/main`.
-
-After stashing the local `scene.json` change and fast-forwarding:
-- `HEAD == origin/main == 5ca52fd8d9c528cb08f68d7c62418b96c094390a`;
-- `world.ts` exists locally;
-- `game.ts` contains both import and runtime call for `buildMemoryBeaconWorld()`.
-
-Fresh build after sync:
-- `npm run build` PASS;
-- type checking PASS;
-- `bin/index.js` contains:
-  - `buildMemoryBeaconWorld()` definition + call;
-  - `showChoiceSignature()` definition + call sites;
-  - `setBeaconState()` definition + state transitions.
-
-Local preview:
-- `npm run start` PASS;
-- compiler watch active;
-- type checker reports `Found 0 errors`;
-- preview server listening on `0.0.0.0:8000`;
-- desktop client deep link emitted successfully.
+GitHub Actions run #17:
+`34638864974` — currently in progress at time of this handover update.
 
 ## Exact next gate
 
-Do not republish yet.
+Do **not** republish yet.
 
-1. Keep `npm run start` running.
-2. Open:
-   `decentraland://realm=http%3A%2F%2F127.0.0.1%3A8000&position=0%2C0&dclenv=org&local-scene=true`
-3. Visual local preview PASS requires:
-   - beacon tower visible;
-   - halos visible;
-   - bridge rails/steles visible;
-   - Chain Monument pillars visible;
-   - spawn not blocked;
+1. Wait for CI run #17 to pass.
+2. On the user's PC, stop the current preview with `Ctrl+C`.
+3. Pull the correction:
+
+```powershell
+cd $HOME\UNFINISHED
+git pull --ff-only
+cd decentraland
+npm run build
+npm run start
+```
+
+4. Open the local-scene deep link again.
+5. Local visual PASS requires:
+   - beacon unobstructed and dominant from entry;
+   - halos readable;
+   - bridge visibly leading toward the beacon;
+   - Chain Monument pillars framing rather than blocking;
+   - spawn clear;
    - UI readable;
-   - `LIVE CHAIN` still resolves.
-4. If local preview passes, republish exactly from:
-   `C:\Users\fboussari\UNFINISHED\decentraland`
-5. Then verify the published world.
-6. Only after published desktop pass: mobile smoke -> cross-user PASS C.
+   - `LIVE CHAIN` still present.
+6. Only if this corrected preview passes: republish from exactly `C:\Users\fboussari\UNFINISHED\decentraland`.
+7. Then published desktop smoke -> mobile smoke -> cross-user PASS C.
 
 ## Canonical operational thread
 
