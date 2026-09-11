@@ -1,4 +1,4 @@
-# UNFINISHED — V5.1 Hidden-Spots Hardening
+# UNFINISHED — V5.2 Hidden-Spots Hardening
 
 Date: 2026-09-10
 Status: ACTIVE PRE-PDPB CONSTRAINTS
@@ -17,10 +17,10 @@ The active falsification test remains:
 `f(A,B) ≠ f(A',B)` and `f(A,B) ≠ f(A,B')`.
 
 ## 3. Browser fun is not Decentraland proof — preserved as hard gate
-V5.1 upgrades the falsification surface to tactile 2.5D but deliberately avoids full 3D/Three.js. It can validate causal comprehension and interaction quality, not certify Decentraland runtime fun.
+V5.2 upgrades the falsification surface to tactile 2.5D but deliberately avoids full 3D/Three.js. It can validate causal comprehension and interaction quality, not certify Decentraland runtime fun.
 
 ## 4. Persistence — stronger prototype layer, production validation pending
-V5.1 has:
+V5.2 has:
 - transferable state URLs;
 - local active-state persistence;
 - capped recent lineage;
@@ -63,7 +63,7 @@ No streaks, loot, XP or generic daily-task gamification are required.
 Lineage is capped and secondary. The primary experience remains inherit → solve → play → author. History exists only to prove continuity and consequence.
 
 ## 10. Real Decentraland Mobile — prepared, not yet validated
-V5.1 adds:
+V5.2 adds:
 - 2.5D depth and perspective without a heavy 3D dependency;
 - direct avatar drag constrained to route;
 - accessible D-pad fallback;
@@ -98,13 +98,23 @@ A completion emits a successor state and can produce a return receipt proving ho
 ## E. Deterministic adaptation
 No random core generation. `engineBias` is explicit, carried in state, and updates deterministically. HUMAN/WORLD matched links hold geometry, pressure, tension and engineBias constant.
 
-# Debrief-bias protection added in V5.1
+# Debrief-bias protection added in V5.2
 The tester answers open-ended comprehension + ratings **before** explicit text reveals that their solution became the next starting condition. This prevents the product from teaching the answer before the measurement is captured.
 
 # Canonical causal claim
 > **A previous real player creates the initial spatial conditions of the next player's playable problem, and the next player's solution creates a new problem for someone else.**
 
 # Gate discipline
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.1 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
 Nothing here converts prototype proof into production proof. Persistence, concurrency, Decentraland identity and Decentraland Mobile remain yellow until validated in their actual runtime layers.
+
+# V5.2 perceptual hardening delta
+The V5.1 QA recording exposed a perception gap even though the causal engine worked. V5.2 therefore adds four explicit requirements:
+
+1. **Structure, not line** — playable paths render as beams/platforms with width, thickness, joints, supports and grounded shadows.
+2. **Traversal has weight** — direct movement creates a progress trail, junction feedback and small camera-follow response.
+3. **Provenance is embodied, not announced** — HUMAN and WORLD have distinct residue marks, while explicit source badge priming is removed before debrief.
+4. **Pressure is physical** — SPAN and HEIGHT pressures alter visible structural cues/deformation, scaled by tension.
+
+These are still prototype perceptual proofs. They do not turn browser 2.5D into Decentraland Mobile proof.

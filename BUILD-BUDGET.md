@@ -23,4 +23,4 @@ A new Vercel build is justified only when at least one is true:
 4. a gate-approved post-PDPB execution milestone is ready.
 
 ## Current pattern
-V5.1 is intentionally shipped as one atomic batch rather than a sequence of small commits.
+V5.2 is intentionally shipped as one atomic batch rather than a sequence of small commits.

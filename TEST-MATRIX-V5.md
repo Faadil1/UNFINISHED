@@ -1,6 +1,6 @@
-# UNFINISHED — V5.1 Matched Cold-Test Matrix
+# UNFINISHED — V5.2 Matched Cold-Test Matrix
 
-Use only after `https://unfinished-delta.vercel.app` is verified to serve V5.1.
+Use only after `https://unfinished-delta.vercel.app` is verified to serve V5.2.
 
 ## Operator preparation
 Open:
@@ -43,7 +43,7 @@ Use either:
 > **Try this and tell me what you think is happening.**
 
 ## Tester eligibility
-Every slot must be a different English-speaking cold tester who has never seen V1–V5.1 and has not been briefed on the concept.
+Every slot must be a different English-speaking cold tester who has never seen V1–V5.2 and has not been briefed on the concept.
 
 ## Evidence labels
 Record per tester:
@@ -80,3 +80,6 @@ Interaction check:
 - scene-choice vs button-choice and avatar-drag vs D-pad are instrumentation dimensions, not different product conditions. Do not intentionally coach one tester into a specific method.
 
 T5 checks replication of the strongest HUMAN signal.
+
+## V5.2 observer-only perceptual notes
+For T1–T5, separately record whether the tester spontaneously treats the inherited object as a physical route/structure, whether traversal feedback is noticed, and whether pressure/tension differences are perceived without naming the internal engine terms. These notes supplement — never replace — the existing quantitative and verbatim evidence.

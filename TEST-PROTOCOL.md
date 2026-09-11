@@ -1,7 +1,16 @@
-# Cold Test Protocol — V5.1 Intelligent Causal Loop
+# Cold Test Protocol — V5.2 Intelligent Causal Loop
 
 ## Purpose
 Test whether a real prior person's spatial decision changes the next visitor's playable problem **and** whether the visitor understands that their own solution/authoring changes what comes after them.
+
+## V5.2 perceptual gates before scored testing
+Before consuming T1–T5, one QA pass on the live build must confirm:
+1. the inherited object reads as a traversable structure/platform rather than a graph line;
+2. movement produces visible progression, junction feedback and lightweight camera response;
+3. HUMAN/WORLD provenance is expressed through embodied residue without explicit source-label priming before debrief;
+4. SPAN/HEIGHT pressure and tension create visibly different physical conditions without requiring the tester to know those internal terms.
+
+If any item fails, fix it before consuming a scored cold tester.
 
 ## Tester instruction
 Use a phone when possible. Say only:
@@ -10,7 +19,7 @@ Use a phone when possible. Say only:
 
 Do not say social, co-author, previous player, unfinished, persistence, lineage, causal authorship, pressure, tension, next visitor, successor, or the slogan before the debrief is submitted.
 
-Do not count anyone who has seen V1–V5.1 or already knows the concept.
+Do not count anyone who has seen V1–V5.2 or already knows the concept.
 
 ## Authoring preparation
 Open:
@@ -21,7 +30,7 @@ Have a real person:
 2. press a visible start socket;
 3. drag and release an endpoint in the scene.
 
-V5.1 derives from the physical gesture:
+V5.2 derives from the physical gesture:
 - `anchor`: LOW / MID / HIGH
 - `vector`: FLAT / UP
 - `reach`: SHORT / MEDIUM / LONG
@@ -60,7 +69,7 @@ Use five different independent English-speaking testers.
 11. Before explicit post-debrief explanation, do they infer that something is being left behind?
 
 ## Debrief integrity
-V5.1 intentionally hides explicit successor explanation until the built-in debrief is submitted.
+V5.2 intentionally hides explicit successor explanation until the built-in debrief is submitted.
 
 The tester must complete:
 - what happened;
