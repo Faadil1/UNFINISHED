@@ -1,7 +1,9 @@
 import { executeTask } from '@dcl/sdk/ecs'
 
-export const DATA_API =
-  'https://ep-bitter-surf-awl0142t.apirest.c-12.us-east-1.aws.neon.tech/unfinished/rest/v1'
+export const DATA_API = 'https://ierowefnowuxybkivnnb.supabase.co/rest/v1'
+
+// Supabase publishable keys are designed for public clients. RLS is the authorization boundary.
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable__iUnIisPHzZeAg_Vz-ccsg_a2tEVSrh'
 
 export const CHAIN_ID = '00000000-0000-4000-8000-000000000001'
 
@@ -22,13 +24,18 @@ export type SharedStateRow = {
   created_at?: string
 }
 
-type ChainHistoryRow = {
-  authors: string[]
-  max_generation: number
+type ChainAuthorRow = {
+  author_name: string
+  generation: number
+}
+
+const API_HEADERS = {
+  Accept: 'application/json',
+  apikey: SUPABASE_PUBLISHABLE_KEY
 }
 
 const JSON_HEADERS = {
-  Accept: 'application/json',
+  ...API_HEADERS,
   'Content-Type': 'application/json'
 }
 
@@ -50,7 +57,7 @@ function runNetworkTask<T>(stage: string, work: () => Promise<T>): Promise<T> {
         resolve(await work())
       } catch (error) {
         lastNetworkError = `${stage} · ${errorText(error)}`
-        console.error('[UNFINISHED][NEON]', lastNetworkError)
+        console.error('[UNFINISHED][SUPABASE]', lastNetworkError)
         reject(error)
       }
     })
@@ -60,13 +67,13 @@ function runNetworkTask<T>(stage: string, work: () => Promise<T>): Promise<T> {
 export function fetchLatestState(): Promise<SharedStateRow | null> {
   return runNetworkTask('latest', async () => {
     const response = await fetch(
-      `${DATA_API}/latest_chain_state?chain_id=eq.${CHAIN_ID}&select=*`,
-      { headers: { Accept: 'application/json' } }
+      `${DATA_API}/chain_states?chain_id=eq.${CHAIN_ID}&select=*&order=generation.desc&limit=1`,
+      { headers: API_HEADERS }
     )
 
     if (!response.ok) {
       const detail = await response.text()
-      throw new Error(`latest_chain_state ${response.status}: ${detail.slice(0, 180)}`)
+      throw new Error(`chain_states latest ${response.status}: ${detail.slice(0, 180)}`)
     }
 
     const rows = (await response.json()) as SharedStateRow[]
@@ -77,17 +84,17 @@ export function fetchLatestState(): Promise<SharedStateRow | null> {
 export function fetchChainAuthors(): Promise<string[]> {
   return runNetworkTask('history', async () => {
     const response = await fetch(
-      `${DATA_API}/chain_history?chain_id=eq.${CHAIN_ID}&select=authors,max_generation`,
-      { headers: { Accept: 'application/json' } }
+      `${DATA_API}/chain_states?chain_id=eq.${CHAIN_ID}&select=author_name,generation&order=generation.asc`,
+      { headers: API_HEADERS }
     )
 
     if (!response.ok) {
       const detail = await response.text()
-      throw new Error(`chain_history ${response.status}: ${detail.slice(0, 180)}`)
+      throw new Error(`chain_states history ${response.status}: ${detail.slice(0, 180)}`)
     }
 
-    const rows = (await response.json()) as ChainHistoryRow[]
-    return rows[0]?.authors ?? []
+    const rows = (await response.json()) as ChainAuthorRow[]
+    return rows.map((row) => row.author_name)
   })
 }
 
