@@ -1,0 +1,79 @@
+/* UNFINISHED V5.3.4 — web sandbox / anti-slop art direction
+   The playable 2.5D scene is the interface. UI behaves like a quiet exhibit label, not a SaaS landing page. */
+:root{
+  --paper:#ebe4d7;
+  --paper-2:#f6f0e7;
+  --ink:#211b1b;
+  --ink-soft:#655b56;
+  --oxblood:#6f2638;
+  --signal:#cf4f5e;
+  --rule:rgba(33,27,27,.22);
+  --world:#211624;
+}
+html,body{background:var(--paper)!important;color:var(--ink)!important}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+.app{max-width:1440px;margin:0 auto;min-height:100dvh;background:var(--paper)!important;grid-template-rows:auto minmax(0,1fr) auto!important}
+
+/* Quiet masthead */
+.top{min-height:58px!important;padding:14px 18px 10px!important;background:var(--paper)!important;border-bottom:1px solid var(--rule)!important;color:var(--ink)!important}
+.brand{font-size:12px!important;letter-spacing:.18em!important;color:var(--ink)!important}
+.phase{font-size:9px!important;color:var(--ink-soft)!important;letter-spacing:.14em!important}
+.v53-topmark{display:flex!important;align-items:center!important;gap:10px!important}
+.v53-logo-ring{width:18px!important;height:18px!important;border:1px solid var(--oxblood)!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;position:relative!important}
+.v53-logo-ring:before{content:"";position:absolute;left:8px;top:2px;bottom:2px;width:2px;background:var(--signal)}
+.v532-phase-rail{opacity:.72!important}.v532-phase-rail i{border-color:rgba(111,38,56,.35)!important}.v532-phase-rail span.active i{border-color:var(--oxblood)!important;box-shadow:none!important}.v532-phase-rail span.active i:after{background:var(--oxblood)!important}.v532-phase-rail b,.v532-phase-rail em{color:var(--ink-soft)!important}
+
+/* The 2.5D world owns the screen */
+.scene{margin:0 18px!important;padding:0!important;border:1px solid rgba(33,27,27,.28)!important;border-top:0!important;border-radius:0!important;min-height:55dvh!important;background:var(--world)!important;overflow:hidden!important;box-shadow:0 18px 50px rgba(45,28,33,.13)!important}
+.scene:before{border-radius:0!important}
+.scene canvas{border:0!important;border-radius:0!important;box-shadow:none!important;background:var(--world)!important}
+.badge{border-radius:2px!important;background:var(--paper-2)!important;color:var(--ink)!important;border:1px solid var(--rule)!important;box-shadow:0 8px 20px rgba(33,27,27,.12)!important;font-size:10px!important;letter-spacing:.05em!important}
+
+/* Exhibit labels rather than floating glass cards */
+.v532-world-caption,.v53-provenance{border-radius:0!important;background:rgba(246,240,231,.93)!important;color:var(--ink)!important;border:1px solid rgba(33,27,27,.24)!important;backdrop-filter:none!important;box-shadow:6px 6px 0 rgba(33,27,27,.10)!important}
+.v532-world-caption span,.v53-provenance{color:var(--oxblood)!important}.v532-world-caption strong,.v53-provenance strong{color:var(--ink)!important;font-family:Georgia,"Times New Roman",serif!important}
+
+/* Controls: printed object, not glossy card */
+.controls{padding:0 18px 22px!important;min-height:210px!important;align-items:flex-start!important;background:var(--paper)!important}
+.card{width:min(760px,100%)!important;margin-top:-1px!important;max-height:none!important;overflow:visible!important;background:var(--paper-2)!important;color:var(--ink)!important;backdrop-filter:none!important;border:1px solid rgba(33,27,27,.28)!important;border-radius:0!important;padding:18px 20px!important;box-shadow:8px 8px 0 rgba(33,27,27,.09)!important}
+.prompt,.v53-eyebrow{font-size:9px!important;letter-spacing:.16em!important;color:var(--oxblood)!important;font-weight:900!important}
+.v53-title{font-family:Georgia,"Times New Roman",serif!important;color:var(--ink)!important;font-weight:500!important;letter-spacing:-.02em!important;font-size:28px!important;line-height:1.05!important}
+.neutral,.micro,.small{color:var(--ink-soft)!important}
+
+/* Inputs and human-chain panels */
+.v532-human-card,.v532-successor-panel,.v532-receipt,.v533r2-receipt,.v533r2-coauthor,.receipt{background:transparent!important;border:1px solid var(--rule)!important;border-radius:0!important;box-shadow:none!important}
+.v532-avatar,.v532-chain-person i{background:var(--signal)!important;color:#fff!important;box-shadow:none!important}
+.v532-human-card span,.v532-successor-head span,.v532-session-chain>span,.v532-receipt-top span,.v533r2-receipt-head span,.v533r2-chain>span{color:var(--oxblood)!important}
+.v532-human-card strong,.v532-human-card blockquote,.v532-successor-head b,.v532-chain-person b,.v532-receipt-row small,.v533r2-receipt-head b,.v533r2-chain b{color:var(--ink)!important}
+.v532-human-card blockquote{font-family:Georgia,"Times New Roman",serif!important}
+.v532-successor-panel label,.v532-live-condition b,.v532-receipt-row>b,.v533r2-receipt-row b{color:var(--ink)!important}
+.v532-successor-panel label small,.v532-live-condition span,.v532-receipt-row span,.v533r2-receipt-row span{color:var(--ink-soft)!important}
+.v532-successor-panel input,.v532-successor-panel textarea,.author input,.report textarea{background:#fffaf3!important;color:var(--ink)!important;border:1px solid var(--rule)!important;border-radius:0!important;box-shadow:none!important}
+.v532-condition-story div,.v532-author-guide div{background:transparent!important;border:1px solid var(--rule)!important;border-radius:0!important}.v532-condition-story span,.v532-author-guide span{color:var(--ink-soft)!important}.v532-condition-story b,.v532-author-guide strong{color:var(--ink)!important}
+
+/* Buttons: graphic, flat, deliberate */
+.primary,.secondary,.choice,.joy,.btn{border-radius:0!important;box-shadow:none!important;transition:transform .08s ease,background .12s ease!important}
+.primary{background:var(--oxblood)!important;color:#fffaf3!important;border:1px solid var(--oxblood)!important}
+.secondary{background:transparent!important;color:var(--ink)!important;border:1px solid var(--ink)!important}
+.choice{background:transparent!important;color:var(--ink)!important;border:1px solid var(--rule)!important}.choice strong{color:var(--ink)!important}.choice span{color:var(--ink-soft)!important}.choice:hover{background:#fffaf3!important}.choice:active,.primary:active,.secondary:active{transform:translate(2px,2px)!important}
+.joy{background:#fffaf3!important;color:var(--ink)!important;border:1px solid var(--rule)!important}
+.v53-hold-hint{color:var(--ink-soft)!important}
+
+/* Receipt feels like a physical ticket */
+.v533r2-receipt,.v532-receipt{border-top:3px solid var(--oxblood)!important;padding-top:14px!important}.v533r2-receipt-row,.v532-receipt-row,.v533r2-chain,.v532-session-chain{border-color:var(--rule)!important}.v532-proofline span{border-radius:0!important;border-color:var(--rule)!important;color:var(--ink-soft)!important}
+
+/* Persistent boundary between sandbox and canonical world */
+.v534-boundary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:9px 18px;border-bottom:1px solid var(--rule);background:#ded4c4;color:var(--ink);font-size:10px;letter-spacing:.07em;text-transform:uppercase}
+.v534-boundary b{font-weight:900}.v534-boundary span{color:var(--ink-soft);text-transform:none;letter-spacing:0;font-size:11px}.v534-boundary a{color:var(--oxblood);font-weight:900;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;white-space:nowrap}
+.v534-receipt-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.v534-receipt-actions a,.v534-receipt-actions button{min-height:48px;border-radius:0;font-weight:900;padding:12px 14px;text-align:center}.v534-receipt-actions a{display:flex;align-items:center;justify-content:center;background:var(--oxblood);color:#fffaf3;text-decoration:none}.v534-receipt-actions button{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+.v534-local-note{margin-top:10px;padding-top:9px;border-top:1px solid var(--rule);font-size:10px;color:var(--ink-soft);line-height:1.45}
+
+/* Strip old SaaS-like gloss that survives deeper patches */
+.pill,.statusline,.v532-proofline span{box-shadow:none!important}.linkbox{border-radius:0!important;background:#fffaf3!important;color:var(--ink)!important;border-color:var(--rule)!important}
+
+@media(min-width:980px){
+  .app{padding-bottom:8px}.scene{min-height:62dvh!important}.controls{justify-content:flex-start!important}.card{margin-left:56px!important;transform:translateY(-18px)!important}
+}
+@media(max-width:760px){
+  .v534-boundary{align-items:flex-start;padding:8px 12px;gap:8px}.v534-boundary span{display:none}.scene{margin:0 8px!important;min-height:50dvh!important}.controls{padding-left:8px!important;padding-right:8px!important;margin-top:-28px!important}.card{padding:14px!important;box-shadow:5px 5px 0 rgba(33,27,27,.09)!important}.v53-title{font-size:24px!important}.v532-world-caption,.v53-provenance{box-shadow:4px 4px 0 rgba(33,27,27,.10)!important}.v534-receipt-actions{grid-template-columns:1fr}.top{padding-left:12px!important;padding-right:12px!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
