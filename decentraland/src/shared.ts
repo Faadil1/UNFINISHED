@@ -43,13 +43,13 @@ export function getLastNetworkError() {
   return lastNetworkError
 }
 
-function runNetworkTask<T>(work: () => Promise<T>): Promise<T> {
+function runNetworkTask<T>(stage: string, work: () => Promise<T>): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     executeTask(async () => {
       try {
         resolve(await work())
       } catch (error) {
-        lastNetworkError = errorText(error)
+        lastNetworkError = `${stage} · ${errorText(error)}`
         console.error('[UNFINISHED][NEON]', lastNetworkError)
         reject(error)
       }
@@ -58,7 +58,7 @@ function runNetworkTask<T>(work: () => Promise<T>): Promise<T> {
 }
 
 export function fetchLatestState(): Promise<SharedStateRow | null> {
-  return runNetworkTask(async () => {
+  return runNetworkTask('latest', async () => {
     const response = await fetch(
       `${DATA_API}/latest_chain_state?chain_id=eq.${CHAIN_ID}&select=*`,
       { headers: { Accept: 'application/json' } }
@@ -75,7 +75,7 @@ export function fetchLatestState(): Promise<SharedStateRow | null> {
 }
 
 export function fetchChainAuthors(): Promise<string[]> {
-  return runNetworkTask(async () => {
+  return runNetworkTask('history', async () => {
     const response = await fetch(
       `${DATA_API}/chain_history?chain_id=eq.${CHAIN_ID}&select=authors,max_generation`,
       { headers: { Accept: 'application/json' } }
@@ -104,7 +104,7 @@ export function appendNextState(input: {
   engineBias: number
   note: string
 }): Promise<void> {
-  return runNetworkTask(async () => {
+  return runNetworkTask('append', async () => {
     const response = await fetch(`${DATA_API}/chain_states`, {
       method: 'POST',
       headers: {
