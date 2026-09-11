@@ -4,7 +4,7 @@
 
 ## Verdict
 
-**MEMORY BEACON LOCAL PREVIEW CONFIRMED / SHARED RUNTIME INTACT / FIRST VISUAL PASS TOO OBSTRUCTED / CORRECTION PASS PUSHED / CI #17 PENDING / REPUBLISH BLOCKED UNTIL CORRECTED LOCAL VISUAL PASS**
+**MEMORY BEACON LOCAL PREVIEW CONFIRMED / SHARED RUNTIME INTACT / FIRST VISUAL PASS TOO OBSTRUCTED / CORRECTION PASS PUSHED / CI #17 PASS / CORRECTED LOCAL RE-PREVIEW NEXT / REPUBLISH BLOCKED UNTIL CORRECTED LOCAL VISUAL PASS**
 
 ## Runtime truth preserved
 
@@ -98,16 +98,17 @@ Changes:
 - no backend or gameplay architecture changed.
 
 GitHub Actions run #17:
-`34638864974` — pending at time of this evidence update.
+`34638864974` — **SUCCESS**.
+
+All build steps passed, including SDK7 scene build, TypeScript/type checking, and artifact upload.
 
 ## Next gate
 
 Do not republish the World yet.
 
-1. Wait for CI #17 PASS.
-2. Pull latest `main`.
-3. Rebuild and restart local preview.
-4. Corrected local visual PASS requires:
+1. Pull latest `main`.
+2. Rebuild and restart local preview.
+3. Corrected local visual PASS requires:
    - beacon unobstructed and dominant from entry;
    - halos readable;
    - bridge leading clearly toward the landmark;
@@ -115,5 +116,5 @@ Do not republish the World yet.
    - spawn clear;
    - UI readable;
    - `LIVE CHAIN` still resolving.
-5. Only after corrected local pass: republish from the exact synced `decentraland/` folder.
-6. Then published desktop smoke -> mobile smoke -> cross-user PASS C.
+4. Only after corrected local pass: republish from the exact synced `decentraland/` folder.
+5. Then published desktop smoke -> mobile smoke -> cross-user PASS C.
