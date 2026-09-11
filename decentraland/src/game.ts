@@ -134,74 +134,133 @@ function spawnMemoryTrail() {
 function spawnInheritedCondition() {
   clearEntities(conditionEntities)
 
+  const variant = inherited.generation % 3
   const anchorY = inherited.anchor === 'HIGH' ? 1.6 : inherited.anchor === 'MID' ? 1.15 : 0.72
   const reachScale = inherited.reach === 'LONG' ? 2.6 : 1.55
   const vectorLift = inherited.vector === 'UP' ? 0.72 : 0
   const tensionLift = Math.max(0, inherited.tension - 2) * 0.12
-
-  conditionEntities.push(
-    spawnBox(
-      Vector3.create(5.2, anchorY / 2 + 0.2, 4.55),
-      Vector3.create(0.9, anchorY, 0.9),
-      COLORS.violet,
-      false
-    ),
-    spawnBox(
-      Vector3.create(10.8, 0.7 + tensionLift, 4.55),
-      Vector3.create(0.9, 1.4 + tensionLift, 0.9),
-      COLORS.rose,
-      false
-    )
-  )
-
+  const biasShift = Math.max(-0.42, Math.min(0.42, inherited.engineBias * 0.55))
+  const conditionZ = variant === 1 ? 4.72 : variant === 2 ? 4.38 : 4.55
+  const anchorWidth = variant === 1 ? 0.76 : variant === 2 ? 1.02 : 0.9
+  const partialHeight = variant === 2 ? 0.19 : 0.24
   const partialColor = inherited.pressure === 'SPAN' ? COLORS.coral : COLORS.lilac
+  const accentColor = inherited.pressure === 'SPAN' ? COLORS.lilac : COLORS.coral
+
   conditionEntities.push(
     spawnBox(
-      Vector3.create(6.65, 0.52 + vectorLift, 4.55),
-      Vector3.create(reachScale * 0.52, 0.24, 0.95),
-      partialColor,
+      Vector3.create(5.2 + biasShift, anchorY / 2 + 0.2, conditionZ),
+      Vector3.create(anchorWidth, anchorY, variant === 1 ? 0.72 : 0.9),
+      variant === 2 ? COLORS.mulberry : COLORS.violet,
       false
     ),
     spawnBox(
-      Vector3.create(9.35, 0.52 + vectorLift + tensionLift, 4.55),
-      Vector3.create(reachScale * 0.52, 0.24, 0.95),
-      partialColor,
-      false
-    ),
-    spawnBox(
-      Vector3.create(8, 0.86 + vectorLift, 4.55),
-      Vector3.create(0.22, 1.45, 0.22),
-      COLORS.ivory,
+      Vector3.create(10.8 + biasShift, 0.7 + tensionLift, conditionZ),
+      Vector3.create(variant === 1 ? 1.05 : 0.9, 1.4 + tensionLift, variant === 2 ? 0.72 : 0.9),
+      variant === 1 ? COLORS.violet : COLORS.rose,
       false
     )
   )
+
+  conditionEntities.push(
+    spawnBox(
+      Vector3.create(6.65 + biasShift, 0.52 + vectorLift, conditionZ),
+      Vector3.create(reachScale * (variant === 1 ? 0.46 : 0.52), partialHeight, 0.95),
+      partialColor,
+      false
+    ),
+    spawnBox(
+      Vector3.create(9.35 + biasShift, 0.52 + vectorLift + tensionLift, conditionZ),
+      Vector3.create(reachScale * (variant === 2 ? 0.46 : 0.52), partialHeight, 0.95),
+      partialColor,
+      false
+    )
+  )
+
+  if (variant === 0) {
+    conditionEntities.push(
+      spawnBox(
+        Vector3.create(8 + biasShift, 0.86 + vectorLift, conditionZ),
+        Vector3.create(0.22, 1.45, 0.22),
+        COLORS.ivory,
+        false
+      )
+    )
+  } else if (variant === 1) {
+    conditionEntities.push(
+      spawnBox(
+        Vector3.create(7.72 + biasShift, 0.88 + vectorLift, conditionZ),
+        Vector3.create(0.16, 1.18, 0.16),
+        COLORS.ivory,
+        false
+      ),
+      spawnBox(
+        Vector3.create(8.28 + biasShift, 1.06 + vectorLift, conditionZ),
+        Vector3.create(0.16, 1.54, 0.16),
+        accentColor,
+        false
+      )
+    )
+  } else {
+    conditionEntities.push(
+      spawnBox(
+        Vector3.create(8 + biasShift, 0.54 + vectorLift, conditionZ),
+        Vector3.create(0.58, 0.16, 0.58),
+        COLORS.ivory,
+        false
+      ),
+      spawnBox(
+        Vector3.create(8 + biasShift, 1.14 + vectorLift, conditionZ),
+        Vector3.create(0.18, 1.22, 0.18),
+        accentColor,
+        false
+      ),
+      spawnBox(
+        Vector3.create(8 + biasShift, 1.72 + vectorLift, conditionZ),
+        Vector3.create(0.42, 0.12, 0.42),
+        COLORS.ivory,
+        false
+      )
+    )
+  }
 }
 
 function spawnRoute(kind: Completion) {
   clearEntities(routeEntities)
   showChoiceSignature(kind)
 
-  const positions = [4.1, 5.9, 7.7, 9.5, 11.3, 12.7]
+  const variant = inherited.generation % 3
+  const positions =
+    variant === 1
+      ? [4.0, 5.72, 7.48, 9.28, 11.08, 12.7]
+      : variant === 2
+        ? [4.18, 6.02, 7.86, 9.66, 11.38, 12.7]
+        : [4.1, 5.9, 7.7, 9.5, 11.3, 12.7]
   const spanAmplitude = inherited.pressure === 'SPAN' ? 0.58 + inherited.tension * 0.04 : 0.26
   const baseRise = inherited.pressure === 'HEIGHT' ? 0.1 + inherited.tension * 0.035 : 0
+  const connectPhase = variant === 1 ? 1 : 0
+  const riseFromRight = variant === 2
 
   positions.forEach((z, index) => {
     const progress = index / (positions.length - 1)
     const y =
       0.22 +
       baseRise * index +
-      (kind === 'RISE' ? progress * 0.95 : inherited.vector === 'UP' ? progress * 0.42 : 0)
+      (kind === 'RISE' ? progress * (variant === 1 ? 1.08 : 0.95) : inherited.vector === 'UP' ? progress * 0.42 : 0)
     const x =
       kind === 'CONNECT'
-        ? 8 + (index % 2 === 0 ? -1 : 1) * spanAmplitude
-        : 7.25 + progress * 1.5
-    const width = inherited.reach === 'LONG' ? 2.65 : 3.05
+        ? 8 + ((index + connectPhase) % 2 === 0 ? -1 : 1) * spanAmplitude
+        : riseFromRight
+          ? 8.75 - progress * 1.5
+          : 7.25 + progress * 1.5
+    const widthBase = inherited.reach === 'LONG' ? 2.65 : 3.05
+    const width = widthBase - (variant === 1 ? 0.12 : variant === 2 ? -0.08 : 0)
+    const routeColor = (index + variant) % 2 === 0 ? COLORS.coral : COLORS.lilac
 
     routeEntities.push(
       spawnBox(
         Vector3.create(x, y, z),
-        Vector3.create(width, 0.32, 1.56),
-        index % 2 === 0 ? COLORS.coral : COLORS.lilac,
+        Vector3.create(width, 0.32, variant === 2 ? 1.42 : 1.56),
+        routeColor,
         true
       )
     )
@@ -209,10 +268,17 @@ function spawnRoute(kind: Completion) {
 
   const endY =
     0.82 +
-    (kind === 'RISE' ? 0.95 : inherited.vector === 'UP' ? 0.42 : 0) +
+    (kind === 'RISE' ? (variant === 1 ? 1.08 : 0.95) : inherited.vector === 'UP' ? 0.42 : 0) +
     (inherited.pressure === 'HEIGHT' ? baseRise * (positions.length - 1) : 0)
 
-  routeEndpoint = Vector3.create(kind === 'CONNECT' ? 8.58 : 8.75, endY, 12.7)
+  const endX =
+    kind === 'CONNECT'
+      ? 8 + (((positions.length - 1 + connectPhase) % 2 === 0 ? -1 : 1) * spanAmplitude)
+      : riseFromRight
+        ? 7.25
+        : 8.75
+
+  routeEndpoint = Vector3.create(endX, endY, 12.7)
 }
 
 function routeUseSystem() {
