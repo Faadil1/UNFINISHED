@@ -1,3 +1,5 @@
+import { executeTask } from '@dcl/sdk/ecs'
+
 export const DATA_API =
   'https://ep-bitter-surf-awl0142t.apirest.c-12.us-east-1.aws.neon.tech/unfinished/rest/v1'
 
@@ -30,35 +32,51 @@ const JSON_HEADERS = {
   'Content-Type': 'application/json'
 }
 
-export async function fetchLatestState(): Promise<SharedStateRow | null> {
-  const response = await fetch(
-    `${DATA_API}/latest_chain_state?chain_id=eq.${CHAIN_ID}&select=*`,
-    { headers: { Accept: 'application/json' } }
-  )
-
-  if (!response.ok) {
-    throw new Error(`latest_chain_state ${response.status}`)
-  }
-
-  const rows = (await response.json()) as SharedStateRow[]
-  return rows[0] ?? null
+function runNetworkTask<T>(work: () => Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    executeTask(async () => {
+      try {
+        resolve(await work())
+      } catch (error) {
+        reject(error)
+      }
+    })
+  })
 }
 
-export async function fetchChainAuthors(): Promise<string[]> {
-  const response = await fetch(
-    `${DATA_API}/chain_history?chain_id=eq.${CHAIN_ID}&select=authors,max_generation`,
-    { headers: { Accept: 'application/json' } }
-  )
+export function fetchLatestState(): Promise<SharedStateRow | null> {
+  return runNetworkTask(async () => {
+    const response = await fetch(
+      `${DATA_API}/latest_chain_state?chain_id=eq.${CHAIN_ID}&select=*`,
+      { headers: { Accept: 'application/json' } }
+    )
 
-  if (!response.ok) {
-    throw new Error(`chain_history ${response.status}`)
-  }
+    if (!response.ok) {
+      throw new Error(`latest_chain_state ${response.status}`)
+    }
 
-  const rows = (await response.json()) as ChainHistoryRow[]
-  return rows[0]?.authors ?? []
+    const rows = (await response.json()) as SharedStateRow[]
+    return rows[0] ?? null
+  })
 }
 
-export async function appendNextState(input: {
+export function fetchChainAuthors(): Promise<string[]> {
+  return runNetworkTask(async () => {
+    const response = await fetch(
+      `${DATA_API}/chain_history?chain_id=eq.${CHAIN_ID}&select=authors,max_generation`,
+      { headers: { Accept: 'application/json' } }
+    )
+
+    if (!response.ok) {
+      throw new Error(`chain_history ${response.status}`)
+    }
+
+    const rows = (await response.json()) as ChainHistoryRow[]
+    return rows[0]?.authors ?? []
+  })
+}
+
+export function appendNextState(input: {
   parentStateId: string
   generation: number
   authorId: string
@@ -71,30 +89,32 @@ export async function appendNextState(input: {
   engineBias: number
   note: string
 }): Promise<void> {
-  const response = await fetch(`${DATA_API}/chain_states`, {
-    method: 'POST',
-    headers: {
-      ...JSON_HEADERS,
-      Prefer: 'return=minimal'
-    },
-    body: JSON.stringify({
-      chain_id: CHAIN_ID,
-      generation: input.generation,
-      parent_state_id: input.parentStateId,
-      author_id: input.authorId,
-      author_name: input.authorName,
-      anchor: input.anchor,
-      vector: input.vector,
-      reach: input.reach,
-      pressure: input.pressure,
-      tension: input.tension,
-      engine_bias: input.engineBias,
-      note: input.note
+  return runNetworkTask(async () => {
+    const response = await fetch(`${DATA_API}/chain_states`, {
+      method: 'POST',
+      headers: {
+        ...JSON_HEADERS,
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify({
+        chain_id: CHAIN_ID,
+        generation: input.generation,
+        parent_state_id: input.parentStateId,
+        author_id: input.authorId,
+        author_name: input.authorName,
+        anchor: input.anchor,
+        vector: input.vector,
+        reach: input.reach,
+        pressure: input.pressure,
+        tension: input.tension,
+        engine_bias: input.engineBias,
+        note: input.note
+      })
     })
-  })
 
-  if (!response.ok) {
-    const detail = await response.text()
-    throw new Error(`append ${response.status}: ${detail.slice(0, 160)}`)
-  }
+    if (!response.ok) {
+      const detail = await response.text()
+      throw new Error(`append ${response.status}: ${detail.slice(0, 160)}`)
+    }
+  })
 }
