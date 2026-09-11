@@ -2,11 +2,11 @@
 
 **Updated:** 2026-09-11
 
-This file is the compact resume point for the next conversation. Start here, then read GitHub Issue #3 and the latest Memory Beacon evidence file.
+This is the compact resume point for the next conversation. Read this first, then GitHub Issue #3 and the newest runtime evidence files.
 
 ## Current verdict
 
-**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON LOCAL PREVIEW CONFIRMED / FINAL RITUAL-SILHOUETTE POLISH BUILD PASS / P2.1-P2.4 FINISH POLISH IMPLEMENTED / DCL CI #19 + #20 PASS / FINAL LOCAL PREVIEW BEFORE REPUBLISH / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
+**SHARED CHAIN PROVEN / SUPABASE LIVE / MEMORY BEACON P2 MOBILE GAMEPLAY REACHED HANDOFF READY / MAYA -> FAADIL RE-PERSISTED AFTER RESET / MOBILE CLIPBOARD FAILURE ISOLATED / MOBILE-SAFE SHARE FALLBACK IMPLEMENTED / SDK7 CI #21 PASS / REPUBLISH REQUIRED / CROSS-USER PASS C NEXT**
 
 ## Product
 
@@ -21,164 +21,90 @@ Rule:
 Loop:
 **INHERIT -> COMPLETE -> USE -> AUTHOR NEXT -> HANDOFF**
 
-## Runtime truth already proven
+## Active runtime truth
 
 - Decentraland World entry works.
-- Desktop smoke passed on the earlier visual version.
-- Real mobile smoke passed on the earlier visual version.
-- Supabase shared state is reachable from Decentraland.
+- Supabase is the active shared-state backend.
 - `LIVE CHAIN` works.
-- Full save reaches `HANDOFF READY`.
-- Shared World-link copy works.
-- Supabase contains generation 1 `Maya` and generation 2 `Faadil` (`SPAN`, tension `4`).
+- Memory Beacon / P2 visual layer is implemented.
+- Mobile route gameplay works on the current P2 world.
+- Latest mobile run reached `HANDOFF READY`.
+- After the test reset, Supabase again contains:
+  - generation 1 `Maya` — `SPAN · T3`
+  - generation 2 `Faadil` — `SPAN · T4`
+- Faadil is therefore correctly self-blocked by `YOUR HANDOFF IS WAITING` until another real player continues the chain.
 
-## Active backend
+## Mobile handoff-share issue
 
-Supabase project `unfinished-dcl` (`ierowefnowuxybkivnnb`, `ca-central-1`).
+The latest real mobile recording exposed one isolated defect:
+- tapping `COPY WORLD LINK` did not copy the deep link;
+- the CTA remained unchanged;
+- the failure was the mobile/runtime clipboard action, not Supabase, gameplay, or receipt generation.
 
-- RLS enabled.
-- Append-only validation.
-- No private service secret in the DCL client.
-- Neon is historical and no longer active for this runtime.
+## Implemented fix
 
-## Locked visual direction
-
-**UNFINISHED — Memory Beacon**
-
-Coherent merge of:
-- Ritual Beacon = iconic landmark + handoff ritual;
-- Memory Bridge = visible human transmission path;
-- Chain Monument = cumulative spatial memory.
-
-## Memory Beacon visual state
-
-The first local preview proved the new world layer was runtime-real, but the initial composition was too obstructed.
-
-Correction commit:
-`7266184779b082bd15ccb9d3b15da529a1064d48` — `feat: strengthen Memory Beacon silhouette and bridge hierarchy`
-
-Final silhouette-polish commit:
-`5658dd48bbfb59eb884065eb459e049d2a831fc5` — `feat: polish Memory Beacon ritual silhouette`
-
-GitHub Actions:
-- run #17 `34638864974`: **SUCCESS**
-- run #18 `34639594369`: **SUCCESS**
-
-The final world layer removes full dark crossbars from the central sightline, preserves the beacon as the visual anchor, strengthens the Memory Bridge and memorial cadence, and keeps CONNECT / RISE / LIVE / HANDOFF / WAITING / OFFLINE states intact.
-
-## P2 finish-polish block
-
-### P2.1 — Longer recent-chain memory
-Implemented in `decentraland/src/ui.tsx`.
-
-The UI now shows a compact semantic timeline instead of only a two-name arrow chain:
-- first contributor = `started`;
-- second contributor = `completed`;
-- later contributors = `continued`;
-- recipient state adds `YOU’RE NEXT`.
-
-It displays up to the last three real contributors plus the next-player cue, so it naturally expands when Benita / later players actually join. **No fake Benita entry is seeded or displayed before a real persisted contribution exists.**
-
-Examples once the real chain grows:
-- `Maya started`
-- `Faadil completed`
-- `Benita continued`
-- `YOU’RE NEXT`
-
-### P2.2 — Light visual variation per handoff generation
-Implemented in `decentraland/src/game.ts`.
-
-Inherited-condition geometry now varies deterministically by generation while still reflecting the real state fields:
-- generation-based motif variant (`generation % 3`);
-- engine-bias lateral shift;
-- pressure-dependent accent color;
-- anchor/reach/vector/tension still drive height/span/lift;
-- route cadence, zig-zag phase, ascent direction, widths, and color rhythm vary slightly across generations.
-
-Goal: successive handoffs remain recognizably UNFINISHED but do not look visually identical.
-
+### SDK7 fallback
 Commit:
-`72e51af7d01ed049beac2f0c35c1bda82644f59a` — `feat: vary inherited conditions across handoff generations`
+`8141760b108d312577cdafe8bd327dd0d9236239` — `fix: add mobile-safe handoff share fallback`
 
-GitHub Actions run #20 `34640606958`: **SUCCESS**.
+The receipt/self-handoff UI now has two actions:
+- `COPY WORLD LINK` — still used when the runtime clipboard works;
+- `SHARE / OPEN LINK` — opens a mobile-safe HTTPS handoff page.
 
-### P2.3 — Cleaner receipts + shared link presentation
-Implemented in `decentraland/src/ui.tsx`.
+If clipboard copying fails, the first button visibly changes to `COPY UNAVAILABLE` instead of failing silently.
 
-Receipt/self-handoff presentation now includes:
-- semantic recent-chain memory;
-- `GEN N · PLAYER -> NEXT` receipt metadata;
-- a dedicated `NEXT CONDITION · PRESSURE · TENSION` strip;
-- a dedicated `WORLD LINK` strip;
-- clearer `COPY WORLD LINK` CTA;
-- explicit wording that the World link opens `unfinished.dcl.eth` and the recipient inherits the **latest shared state**.
+GitHub Actions run #21 `34643410639`: **SUCCESS**.
 
-This wording intentionally does **not** imply a unique per-link handoff ID. The architecture remains one canonical latest shared chain.
-
+### HTTPS handoff page
 Commit:
-`5a411a1d953e394525ae1543accefb180d511da9` — `feat: add recent-chain memory and polished handoff receipt`
+`214625d21b34687c21f52d6ec4c8bd8b9708d46c` — `feat: add mobile-safe UNFINISHED handoff share page`
 
-GitHub Actions run #19 `34640534366`: **SUCCESS**.
+Page:
+`https://unfinished-delta.vercel.app/handoff.html`
 
-### P2.4 — Small world identity / favicon
-Implemented in two places:
+The page provides:
+- `OPEN UNFINISHED IN DECENTRALAND`;
+- `SHARE THIS HANDOFF` using the browser/native share sheet when available;
+- `COPY DECENTRALAND LINK` with browser clipboard + selectable-text fallback.
 
-1. Decentraland UI brand bar now has a small Memory Beacon mark (rose/ivory beacon glyph) before `UNFINISHED`.
-2. Web companion now has `/favicon.svg`, using the same Memory Beacon motif, and `index.html` wires it into both the bootstrap document and injected validated runtime head.
+Canonical deep link remains:
+`decentraland://?realm=unfinished.dcl.eth&dclenv=org`
 
-Commits:
-- `ebecd746cdfea766eecf7d0fa367b847957685fc` — `feat: add Memory Beacon favicon identity`
-- `d34efabbbb0e1e6b24654f4f98135f4657f00cfd` — `feat: wire UNFINISHED favicon into web companion`
+Architecture boundary remains unchanged: the link opens the same World and the recipient inherits the latest canonical Supabase state. It is not a unique per-handoff URL.
 
 ## Exact next gate
 
-Do **not** go to mobile yet. Do one final local desktop preview with the P2 block.
-
-1. Stop any running local preview with `Ctrl+C`.
-2. Pull latest `main`, build, and restart preview:
+1. Pull latest main:
 
 ```powershell
 cd $HOME\UNFINISHED
 git pull --ff-only
 cd decentraland
 npm run build
-npm run start
 ```
 
-3. Open the emitted local-scene deep link.
-4. Final local desktop PASS requires:
-   - Memory Beacon silhouette still clean;
-   - `LIVE CHAIN` still resolves;
-   - new Memory Beacon brand mark visible in the top bar;
-   - self-handoff shows semantic chain memory (`Maya started`, `Faadil completed`) rather than only `Maya -> Faadil`;
-   - receipt/shared-link UI fits without clipping;
-   - World-link language says latest shared state and does not imply unique routing;
-   - generation-2 inherited condition visibly differs from the generation-1 seed motif;
-   - no new collision or gameplay regression.
-5. If local desktop passes, republish from exactly `C:\Users\fboussari\UNFINISHED\decentraland`.
-6. Published desktop smoke.
-7. Then real mobile smoke on the new visual/UI build.
-8. Then cross-user PASS C with Benita / another account.
+2. Republish `unfinished.dcl.eth` from exactly:
+`C:\Users\fboussari\UNFINISHED\decentraland`
 
-## Cross-user PASS C
+3. On mobile, Faadil should now see `YOUR HANDOFF IS WAITING` because Faadil is the latest real author. This is correct.
 
-Required proof after published desktop + mobile pass:
-- second user enters the same World;
-- sees Faadil as inherited author / expected latest condition;
-- after that real contribution the UI automatically expands the recent-chain memory;
-- Faadil remains blocked from consuming his own latest handoff normally.
+4. Test only the handoff actions:
+   - `COPY WORLD LINK` may succeed; if unsupported it must become `COPY UNAVAILABLE`;
+   - `SHARE / OPEN LINK` must open the HTTPS handoff page;
+   - use the native share sheet from that page to send it to Benita / another account.
 
-## Claims discipline
+5. Cross-user PASS C:
+   - recipient opens the handoff page;
+   - enters `unfinished.dcl.eth`;
+   - inherits Faadil's latest `SPAN · T4` state;
+   - completes the route and persists generation 3;
+   - recent-chain memory expands automatically.
 
-Safe now:
-> UNFINISHED has a proven shared human-chain runtime, a build-green Memory Beacon visual system, semantic recent-chain memory, deterministic visual variation across generations, polished latest-state World-link receipts, and a coherent Memory Beacon identity. The latest P2 UI/visual layer still needs final local/published/mobile smoke before runtime freeze.
+## Evidence
 
-Do not claim yet:
-- latest Memory Beacon/P2 mobile pass;
-- cross-user DCL handoff fully proven;
-- unique per-link handoff addressing;
-- arbitrary multi-chain routing;
-- completed Friendzone submission.
+- `evidence/runtime/MOBILE-CHAIN-RESET-2026-09-11.md`
+- `evidence/runtime/MOBILE-HANDOFF-SHARE-FALLBACK-2026-09-11.md`
+- `evidence/runtime/MEMORY-BEACON-VISUAL-PASS-2026-09-11.md`
 
 ## Canonical operational thread
 
