@@ -4,7 +4,7 @@
 
 ## Verdict
 
-**SHARED RUNTIME PROVEN / MEMORY BEACON SECOND LOCAL PREVIEW CONFIRMED / LANDMARK HIERARCHY IMPROVED / FINAL RITUAL-SILHOUETTE POLISH PUSHED / CI RUN #18 PENDING / ONE FINAL LOCAL PREVIEW BEFORE REPUBLISH / MOBILE + CROSS-USER STILL PENDING**
+**SHARED RUNTIME PROVEN / MEMORY BEACON SECOND LOCAL PREVIEW CONFIRMED / LANDMARK HIERARCHY IMPROVED / FINAL RITUAL-SILHOUETTE POLISH BUILD PASS / ONE FINAL LOCAL PREVIEW BEFORE REPUBLISH / MOBILE + CROSS-USER STILL PENDING**
 
 ## Runtime truth already proven
 
@@ -71,15 +71,16 @@ Changes in `decentraland/src/world.ts`:
 - does not alter gameplay or the Supabase architecture.
 
 GitHub Actions run #18:
-`34639594369` — pending at time of this evidence update.
+`34639594369` — **SUCCESS**.
+
+All build steps passed, including SDK7 scene build, TypeScript/type checking, and artifact upload.
 
 ## Exact next gate
 
-Do **not** republish yet.
+Do **not** republish until one final local visual preview confirms the polish.
 
-1. Wait for CI run #18 to pass.
-2. Pull latest `main`.
-3. Rebuild and restart local preview:
+1. Pull latest `main`.
+2. Rebuild and restart local preview:
 
 ```powershell
 cd $HOME\UNFINISHED
@@ -89,7 +90,7 @@ npm run build
 npm run start
 ```
 
-4. Final local visual PASS requires:
+3. Final local visual PASS requires:
    - no full dark crossbar across the central sightline;
    - beacon immediately recognizable and dominant;
    - bridge clearly leading to altar/beacon;
@@ -97,12 +98,12 @@ npm run start
    - spawn clear;
    - UI readable;
    - `LIVE CHAIN` intact.
-5. Only after this local pass: republish exactly from `C:\Users\fboussari\UNFINISHED\decentraland`.
-6. Then published desktop smoke -> mobile smoke -> cross-user PASS C.
+4. Only after this local pass: republish exactly from `C:\Users\fboussari\UNFINISHED\decentraland`.
+5. Then published desktop smoke -> mobile smoke -> cross-user PASS C.
 
 ## Claims discipline
 
 Safe claim now:
-> UNFINISHED has a proven shared human-chain runtime and a locally proven Memory Beacon visual system. A final ritual-silhouette polish is build-gated before publication.
+> UNFINISHED has a proven shared human-chain runtime and a locally proven Memory Beacon visual system. The final ritual-silhouette polish is build-green and pending one final local visual confirmation before publication.
 
 Do not yet claim the final Memory Beacon polish is published/mobile-proven or that cross-user DCL handoff is fully proven.
