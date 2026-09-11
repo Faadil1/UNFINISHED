@@ -2,119 +2,72 @@
 
 **Updated:** 2026-09-11
 
-Read this first, then GitHub Issue #3 and the newest runtime evidence files.
-
 ## Current verdict
 
-**SHARED CHAIN PROVEN / SUPABASE LIVE / MEMORY BEACON P2 MOBILE GAMEPLAY PASS / MAYA -> FAADIL RE-PERSISTED / MOBILE SHARE FALLBACK PASS / WEB COMPANION REBUILT AS MAYA-SEEDED LOCAL SANDBOX / CANONICAL CHAIN RESERVED FOR DECENTRALAND / CROSS-USER PASS C NEXT**
+**DECENTRALAND SHARED CHAIN PROVEN / SUPABASE LIVE / MEMORY BEACON MOBILE PASS / MAYA -> FAADIL PERSISTED / MOBILE SHARE FALLBACK PASS / WEB ROOT RESTORED AS PLAYABLE 2.5D LOCAL SANDBOX / CROSS-USER PASS C NEXT / VERCEL 2.5D DEPLOY PENDING BUILD-RATE-LIMIT CLEARANCE**
 
-## Product
+## Canonical product boundary
 
-**UNFINISHED — Playable Co-Authorship**
+### Decentraland = real shared chain
+World: `unfinished.dcl.eth`
 
-Thesis:
-> Another real person's unfinished decision becomes the level you have to play.
+Deep link: `decentraland://?realm=unfinished.dcl.eth&dclenv=org`
 
-Rule:
-> NO ONE FINISHES WHAT THEY START.
+Only Decentraland reads/writes the canonical Supabase chain. The actual order after Maya is determined by real players. Current persisted proof includes Maya generation 1 and Faadil generation 2 (`SPAN · T4`).
 
-Loop:
-**INHERIT -> COMPLETE -> USE -> AUTHOR NEXT -> HANDOFF**
+### Web = local 2.5D sandbox
+Public companion: `https://unfinished-delta.vercel.app/`
 
-## Canonical Decentraland runtime
+Every fresh web visit starts from the fixed Maya seed:
+- HIGH / FLAT / SHORT
+- SPAN · T3
+- engine bias 0.25
 
-- World: `unfinished.dcl.eth`
-- Deep link: `decentraland://?realm=unfinished.dcl.eth&dclenv=org`
-- Supabase is the active shared-state backend.
-- `LIVE CHAIN` works.
-- Memory Beacon / P2 visual layer is implemented.
-- Current mobile gameplay reaches `HANDOFF READY`.
-- After the test reset, the real persisted chain again contains:
-  - generation 1 `Maya` — `SPAN · T3`
-  - generation 2 `Faadil` — `SPAN · T4`
-- Faadil correctly sees `YOUR HANDOFF IS WAITING` until another real player continues the chain.
-- The mobile-safe `SHARE / OPEN LINK` fallback is implemented and proven.
+The visitor then creates a local browser branch. The web sandbox does **not** read or write Supabase and must never present itself as the live shared chain.
 
-## Critical architecture boundary — DO NOT BLUR THIS
+Canonical wording:
+> Try a local 2.5D branch from Maya on the web. Continue the real shared human chain in Decentraland.
 
-### Decentraland = canonical real chain
-Only the Decentraland World may represent or advance the real shared human chain.
+## Web 2.5D restoration
 
-That chain may currently be:
-`Maya -> Faadil -> Benita -> ...`
+The static landing-page direction was rejected because it weakened the experience and looked too generic.
 
-but it is runtime data, not a sequence that should be hard-coded into the public web companion.
+The root now boots the validated playable 2.5D runtime again, with a quieter exhibit/object UI instead of a glossy SaaS landing page.
 
-### Vercel = onboarding + local sandbox
-The public web companion at `https://unfinished-delta.vercel.app/` is intentionally **not connected to the canonical Supabase chain**.
+Key commits:
+- `fe13d163e51ce16f429910d3ea730bfec59ed1f3` — 2.5D anti-AI-slop art direction
+- `c158d687690f38d8c1db787df234127f753862a7` — exact Maya seed + local web branches
+- `e109fd03fd65e857d02fcdeb3963dafef4537485` — stage hierarchy fix
+- `f97a2d5aa3cd680b040e73fd23b720c64c894e73` — root restored to playable 2.5D sandbox
 
-Every web visitor starts from the same fixed seed:
-- `Maya`
-- `SPAN · T3`
+Visual principles:
+- scene first, copy second;
+- warm paper / exhibit shell;
+- restrained oxblood + coral signals;
+- square architectural framing;
+- flat controls;
+- physical-ticket receipt;
+- explicit WEB SANDBOX / SHARED WORLD boundary.
 
-From there, the visitor creates their own **local browser branch**, e.g.:
-`Maya -> Visitor -> next`
+Evidence:
+`evidence/runtime/WEB-2_5D-SANDBOX-RESTORE-2026-09-11.md`
 
-The web sandbox:
-- does not read Supabase;
-- does not write Supabase;
-- does not expose the real current chain;
-- does not assume Faadil is the next person after Maya;
-- exists so visitors from X can understand and try the loop without installing Decentraland first.
+## Vercel status
 
-At the end, it sends them to Decentraland to inherit the **actual latest canonical state**.
+The 2.5D source is committed on `main`, but Vercel rejected the production attempt for `f97a2d5...` because the Hobby account hit a **build-rate limit**.
 
-## Web companion changes
+Do not claim the live URL already shows V5.3.4 until a later production deployment succeeds.
 
-Main companion rebuilt:
-`cf14e920a8baf0c007c1d9c604c03ebcae6a735a` — `fix: keep web preview sandboxed from canonical Decentraland chain`
+## Exact next gates
 
-Key behavior:
-- Memory Beacon visual language;
-- explicit `WEB SANDBOX` labeling;
-- fixed Maya seed;
-- local display-name branch;
-- CONNECT / RISE preview;
-- local author-next receipt;
-- strong CTA: `MAKE IT REAL` / `OPEN UNFINISHED WORLD`.
+1. **Benita / PASS C** in Decentraland: inherit Faadil, complete the route, persist generation 3, verify recent-chain memory.
+2. When Vercel build-rate limit clears, deploy current `main` and smoke-test the restored web loop: Maya seed → choose → traverse → author next → local receipt → Decentraland CTA.
 
-Handoff bridge page updated:
-`a37ebf8d04a82c76f13e9ac9b928f81b960b9fd6` — `fix: keep canonical chain details inside Decentraland`
-
-The handoff page no longer reads or displays the real chain. It only explains that Decentraland resolves the latest canonical state after entry.
-
-## Mobile share fallback
-
-SDK7 commit:
-`8141760b108d312577cdafe8bd327dd0d9236239` — `fix: add mobile-safe handoff share fallback`
-
-GitHub Actions run #21 `34643410639`: **SUCCESS**.
-
-Fallback page:
-`https://unfinished-delta.vercel.app/handoff.html`
-
-## Exact next gate
-
-### Product proof
-Cross-user PASS C with Benita / another account:
-1. recipient enters `unfinished.dcl.eth`;
-2. Decentraland, not the web page, resolves the real latest state;
-3. recipient should inherit Faadil's current `SPAN · T4` state if no one else advances the chain first;
-4. recipient completes the route and persists generation 3;
-5. recent-chain memory in Decentraland expands automatically;
-6. Faadil remains self-blocked until that continuation exists.
-
-### Public/X experience
-Use `https://unfinished-delta.vercel.app/` as the low-friction public entry point.
-It should be described as:
-> a web sandbox that starts from Maya and lets you understand the loop; the real shared chain lives in Decentraland.
-
-## Evidence
+## Evidence index
 
 - `evidence/runtime/MOBILE-CHAIN-RESET-2026-09-11.md`
 - `evidence/runtime/MOBILE-HANDOFF-SHARE-FALLBACK-2026-09-11.md`
 - `evidence/runtime/MEMORY-BEACON-VISUAL-PASS-2026-09-11.md`
+- `evidence/runtime/WEB-2_5D-SANDBOX-RESTORE-2026-09-11.md`
 
-## Canonical operational thread
-
-GitHub Issue #3 — `Canonical State + Handover — Decentraland Submission`
+GitHub Issue #3 remains the operational thread.
