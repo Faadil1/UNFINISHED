@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#16051f">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>UNFINISHED — Continue the chain</title>
+  <style>
+    :root{color-scheme:dark;--bg:#16051f;--panel:#241029;--rose:#fa386f;--coral:#fb6e73;--ivory:#fff1dc;--muted:#cdb9d2;--line:#59305f}
+    *{box-sizing:border-box}body{margin:0;min-height:100svh;background:radial-gradient(circle at 50% 10%,#4b1457 0,#22072c 42%,var(--bg) 100%);color:var(--ivory);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;display:grid;place-items:center;padding:24px}
+    main{width:min(560px,100%);background:rgba(21,5,30,.94);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.38)}
+    .mark{width:44px;height:44px;border-radius:12px;background:#39133f;position:relative;margin-bottom:18px}.mark:before{content:"";position:absolute;left:8px;right:8px;top:12px;height:4px;border-radius:4px;background:var(--rose)}.mark:after{content:"";position:absolute;top:7px;bottom:7px;left:20px;width:5px;border-radius:4px;background:var(--ivory)}
+    h1{font-size:34px;line-height:1.02;margin:0 0 10px}.eyebrow{color:var(--coral);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.lead{font-size:18px;line-height:1.5;color:var(--muted);margin:0 0 22px}.chain{border:1px solid var(--line);background:#1d0925;border-radius:16px;padding:16px;margin:20px 0}.chain b{display:block;font-size:13px;color:#cba4da;letter-spacing:.08em;margin-bottom:7px}.chain span{font-size:19px}.linkbox{font:13px ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere;color:#eadcf0;background:#110419;border:1px solid #482450;padding:14px;border-radius:14px;margin-bottom:14px}
+    .buttons{display:grid;gap:10px}.btn{width:100%;border:0;border-radius:14px;padding:16px 18px;font-size:16px;font-weight:800;cursor:pointer}.primary{background:var(--rose);color:white}.secondary{background:#3a153f;color:var(--ivory);border:1px solid #65316d}.status{min-height:22px;color:#e5cce9;font-size:14px;text-align:center;margin-top:12px}.fine{font-size:13px;line-height:1.45;color:#aa90b2;margin:18px 0 0}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true"></div>
+    <div class="eyebrow">UNFINISHED · LIVE CHAIN</div>
+    <h1>Continue what someone else left.</h1>
+    <p class="lead">This World always opens the latest shared handoff. Enter UNFINISHED, inherit the current state, complete it, then leave the next problem for someone else.</p>
+    <div class="chain"><b>CURRENT RELAY</b><span>Maya → Faadil → You’re next</span></div>
+    <div class="linkbox" id="worldLink">decentraland://?realm=unfinished.dcl.eth&amp;dclenv=org</div>
+    <div class="buttons">
+      <button class="btn primary" id="openBtn">OPEN UNFINISHED IN DECENTRALAND</button>
+      <button class="btn secondary" id="shareBtn">SHARE THIS HANDOFF</button>
+      <button class="btn secondary" id="copyBtn">COPY DECENTRALAND LINK</button>
+    </div>
+    <div class="status" id="status" aria-live="polite"></div>
+    <p class="fine">The link is intentionally stable: it opens <strong>unfinished.dcl.eth</strong>, where the recipient inherits the latest canonical shared state. It is not a unique per-handoff URL.</p>
+  </main>
+  <script>
+    const worldLink='decentraland://?realm=unfinished.dcl.eth&dclenv=org';
+    const shareUrl=location.href;
+    const status=document.getElementById('status');
+    document.getElementById('openBtn').addEventListener('click',()=>{location.href=worldLink});
+    document.getElementById('shareBtn').addEventListener('click',async()=>{
+      try{
+        if(navigator.share){
+          await navigator.share({title:'UNFINISHED — Continue the chain',text:'I left something unfinished for you. Open UNFINISHED and continue the latest shared handoff.',url:shareUrl});
+          status.textContent='Share sheet opened.';
+        }else{
+          await navigator.clipboard.writeText(shareUrl);
+          status.textContent='Share page copied.';
+        }
+      }catch(err){
+        status.textContent='Use your browser Share button to send this page.';
+      }
+    });
+    document.getElementById('copyBtn').addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText(worldLink);
+        status.textContent='Decentraland link copied.';
+      }catch(err){
+        const range=document.createRange();
+        range.selectNodeContents(document.getElementById('worldLink'));
+        const selection=getSelection();selection.removeAllRanges();selection.addRange(range);
+        status.textContent='Link selected — use Copy from the browser menu.';
+      }
+    });
+  </script>
+</body>
+</html>
