@@ -1,11 +1,16 @@
 # Architecture
 
-UNFINISHED is a static mobile-first prototype whose core mechanic is deterministic causal inheritance between sessions.
+UNFINISHED has two deliberately separate surfaces:
 
-## Runtime flow
+1. **Decentraland World** — the canonical shared human chain.
+2. **Web sandbox** — a local 2.5D onboarding experience seeded from Maya.
+
+The web explains the mechanic. Decentraland owns the real multiplayer state.
+
+## Canonical Decentraland flow
 
 ```text
-previous authored state
+latest Supabase handoff
         ↓
 anchor × vector × reach
         ↓
@@ -13,55 +18,104 @@ pressure × tension × engineBias
         ↓
 CONNECT or RISE
         ↓
-usable route
+generated traversable route
         ↓
-next successor state
+player physically reaches handoff beacon
+        ↓
+author successor condition
+        ↓
+append next state to shared chain
+        ↓
+future player inherits latest state
 ```
 
-The human chain and optional notes travel alongside that state as social metadata. They do not authorize execution and do not randomize the engine.
+The shared state includes generation, parent state, author identity, condition geometry, pressure/tension, and recent chain metadata.
 
-## Runtime layers
+## Decentraland runtime
 
-- `core-v51.html` — deterministic causal core and application shell.
-- `v52-patch.js` — embodied route use and spatial authoring.
-- `v521-fix.js` — source-neutral QA protections.
-- `v53-submission.*` — mobile submission presentation, opaque test links, hold-to-commit interaction.
-- `v531-final.*` — architectural world treatment and judge-fast path.
-- `v532-experience.*` — human lineage, receipts, world-first experience translation.
-- `v533-mobile.*` — mobile fit, keyboard safety, traveler/socket polish.
-- `v533-r2.*` — compact final receipt and safe successor-link sharing.
+Native SDK7 source lives in `decentraland/`.
 
-The public bootstrap is `index.html`, which loads the frozen stack from `runtime/`.
+Key responsibilities:
 
-## Causal grammar
+- `src/shared.ts` — Supabase shared-state adapter and network diagnostics;
+- `src/game.ts` — inherited-state loading, causal completion, route generation, successor persistence, self/conflict handling;
+- `src/world.ts` — Memory Beacon, Memory Bridge and Chain Monument visual system;
+- `src/ui.tsx` — mobile-safe interaction, recent-chain memory, receipts and handoff/share controls;
+- `scene.json` — `unfinished.dcl.eth` World configuration and `USE_FETCH` permission.
+
+### Persistence
+
+The active backend is Supabase.
+
+- RLS is enabled;
+- the public Decentraland client does not contain a private service secret;
+- successor states are append-oriented and preserve `parent_state_id`;
+- the World resolves the latest canonical state on entry.
+
+The project has persisted a linked generation 1 → 2 → 3 chain, with generation 2 and 3 authored by different wallet identities.
+
+## Identity and authority
+
+Display names are presentation metadata. Runtime authorship is tied to Decentraland player/wallet identity rather than trusting a typed name.
+
+Self-handoff is intentionally blocked: a player who authored the latest state sees `YOUR HANDOFF IS WAITING` until another real player advances the chain.
+
+## Handoff model
+
+The public World link is stable:
 
 ```text
-CONNECT → resolves SPAN   → creates HEIGHT
-RISE    → resolves HEIGHT → creates SPAN
+decentraland://?realm=unfinished.dcl.eth&dclenv=org
 ```
 
-The next player therefore receives a problem that is downstream of both the prior authored condition and the current player’s completion.
+It does **not** encode a unique handoff ID. The recipient enters the same World and inherits the latest canonical state.
 
-## Identity model
+This is sufficient for the intended single shared-chain demo, but the repository does not claim arbitrary multi-chain routing or production-grade multi-writer concurrency.
 
-Prototype display names are optional and are deliberately separated from state authority.
+## Memory Beacon visual system
+
+The final World direction combines:
+
+- **Ritual Beacon** — the central landmark and handoff ritual;
+- **Memory Bridge** — visible transmission / route language;
+- **Chain Monument** — cumulative spatial memory.
+
+Successive generations vary deterministically while retaining one coherent visual language.
+
+## Web sandbox architecture
+
+The root web app boots the validated 2.5D causal runtime from `runtime/`.
+
+Every fresh root visit is forced to the fixed Maya seed and creates only a local browser branch.
+
+The web sandbox:
+
+- does not read Supabase;
+- does not write Supabase;
+- does not expose the canonical current chain;
+- can share a local branch for explanation/testing;
+- directs players into `unfinished.dcl.eth` for the real shared experience.
+
+## Browser runtime layers
 
 ```text
-Maya → Faadil → Benita → …
+runtime/core-v51.html
+        ↓
+runtime/v52-patch.js
+        ↓
+runtime/v521-fix.js
+        ↓
+runtime/v53-submission.*
+        ↓
+runtime/v531-final.*
+        ↓
+runtime/v532-experience.*
+        ↓
+runtime/v533-mobile.*
+        ↓
+runtime/v533-r2.*
+        ↓
+runtime/v534-web-sandbox.*
 ```
 
-That lineage is presentation/social metadata. Production Decentraland identity remains an integration boundary rather than a claim made by the browser prototype.
-
-## Persistence model
-
-The prototype proves transferable encoded handoff state and local stale/self-completion protections. It does not claim production-grade shared durable storage or atomic shared concurrency.
-
-## Mobile design constraints
-
-- large touch targets;
-- short thumb-first interactions;
-- press-and-hold commitment;
-- reduced-motion support;
-- keyboard-aware successor authoring;
-- direct native share / URL-copy handoff;
-- no requirement for simultaneous presence.
+The browser stack remains useful as a low-friction sandbox and as historical validation of the causal grammar; it is not the canonical shared runtime.
