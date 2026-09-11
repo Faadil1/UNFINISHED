@@ -7,6 +7,7 @@ import {
   getGameView,
   reloadSharedHandoff
 } from './game'
+import { getLastNetworkError } from './shared'
 
 const HANDOFF_LINK = 'decentraland://?realm=unfinished.dcl.eth&dclenv=org'
 
@@ -61,24 +62,31 @@ function copyHandoffLink() {
 function BrandBar() {
   const game = getGameView()
   const live = game.syncStatus === 'LIVE' || game.syncStatus === 'SAVED'
-  const status = live ? 'LIVE CHAIN' : game.syncStatus === 'SAVING' ? 'SAVING' : game.syncStatus
+  const diagnostic = getLastNetworkError()
+  const status = live
+    ? 'LIVE CHAIN'
+    : game.syncStatus === 'SAVING'
+      ? 'SAVING'
+      : game.syncStatus === 'OFFLINE' && diagnostic
+        ? `OFFLINE · ${diagnostic.slice(0, 76)}`
+        : game.syncStatus
 
   return (
     <UiEntity
-      uiTransform={{ width: 470, height: 58, padding: 12, flexDirection: 'row' }}
+      uiTransform={{ width: 780, height: 58, padding: 12, flexDirection: 'row' }}
       uiBackground={{ color: Color4.create(0.07, 0.02, 0.09, 0.86) }}
     >
       <Label
         value="UNFINISHED"
         fontSize={26}
         color={TEXT}
-        uiTransform={{ width: 245, height: 34 }}
+        uiTransform={{ width: 205, height: 34 }}
       />
       <Label
         value={`● ${status}`}
-        fontSize={17}
+        fontSize={14}
         color={live ? CORAL : MUTED}
-        uiTransform={{ width: 190, height: 30 }}
+        uiTransform={{ width: 545, height: 32 }}
       />
     </UiEntity>
   )
@@ -303,7 +311,7 @@ function UnfinishedUi() {
         uiTransform={{
           positionType: 'absolute',
           position: { left: 32, top: 24 },
-          width: 480,
+          width: 790,
           height: 64
         }}
       >
