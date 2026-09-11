@@ -3,10 +3,11 @@
   "runtimeVersion": "7",
   "display": {
     "title": "UNFINISHED",
-    "description": "Another real person's unfinished decision becomes the level you have to play."
+    "description": "A mobile-first social world where another real person's unfinished decision becomes the level you have to play. Inherit a condition, complete it, use the result, then leave the next problem for someone else.",
+    "navmapThumbnail": "images/navmap.png"
   },
   "main": "bin/index.js",
-  "tags": ["game", "social"],
+  "tags": ["game", "social", "mobile", "cooperative"],
   "scene": {
     "parcels": ["0,0"],
     "base": "0,0"
@@ -22,8 +23,8 @@
       },
       "cameraTarget": {
         "x": 8,
-        "y": 1,
-        "z": 8
+        "y": 1.4,
+        "z": 6
       }
     }
   ],

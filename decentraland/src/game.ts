@@ -8,31 +8,53 @@ import {
 } from '@dcl/sdk/ecs'
 import { Color4, Vector3 } from '@dcl/sdk/math'
 import { getPlayer } from '@dcl/sdk/src/players'
+import {
+  appendNextState,
+  CHAIN_ID,
+  fetchChainAuthors,
+  fetchLatestState,
+  SharedStateRow
+} from './shared'
 
 export type GamePhase = 'INHERIT' | 'TRAVERSE' | 'AUTHOR' | 'RECEIPT'
 export type Completion = 'CONNECT' | 'RISE'
 export type Pressure = 'SPAN' | 'HEIGHT'
+export type SyncStatus =
+  | 'LOADING'
+  | 'LIVE'
+  | 'OFFLINE'
+  | 'SAVING'
+  | 'SAVED'
+  | 'CONFLICT'
 
 export type HandoffState = {
+  id: string | null
+  chainId: string
   anchor: 'LOW' | 'MID' | 'HIGH'
   vector: 'FLAT' | 'UP'
   reach: 'SHORT' | 'LONG'
   pressure: Pressure
   tension: number
   engineBias: number
+  authorId: string
   author: string
+  note: string
   chain: string[]
   generation: number
 }
 
 const seedState: HandoffState = {
+  id: null,
+  chainId: CHAIN_ID,
   anchor: 'HIGH',
   vector: 'FLAT',
   reach: 'SHORT',
   pressure: 'SPAN',
   tension: 3,
   engineBias: 0.25,
+  authorId: 'seed-maya',
   author: 'Maya',
+  note: 'I left this unfinished for whoever arrives next.',
   chain: ['Maya'],
   generation: 1
 }
@@ -42,17 +64,27 @@ let phase: GamePhase = 'INHERIT'
 let completion: Completion | null = null
 let nextState: HandoffState | null = null
 let currentPlayerName = 'Visitor'
+let currentPlayerId = 'visitor'
+let sharedAuthors: string[] = ['Maya']
+let syncStatus: SyncStatus = 'LOADING'
+let syncMessage = 'Loading the latest human handoff…'
 let routeEndpoint = Vector3.create(8, 0.8, 12)
-let routeEntities: Entity[] = []
-let conditionEntities: Entity[] = []
+
+const routeEntities: Entity[] = []
+const conditionEntities: Entity[] = []
+const memoryEntities: Entity[] = []
+const environmentEntities: Entity[] = []
 
 const COLORS = {
-  plum: Color4.create(0.18, 0.07, 0.22, 1),
-  violet: Color4.create(0.39, 0.18, 0.49, 1),
-  lilac: Color4.create(0.72, 0.55, 0.88, 1),
-  coral: Color4.create(0.95, 0.38, 0.42, 1),
-  rose: Color4.create(0.88, 0.27, 0.55, 1),
-  ivory: Color4.create(0.98, 0.94, 0.88, 1)
+  night: Color4.create(0.055, 0.025, 0.08, 1),
+  plum: Color4.create(0.13, 0.045, 0.17, 1),
+  mulberry: Color4.create(0.24, 0.07, 0.23, 1),
+  violet: Color4.create(0.38, 0.16, 0.48, 1),
+  lilac: Color4.create(0.72, 0.54, 0.9, 1),
+  coral: Color4.create(0.98, 0.39, 0.42, 1),
+  rose: Color4.create(0.9, 0.25, 0.53, 1),
+  ivory: Color4.create(1, 0.94, 0.82, 1),
+  ash: Color4.create(0.34, 0.28, 0.37, 1)
 }
 
 function spawnBox(
@@ -67,8 +99,8 @@ function spawnBox(
   if (collider) MeshCollider.setBox(entity)
   Material.setPbrMaterial(entity, {
     albedoColor: color,
-    metallic: 0.12,
-    roughness: 0.72
+    metallic: 0.08,
+    roughness: 0.74
   })
   return entity
 }
@@ -78,56 +110,159 @@ function clearEntities(list: Entity[]) {
   list.length = 0
 }
 
+function spawnEnvironment() {
+  if (environmentEntities.length) return
+
+  environmentEntities.push(
+    spawnBox(Vector3.create(8, -0.08, 8), Vector3.create(16, 0.16, 16), COLORS.night, true)
+  )
+  environmentEntities.push(
+    spawnBox(Vector3.create(8, 0.02, 8), Vector3.create(8.6, 0.08, 14), COLORS.plum, false)
+  )
+
+  const gateZ = [3.2, 8.1, 13.1]
+  gateZ.forEach((z, index) => {
+    const height = index === 1 ? 3.8 : 3.1
+    const tint = index === 1 ? COLORS.mulberry : COLORS.violet
+    environmentEntities.push(
+      spawnBox(Vector3.create(2.1, height / 2, z), Vector3.create(0.48, height, 0.48), tint, false),
+      spawnBox(Vector3.create(13.9, height / 2, z), Vector3.create(0.48, height, 0.48), tint, false),
+      spawnBox(Vector3.create(8, height, z), Vector3.create(12.2, 0.32, 0.42), tint, false)
+    )
+  })
+
+  const lanterns = [
+    [4.2, 1.15, 3.1],
+    [11.8, 1.5, 5.7],
+    [3.7, 1.75, 9.5],
+    [12.2, 1.2, 11.6]
+  ]
+  lanterns.forEach((p, index) => {
+    environmentEntities.push(
+      spawnBox(
+        Vector3.create(p[0], p[1], p[2]),
+        Vector3.create(0.34, 0.34, 0.34),
+        index % 2 === 0 ? COLORS.coral : COLORS.lilac,
+        false
+      )
+    )
+  })
+
+  environmentEntities.push(
+    spawnBox(Vector3.create(8, 0.14, 1.8), Vector3.create(5.8, 0.24, 1.7), COLORS.mulberry, true),
+    spawnBox(Vector3.create(8, 0.16, 14.1), Vector3.create(5.8, 0.28, 1.5), COLORS.mulberry, true)
+  )
+}
+
+function spawnMemoryTrail() {
+  clearEntities(memoryEntities)
+  const visible = sharedAuthors.slice(-6)
+
+  visible.forEach((_, index) => {
+    const x = 4.2 + index * 0.76
+    const height = 0.35 + index * 0.09
+    memoryEntities.push(
+      spawnBox(
+        Vector3.create(x, 0.32 + height / 2, 2.1),
+        Vector3.create(0.34, height, 0.34),
+        index === visible.length - 1 ? COLORS.coral : COLORS.lilac,
+        false
+      )
+    )
+  })
+}
+
 function spawnInheritedCondition() {
   clearEntities(conditionEntities)
 
-  const anchorY = inherited.anchor === 'HIGH' ? 1.45 : inherited.anchor === 'MID' ? 1.0 : 0.55
-  const reachScale = inherited.reach === 'LONG' ? 2.4 : 1.45
-  const vectorLift = inherited.vector === 'UP' ? 0.8 : 0.0
+  const anchorY = inherited.anchor === 'HIGH' ? 1.6 : inherited.anchor === 'MID' ? 1.15 : 0.72
+  const reachScale = inherited.reach === 'LONG' ? 2.6 : 1.55
+  const vectorLift = inherited.vector === 'UP' ? 0.72 : 0
+  const tensionLift = Math.max(0, inherited.tension - 2) * 0.12
 
   conditionEntities.push(
-    spawnBox(Vector3.create(5.1, anchorY, 4.6), Vector3.create(1.1, anchorY * 1.4, 1.1), COLORS.violet, false)
-  )
-  conditionEntities.push(
     spawnBox(
-      Vector3.create(8, 0.4 + vectorLift, 5.2),
-      Vector3.create(reachScale, 0.28, 1.15),
-      inherited.pressure === 'SPAN' ? COLORS.coral : COLORS.lilac,
+      Vector3.create(5.2, anchorY / 2 + 0.2, 4.55),
+      Vector3.create(0.9, anchorY, 0.9),
+      COLORS.violet,
+      false
+    ),
+    spawnBox(
+      Vector3.create(10.8, 0.7 + tensionLift, 4.55),
+      Vector3.create(0.9, 1.4 + tensionLift, 0.9),
+      COLORS.rose,
       false
     )
   )
+
+  const partialColor = inherited.pressure === 'SPAN' ? COLORS.coral : COLORS.lilac
   conditionEntities.push(
-    spawnBox(Vector3.create(10.9, 0.85, 4.6), Vector3.create(0.9, 1.7, 0.9), COLORS.rose, false)
+    spawnBox(
+      Vector3.create(6.65, 0.52 + vectorLift, 4.55),
+      Vector3.create(reachScale * 0.52, 0.24, 0.95),
+      partialColor,
+      false
+    ),
+    spawnBox(
+      Vector3.create(9.35, 0.52 + vectorLift + tensionLift, 4.55),
+      Vector3.create(reachScale * 0.52, 0.24, 0.95),
+      partialColor,
+      false
+    )
+  )
+
+  conditionEntities.push(
+    spawnBox(Vector3.create(8, 0.86 + vectorLift, 4.55), Vector3.create(0.22, 1.45, 0.22), COLORS.ivory, false)
   )
 }
 
 function spawnRoute(kind: Completion) {
   clearEntities(routeEntities)
 
-  const positions = [4, 6, 8, 10, 12]
+  const positions = [4.1, 5.9, 7.7, 9.5, 11.3, 12.7]
+  const spanAmplitude = inherited.pressure === 'SPAN' ? 0.58 + inherited.tension * 0.04 : 0.26
+  const baseRise = inherited.pressure === 'HEIGHT' ? 0.1 + inherited.tension * 0.035 : 0
 
   positions.forEach((z, index) => {
-    const y = kind === 'RISE' ? 0.18 + index * 0.18 : 0.18
-    const x = kind === 'CONNECT' ? 8 : 7.25 + index * 0.38
-    const width = kind === 'CONNECT' ? 3.2 : 2.6
+    const progress = index / (positions.length - 1)
+    const y =
+      0.22 +
+      baseRise * index +
+      (kind === 'RISE' ? progress * 0.95 : inherited.vector === 'UP' ? progress * 0.42 : 0)
+    const x =
+      kind === 'CONNECT'
+        ? 8 + (index % 2 === 0 ? -1 : 1) * spanAmplitude
+        : 7.25 + progress * 1.5
+    const width = inherited.reach === 'LONG' ? 2.65 : 3.05
 
     routeEntities.push(
       spawnBox(
         Vector3.create(x, y, z),
-        Vector3.create(width, 0.32, 1.8),
+        Vector3.create(width, 0.32, 1.56),
         index % 2 === 0 ? COLORS.coral : COLORS.lilac,
         true
       )
     )
   })
 
-  routeEndpoint = Vector3.create(kind === 'CONNECT' ? 8 : 8.77, kind === 'RISE' ? 1.1 : 0.8, 12)
+  const endY =
+    0.82 +
+    (kind === 'RISE' ? 0.95 : inherited.vector === 'UP' ? 0.42 : 0) +
+    (inherited.pressure === 'HEIGHT' ? baseRise * (positions.length - 1) : 0)
+
+  routeEndpoint = Vector3.create(kind === 'CONNECT' ? 8.58 : 8.75, endY, 12.7)
 
   routeEntities.push(
     spawnBox(
-      Vector3.create(routeEndpoint.x, 1.3, 13.25),
-      Vector3.create(0.28, 2.6, 0.28),
+      Vector3.create(routeEndpoint.x, Math.max(1.5, endY + 0.55), 13.7),
+      Vector3.create(0.32, 2.9, 0.32),
       COLORS.ivory,
+      false
+    ),
+    spawnBox(
+      Vector3.create(routeEndpoint.x, Math.max(2.75, endY + 1.75), 13.7),
+      Vector3.create(1.6, 0.22, 0.32),
+      COLORS.coral,
       false
     )
   )
@@ -142,21 +277,117 @@ function routeUseSystem() {
   const dx = transform.position.x - routeEndpoint.x
   const dz = transform.position.z - routeEndpoint.z
 
-  if (Math.abs(dx) < 2.1 && Math.abs(dz) < 1.35) {
+  if (Math.abs(dx) < 2.1 && Math.abs(dz) < 1.55) {
     phase = 'AUTHOR'
   }
 }
 
-export function initGame() {
-  const player = getPlayer()
-  if (player?.name?.trim()) currentPlayerName = player.name.trim()
+function mapRow(row: SharedStateRow, chain: string[]): HandoffState {
+  return {
+    id: row.id,
+    chainId: row.chain_id,
+    anchor: row.anchor,
+    vector: row.vector,
+    reach: row.reach,
+    pressure: row.pressure,
+    tension: row.tension,
+    engineBias: Number(row.engine_bias),
+    authorId: row.author_id,
+    author: row.author_name,
+    note: row.note ?? '',
+    chain: chain.length ? chain : [row.author_name],
+    generation: row.generation
+  }
+}
 
-  spawnInheritedCondition()
+async function hydrateSharedState() {
+  syncStatus = 'LOADING'
+  syncMessage = 'Loading the latest human handoff…'
+
+  try {
+    const [latest, authors] = await Promise.all([fetchLatestState(), fetchChainAuthors()])
+    if (!latest) throw new Error('No shared state found')
+
+    sharedAuthors = authors.length ? authors : [latest.author_name]
+    inherited = mapRow(latest, sharedAuthors)
+    completion = null
+    nextState = null
+    phase = 'INHERIT'
+    syncStatus = 'LIVE'
+    syncMessage = `Live chain · generation ${inherited.generation}`
+
+    clearEntities(routeEntities)
+    spawnInheritedCondition()
+    spawnMemoryTrail()
+  } catch (error) {
+    inherited = { ...seedState, chain: [...seedState.chain] }
+    sharedAuthors = ['Maya']
+    completion = null
+    nextState = null
+    phase = 'INHERIT'
+    syncStatus = 'OFFLINE'
+    syncMessage = 'Shared chain unavailable · local fallback'
+
+    clearEntities(routeEntities)
+    spawnInheritedCondition()
+    spawnMemoryTrail()
+  }
+}
+
+async function persistNextState(candidate: HandoffState) {
+  if (!inherited.id) {
+    syncStatus = 'OFFLINE'
+    syncMessage = 'Played locally · shared handoff was unavailable'
+    return
+  }
+
+  syncStatus = 'SAVING'
+  syncMessage = 'Saving your handoff to the human chain…'
+
+  try {
+    await appendNextState({
+      parentStateId: inherited.id,
+      generation: candidate.generation,
+      authorId: currentPlayerId,
+      authorName: currentPlayerName,
+      anchor: candidate.anchor,
+      vector: candidate.vector,
+      reach: candidate.reach,
+      pressure: candidate.pressure,
+      tension: candidate.tension,
+      engineBias: candidate.engineBias,
+      note: candidate.note
+    })
+
+    const [latest, authors] = await Promise.all([fetchLatestState(), fetchChainAuthors()])
+    if (latest) {
+      sharedAuthors = authors.length ? authors : [...sharedAuthors, currentPlayerName]
+      nextState = mapRow(latest, sharedAuthors)
+      spawnMemoryTrail()
+    }
+
+    syncStatus = 'SAVED'
+    syncMessage = 'Shared handoff saved · pass the world to another person'
+  } catch (error) {
+    syncStatus = 'CONFLICT'
+    syncMessage = 'Someone else continued first · refresh to inherit their handoff'
+  }
+}
+
+export function initGame() {
+  const player = getPlayer() as { name?: string; userId?: string } | null
+  if (player?.name?.trim()) currentPlayerName = player.name.trim()
+  currentPlayerId =
+    player?.userId?.trim() ||
+    `visitor-${currentPlayerName.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 36)}`
+
+  spawnEnvironment()
   engine.addSystem(routeUseSystem)
+  void hydrateSharedState()
 }
 
 export function chooseCompletion(kind: Completion) {
-  if (phase !== 'INHERIT') return
+  if (phase !== 'INHERIT' || syncStatus === 'LOADING' || isSelfBlocked()) return
 
   completion = kind
   spawnRoute(kind)
@@ -164,30 +395,39 @@ export function chooseCompletion(kind: Completion) {
 }
 
 export function chooseNextPressure(pressure: Pressure) {
-  if (phase !== 'AUTHOR' || !completion) return
+  if (phase !== 'AUTHOR' || !completion || syncStatus === 'SAVING') return
 
-  nextState = {
+  const candidate: HandoffState = {
+    id: null,
+    chainId: inherited.chainId,
     anchor: completion === 'CONNECT' ? 'HIGH' : 'MID',
     vector: completion === 'RISE' ? 'UP' : 'FLAT',
     reach: inherited.reach,
     pressure,
     tension: Math.min(5, inherited.tension + 1),
-    engineBias: Math.max(-1, Math.min(1, inherited.engineBias + (completion === 'CONNECT' ? 0.25 : -0.25))),
+    engineBias: Math.max(
+      -1,
+      Math.min(1, inherited.engineBias + (completion === 'CONNECT' ? 0.25 : -0.25))
+    ),
+    authorId: currentPlayerId,
     author: currentPlayerName,
-    chain: [...inherited.chain, currentPlayerName],
+    note: `I completed ${inherited.author}'s unfinished condition and left ${pressure.toLowerCase()} for whoever arrives next.`,
+    chain: [...sharedAuthors, currentPlayerName],
     generation: inherited.generation + 1
   }
 
+  nextState = candidate
   phase = 'RECEIPT'
+  void persistNextState(candidate)
 }
 
-export function resetLocalDemo() {
+export function reloadSharedHandoff() {
   clearEntities(routeEntities)
-  inherited = { ...seedState, chain: [...seedState.chain] }
-  completion = null
-  nextState = null
-  phase = 'INHERIT'
-  spawnInheritedCondition()
+  void hydrateSharedState()
+}
+
+export function isSelfBlocked() {
+  return inherited.generation > 1 && inherited.authorId === currentPlayerId
 }
 
 export function getGameView() {
@@ -197,6 +437,11 @@ export function getGameView() {
     completion,
     nextState,
     currentPlayerName,
+    currentPlayerId,
+    sharedAuthors,
+    syncStatus,
+    syncMessage,
+    selfBlocked: isSelfBlocked(),
     chain: nextState?.chain ?? inherited.chain
   }
 }
