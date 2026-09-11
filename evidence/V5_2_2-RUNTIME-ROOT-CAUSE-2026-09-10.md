@@ -1,15 +1,23 @@
 # V5.2.2 Runtime Root-Cause Note — 2026-09-10
 
-A freshly surfaced generated WORLD URL was labeled by the browser/page as **UNFINISHED — Intelligent Causal Loop V5.1** even though V5.2.1 had been deployed successfully.
+## Evidence
+A fresh InPrivate QA recording was run from the production domain using a newly generated WORLD condition.
 
-This is stronger evidence than the earlier stale-tab hypothesis: a generated test URL can still land on the V5.1 core identity. Rather than continue debugging a multi-file bootstrap, V5.2.2 removes the entire failure class.
+Observed:
+- V5.2 embodied 2.5D visuals were present;
+- `WORLD STATE` still appeared immediately after START;
+- the operator handoff output did not show the V5.2.1 dedicated COPY/OPEN buttons.
 
-## Corrective decision
-- collapse V5.2 embodied interaction + V5.2.1 QA fixes into one self-contained `index.html`;
-- remove the Vercel `/` → `v52.html` rewrite;
-- make `/` with any query string the direct canonical runtime;
-- keep historical patch files only as non-active artifacts;
-- verify in a fresh/private tab before using cold testers.
+## Conclusion
+The cache/stale-tab hypothesis is rejected. The public root `/` was not reliably traversing the V5.2.1 bootstrap path defined through the Vercel rewrite.
 
-## Gate impact
-No cold-test evidence is invalidated because no V5.2.1 run was scored. Gate remains `RUNTIME_SMOKE_PENDING / USER_GATE_NOT_YET_VALIDATED` until the single-file runtime passes smoke.
+## Corrective action
+V5.2.2 makes `index.html` the canonical readiness-gated bootstrap itself:
+- old causal `index.html` is frozen as `core-v51.html`;
+- root `index.html` loads that core with `cache: no-store`;
+- V5.2 and V5.2.1 execute before the document becomes interactive;
+- `/v52.html` redirects to `/`;
+- Vercel root rewrite is removed.
+
+## Gate
+This is QA evidence, not a cold test. Gate remains `RUNTIME_SMOKE_PENDING / USER_GATE_NOT_YET_VALIDATED` until a fresh smoke confirms source-neutral pre-debrief behavior and operator COPY/OPEN controls.

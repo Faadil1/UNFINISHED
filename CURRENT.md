@@ -1,10 +1,10 @@
 # CURRENT — UNFINISHED
 
 Date: 2026-09-10
-Status: **PROTOTYPE_KILL_TEST_V5_2_1_ATOMIC_FIX / RUNTIME_SMOKE_PENDING / USER_GATE_NOT_YET_VALIDATED**
+Status: **PROTOTYPE_KILL_TEST_V5_2_2_ROOT_FIX / RUNTIME_SMOKE_PENDING / USER_GATE_NOT_YET_VALIDATED**
 
 ## Candidate
-**UNFINISHED — Intelligent Causal Loop V5.2.1**
+**UNFINISHED — Intelligent Causal Loop V5.2.2**
 
 Rule: **NO ONE FINISHES WHAT THEY START.**
 
@@ -15,62 +15,53 @@ Loop:
 **INHERIT → INTERPRET → COMPLETE → PLAY → AUTHOR NEXT → LEAVE → CONSEQUENCE**
 
 ## Required winning chain
-**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.2.1 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
+**RUBRIC → PAIN → PROBLEM → DIFFERENTIATOR → V5.2.2 KILL TEST → PDPB BUILDER → EXECUTION → EVIDENCE → STORY → DEMO → Q&A**
 
-Current gate: **V5.2.1 KILL TEST PRE-SMOKE**. PDPB Builder remains blocked until PASS.
+Current gate: **V5.2.2 RUNTIME SMOKE**. PDPB Builder remains blocked until PASS.
 
-## Canonical source
+## Canonical runtime
 - Repo: `Faadil1/UNFINISHED`
 - Branch: `main`
-- Runtime: `https://unfinished-delta.vercel.app`
+- Production: `https://unfinished-delta.vercel.app`
 - Operator: `https://unfinished-delta.vercel.app/?author=1`
-- Active bootstrap: `v52.html`
-- Core: `index.html`
-- Perceptual patch: `v52-patch.js`
-- QA fix: `v521-fix.js`
-- Protocol: `TEST-PROTOCOL.md`
-- Matrix: `TEST-MATRIX-V5.md`
-- Hardening: `HIDDEN-SPOTS-HARDENING-V5.md`
-- Handoff: `CANONICAL-HANDOFF.md`
+- Public entry: `index.html`
+- Frozen causal core: `core-v51.html`
+- Perceptual layer: `v52-patch.js`
+- QA/source-neutral layer: `v521-fix.js`
+- Legacy `/v52.html` now redirects to `/` preserving query/hash.
+- `vercel.json` no longer rewrites `/` away from `index.html`.
 
-## V5.2.1 release fix
-An 87-second V5.2 desktop QA recording confirmed the causal loop and 2.5D path work, but exposed two release-blocking defects:
-1. explicit `WORLD STATE` could flash before debrief because the V5.1 core was interactable before the V5.2 patch finished loading;
-2. HUMAN/WORLD test URLs were plain selectable text, making clipboard mistakes easy after copying evidence JSON.
+## Why V5.2.2 exists
+Fresh InPrivate QA proved the public root could still expose the V5.1 core directly: WORLD runs showed `WORLD STATE` before debrief and the operator output lacked the dedicated matched-link COPY/OPEN controls. This falsified the cache-only hypothesis.
 
-V5.2.1 fixes both without changing the causal engine:
-- the bootstrap keeps the page hidden/non-interactive until V5.2 + V5.2.1 scripts are loaded;
-- any explicit pre-debrief source badge is neutralized to `STARTING CONDITION`;
-- HUMAN/WORLD operator output gets dedicated COPY and OPEN buttons.
+V5.2.2 removes routing ambiguity. `/` itself is now the readiness-gated bootstrap that loads the frozen V5.1 causal core, then synchronously applies V5.2 and V5.2.1 before interaction is exposed.
 
 ## Causal model preserved
 Prior human authors: `anchor + vector + reach`.
 Carried deterministic state: `pressure + tension + engineBias`.
 
-`CONNECT` resolves SPAN and creates HEIGHT pressure.
-`RISE` resolves HEIGHT and creates SPAN pressure.
+`CONNECT` resolves SPAN and creates HEIGHT.
+`RISE` resolves HEIGHT and creates SPAN.
 
-The prior human remains a causal author because changing their authored geometry while holding the next action constant changes the playable target/topology.
+No causal-engine logic changed in V5.2.2.
 
 ## Hidden spots — current truth
-Prototype implemented but still **yellow until the real execution layer**:
-- shared persistence: URL/local prototype exists; durable shared backend still required;
-- concurrency: exact local CAS exists; atomic shared CAS still required;
-- identity: opaque local authority exists; connected Decentraland identity still required;
-- mobile: browser 2.5D controls exist; real Decentraland Mobile still required.
+Prototype implemented but still yellow until real execution:
+- shared persistence: URL/local prototype exists; durable shared backend required;
+- concurrency: exact local CAS exists; atomic shared CAS required;
+- identity: opaque local authority exists; connected Decentraland identity required;
+- mobile: browser 2.5D controls exist; actual Decentraland Mobile runtime required.
 
-## Build budget
-Vercel Hobby quota is shared with other projects. UNFINISHED target: **1–2 deployments/24h**, hard ceiling **3–5 only if critical**. No bookkeeping-only deploys. Runtime verification goes in Issue #1.
+## Smoke PASS
+A fresh/private run must prove all of:
+1. author mode loads through `/`;
+2. matched HUMAN/WORLD output shows dedicated COPY + OPEN controls;
+3. WORLD run shows only `STARTING CONDITION` before debrief;
+4. HUMAN run does not expose `<name> LEFT THIS` before debrief;
+5. matched pair preserves identical geometry/pressure/tension/engineBias;
+6. title/debug identify V5.2.2 when inspected.
 
-## Immediate next action
-After V5.2.1 deploy:
-1. smoke-test author mode;
-2. confirm no explicit HUMAN/WORLD badge before debrief;
-3. confirm COPY/OPEN controls exist for both matched links;
-4. confirm HUMAN/WORLD pair preserves identical geometry/pressure/tension/engineBias;
-5. if clean, create Geometry A/B and begin T1–T5 cold tests;
-6. hard verdict PASS / PIVOT / KILL;
-7. PASS → **PDPB Builder immediately**.
+If clean: create Geometry A/B → T1–T5 → PASS/PIVOT/KILL → PASS means **PDPB Builder immediately**.
 
-## Integrity
-No fake users. No display-name authority. No self-completion. No opaque/random AI in the causal core. No treating browser proof as Decentraland proof. No final STORY/DEMO claims before evidence.
+## Canonical discipline
+Every substantive gate transition updates this file and `CANONICAL-HANDOFF.md` together. Runtime verification belongs in Issue #1 so bookkeeping does not trigger another Vercel build.
