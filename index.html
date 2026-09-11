@@ -3,33 +3,175 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#17091f">
+<meta name="theme-color" content="#351238">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>UNFINISHED — Leave something real for what’s next</title>
+<title>UNFINISHED — Playable Co-Authorship</title>
+<meta name="description" content="Inherit another real person's unfinished decision, complete it, use what your choice creates, then leave the next condition behind.">
+<meta property="og:title" content="UNFINISHED — Playable Co-Authorship">
+<meta property="og:description" content="Another real person's unfinished decision becomes the level you have to play.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://unfinished-delta.vercel.app/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UNFINISHED — Playable Co-Authorship">
+<meta name="twitter:description" content="Another real person's unfinished decision becomes the level you have to play.">
 <style>
-html:not(.v533ready) body{visibility:hidden;pointer-events:none}
-html.boot-failed body{visibility:visible;pointer-events:auto}
-body{margin:0;background:#241429;color:#fff8fb;font:14px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-#bootError{display:none;padding:24px}html.boot-failed #bootError{display:block}
+:root{
+  --sky1:#d9869e;--sky2:#c778a5;--sky3:#8f5c99;
+  --plum:#2c092f;--plum2:#40123f;--panel:#321036ee;--panel-soft:#4f1a4fe8;
+  --rose:#ff315f;--coral:#ff747d;--ivory:#fff0d3;--lilac:#d8b9f0;--muted:#ccb7d1;
+  --line:rgba(255,240,211,.16);--glass:rgba(47,10,49,.72);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--plum)}
+body{margin:0;color:var(--ivory);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,var(--sky2) 0 38vh,var(--plum) 74vh);min-height:100vh}
+button,a{font:inherit}button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.shell{max-width:1180px;margin:0 auto;padding:18px 22px 80px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;position:relative;z-index:10}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.09em}
+.mark{width:30px;height:30px;border-radius:9px;background:var(--panel-soft);position:relative;border:1px solid var(--line);box-shadow:0 8px 22px rgba(54,7,58,.25)}
+.mark:before,.mark:after{content:"";position:absolute;left:6px;right:6px;height:3px;border-radius:3px;background:var(--rose)}
+.mark:before{top:8px}.mark:after{bottom:7px;background:var(--coral)}
+.mark i{position:absolute;top:4px;bottom:4px;width:4px;left:13px;border-radius:4px;background:var(--ivory)}
+.nav-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:rgba(56,15,57,.56);backdrop-filter:blur(12px);border-radius:999px;padding:9px 12px;font-size:12px;font-weight:800}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 14px var(--coral)}
+.hero{min-height:620px;display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center;padding:58px 0 26px}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.16em;color:var(--ivory);opacity:.84;text-transform:uppercase}
+h1{font-size:clamp(54px,7vw,100px);line-height:.88;letter-spacing:-.055em;margin:14px 0 20px;max-width:760px}
+.lede{font-size:clamp(19px,2vw,27px);line-height:1.35;max-width:670px;margin:0 0 24px;color:#fff7ed}
+.rule{font-size:14px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:var(--coral);margin:0 0 30px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}.btn{border:0;border-radius:15px;padding:14px 18px;font-weight:900;min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:8px}.btn.primary{background:var(--ivory);color:var(--plum)}.btn.secondary{background:rgba(49,12,52,.56);border:1px solid var(--line);color:var(--ivory);backdrop-filter:blur(12px)}.btn.rose{background:var(--rose);color:white}.btn.small{min-height:42px;padding:10px 14px;font-size:13px}.btn:active{transform:translateY(1px)}
+.hero-note{font-size:12px;color:#f6dbe9;margin-top:14px;max-width:560px}
+.world-stage{height:500px;position:relative;border-radius:32px;border:1px solid rgba(255,255,255,.18);overflow:hidden;background:linear-gradient(180deg,#d38aa8 0 44%,#76506f 44% 46%,#2a092d 46% 100%);box-shadow:0 38px 80px rgba(50,7,50,.3);isolation:isolate}
+.cloud{position:absolute;background:rgba(255,244,239,.38);filter:blur(2px);border-radius:999px}.cloud.a{width:270px;height:58px;top:72px;left:40px;transform:rotate(-3deg)}.cloud.b{width:190px;height:45px;top:126px;right:8px;opacity:.55}.sun{position:absolute;width:96px;height:96px;border-radius:50%;background:#f1dfbc;left:50%;top:150px;transform:translateX(-50%);opacity:.72;box-shadow:0 0 50px #f5d9b044}
+.floor{position:absolute;inset:auto 0 0;height:54%;background:linear-gradient(180deg,#4f224e 0,#270828 88%);clip-path:polygon(0 19%,100% 9%,100% 100%,0 100%)}
+.bridge{position:absolute;left:50%;bottom:0;width:240px;height:295px;transform:translateX(-50%);clip-path:polygon(41% 0,59% 0,100% 100%,0 100%);background:linear-gradient(180deg,#6c2f62,#351137)}
+.rail{position:absolute;bottom:0;width:7px;height:285px;background:linear-gradient(var(--rose),#ff315f22);transform-origin:bottom}.rail.l{left:calc(50% - 103px);transform:rotate(-11deg)}.rail.r{right:calc(50% - 103px);transform:rotate(11deg)}
+.beacon{position:absolute;left:50%;top:145px;width:78px;height:258px;transform:translateX(-50%);z-index:3}.tower{position:absolute;left:28px;top:38px;width:22px;height:190px;background:linear-gradient(180deg,var(--ivory),#fb7c87);box-shadow:0 0 35px #ff6d7566}.core{position:absolute;left:20px;top:92px;width:38px;height:38px;transform:rotate(45deg);background:var(--rose);box-shadow:0 0 40px var(--rose)}.ring{position:absolute;left:50%;border:4px solid rgba(255,240,211,.8);border-radius:50%;transform:translateX(-50%);box-shadow:0 0 25px rgba(255,240,211,.25)}.ring.r1{width:150px;height:54px;top:48px}.ring.r2{width:210px;height:76px;top:110px;border-color:rgba(255,116,125,.75)}
+.stele{position:absolute;bottom:62px;width:25px;background:#6f1c57;border:1px solid #ff6d7f44;box-shadow:0 10px 20px #17031a55}.stele:after{content:"";position:absolute;left:6px;right:6px;top:12px;height:2px;background:#ff6e7c}.stele.s1{height:93px;left:14%}.stele.s2{height:126px;left:25%}.stele.s3{height:105px;right:25%}.stele.s4{height:140px;right:13%}
+.avatar{position:absolute;left:50%;bottom:45px;transform:translateX(-50%);width:36px;height:78px;z-index:5}.avatar:before{content:"";position:absolute;width:25px;height:25px;border-radius:50%;left:5px;top:0;background:#e7b2a1}.avatar:after{content:"";position:absolute;left:2px;top:22px;width:32px;height:52px;border-radius:14px 14px 8px 8px;background:linear-gradient(180deg,#25a6b0,#234b6b)}
+.stage-tag{position:absolute;left:16px;top:16px;z-index:6;background:rgba(43,8,46,.82);border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:11px;font-weight:900;letter-spacing:.08em}.stage-status{position:absolute;right:16px;top:16px;z-index:6;background:rgba(43,8,46,.82);border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:11px;font-weight:900;color:var(--coral)}
+.section{padding:62px 0}.section-title{font-size:clamp(34px,5vw,58px);line-height:1;margin:0 0 14px;letter-spacing:-.035em}.section-sub{max-width:720px;color:var(--muted);font-size:17px;line-height:1.5;margin:0 0 28px}
+.paper{background:#fff5ed;color:#2b1428;border-radius:30px;padding:30px;box-shadow:0 24px 70px rgba(26,3,25,.16)}.paper .section-sub{color:#755d6f}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.how{border:1px solid rgba(52,16,51,.12);border-radius:20px;padding:20px;background:#fffaf6}.how .n{font-size:11px;font-weight:900;letter-spacing:.14em;color:#b43e64}.how h3{font-size:22px;margin:10px 0 8px}.how p{color:#745f6d;line-height:1.45;margin:0;font-size:14px}
+.live-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.live-card,.try-card{background:var(--panel);border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:0 20px 55px rgba(29,4,32,.22)}
+.card-label{font-size:11px;font-weight:900;letter-spacing:.14em;color:var(--lilac);text-transform:uppercase}.condition{font-size:42px;font-weight:950;letter-spacing:-.03em;margin:12px 0 4px}.byline{color:var(--muted);font-size:14px}.chain{margin-top:22px;border-radius:16px;background:rgba(255,255,255,.05);padding:14px}.chain-row{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}.chain-row:last-child{border-bottom:0}.chain-node{width:9px;height:9px;border-radius:50%;background:var(--rose);box-shadow:0 0 12px #ff315f77;flex:0 0 auto}.chain-name{font-weight:850}.chain-role{font-size:12px;color:var(--muted);margin-left:auto}.status-copy{font-size:12px;color:var(--muted);margin-top:12px}
+.demo-state{min-height:310px}.demo-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.demo-head h3{font-size:30px;margin:8px 0}.demo-copy{color:var(--muted);line-height:1.5;max-width:640px}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.choice{border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ivory);border-radius:17px;padding:16px;text-align:left}.choice strong{font-size:18px}.choice span{display:block;color:var(--muted);font-size:12px;margin-top:5px}.choice.selected{outline:2px solid var(--rose);background:rgba(255,49,95,.12)}
+.route-mini{height:82px;margin-top:18px;position:relative;border-radius:16px;overflow:hidden;background:#240728;border:1px solid var(--line)}.route-line{position:absolute;left:9%;right:9%;top:50%;height:4px;background:linear-gradient(90deg,var(--coral),var(--rose),var(--ivory));transform:translateY(-50%);box-shadow:0 0 24px #ff315f}.route-step{position:absolute;width:17px;height:17px;background:var(--rose);transform:rotate(45deg);top:32px}.route-step.a{left:18%}.route-step.b{left:40%}.route-step.c{left:62%}.route-step.d{left:81%;background:var(--ivory)}
+.receipt{margin-top:18px;border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:16px;padding:15px}.receipt strong{display:block;font-size:19px}.receipt small{color:var(--muted);display:block;margin-top:5px}.notice{margin-top:16px;padding:12px 14px;border-radius:14px;background:rgba(255,240,211,.09);border:1px solid rgba(255,240,211,.15);font-size:12px;line-height:1.45;color:#e9d7e8}
+.world-cta{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;background:linear-gradient(135deg,#5b174f,#2b092e 70%);border:1px solid var(--line);border-radius:30px;padding:30px;align-items:center}.world-cta h2{font-size:clamp(34px,4vw,58px);line-height:.98;margin:0 0 12px}.world-cta p{color:#ddc5df;line-height:1.5;max-width:640px}.world-actions{display:grid;gap:10px}.world-code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all;background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:13px;padding:11px;color:#f8e9f5}
+.footer{padding-top:26px;color:#baa2bc;font-size:12px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#fff4e8;color:#2b0c2d;padding:11px 15px;border-radius:999px;font-weight:850;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:20;box-shadow:0 14px 34px rgba(0,0,0,.25)}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:42px}.world-stage{height:430px}.live-grid,.world-cta{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.section{padding:42px 0}}
+@media(max-width:560px){.shell{padding:14px 14px 60px}.nav-actions .pill{display:none}.hero{min-height:auto;gap:26px}.world-stage{height:365px;border-radius:24px}.ring.r2{width:170px}.ring.r1{width:124px}.lede{font-size:18px}.paper,.live-card,.try-card,.world-cta{padding:20px;border-radius:22px}.choice-grid{grid-template-columns:1fr}.condition{font-size:34px}.cta-row .btn{width:100%}.nav-actions .btn{width:auto}.world-actions .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div id="bootError">UNFINISHED could not load the validated submission runtime.</div>
+<div class="shell">
+  <nav class="nav">
+    <div class="brand"><span class="mark" aria-hidden="true"><i></i></span>UNFINISHED</div>
+    <div class="nav-actions">
+      <span class="pill"><span class="dot"></span><span id="navStatus">LIVE CHAIN</span></span>
+      <a class="btn secondary small" href="#try">TRY WEB PREVIEW</a>
+      <a class="btn primary small" id="navOpen" href="decentraland://?realm=unfinished.dcl.eth&dclenv=org">OPEN WORLD</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Playable co-authorship · Decentraland World</div>
+      <h1>No one finishes what they start.</h1>
+      <p class="lede">Another real person’s unfinished decision becomes the level you have to play.</p>
+      <p class="rule">INHERIT → COMPLETE → USE → AUTHOR NEXT → HANDOFF</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#try">TRY THE WEB PREVIEW</a>
+        <a class="btn rose" href="decentraland://?realm=unfinished.dcl.eth&dclenv=org">OPEN IN DECENTRALAND</a>
+      </div>
+      <p class="hero-note">The web preview explains the loop without requiring an install. The real shared chain lives in the Decentraland World.</p>
+    </div>
+
+    <div class="world-stage" aria-label="Memory Beacon visual">
+      <div class="cloud a"></div><div class="cloud b"></div><div class="sun"></div><div class="floor"></div>
+      <div class="bridge"></div><div class="rail l"></div><div class="rail r"></div>
+      <div class="stele s1"></div><div class="stele s2"></div><div class="stele s3"></div><div class="stele s4"></div>
+      <div class="beacon"><div class="ring r1"></div><div class="ring r2"></div><div class="tower"></div><div class="core"></div></div>
+      <div class="avatar"></div>
+      <div class="stage-tag">MEMORY BEACON</div><div class="stage-status">● LIVE CHAIN</div>
+    </div>
+  </header>
+
+  <section class="section paper" id="how">
+    <div class="card-label">The idea in 15 seconds</div>
+    <h2 class="section-title">A level passed from person to person.</h2>
+    <p class="section-sub">UNFINISHED is not a blank sandbox. You inherit a constraint left by someone before you, resolve it through play, and leave a new constraint behind.</p>
+    <div class="how-grid">
+      <div class="how"><div class="n">01 · INHERIT</div><h3>Start from someone else.</h3><p>The latest real contribution becomes your starting condition.</p></div>
+      <div class="how"><div class="n">02 · COMPLETE + USE</div><h3>Your choice changes the route.</h3><p>CONNECT and RISE create different spatial consequences you have to traverse.</p></div>
+      <div class="how"><div class="n">03 · HANDOFF</div><h3>Leave the next problem.</h3><p>Your authored condition becomes the beginning for the next real person.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="try">
+    <div class="card-label">Live state + web preview</div>
+    <h2 class="section-title">Understand the chain before you enter it.</h2>
+    <p class="section-sub">This page reads the same shared chain used by the World. The interaction below is a safe preview only — it does not advance the canonical chain.</p>
+    <div class="live-grid">
+      <div class="live-card">
+        <div class="card-label">Latest shared handoff</div>
+        <div class="condition" id="condition">LOADING…</div>
+        <div class="byline" id="byline">Connecting to the shared chain.</div>
+        <div class="chain" id="chain"><div class="status-copy">Loading recent contributors…</div></div>
+        <div class="status-copy" id="chainStatus">Supabase shared-state read</div>
+      </div>
+
+      <div class="try-card">
+        <div class="demo-state" id="demoState"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="world-cta">
+      <div>
+        <div class="card-label">Canonical experience</div>
+        <h2>Continue the real chain in Decentraland.</h2>
+        <p>The World is where identity, traversal, persistence, and the human handoff are real. If the app is already installed, open it directly. Otherwise install Decentraland, then return to this link.</p>
+      </div>
+      <div class="world-actions">
+        <a class="btn rose" href="decentraland://?realm=unfinished.dcl.eth&dclenv=org">OPEN UNFINISHED WORLD</a>
+        <button class="btn secondary" id="shareWorld">SHARE WORLD</button>
+        <button class="btn secondary" id="copyWorld">COPY DECENTRALAND LINK</button>
+        <div class="world-code">decentraland://?realm=unfinished.dcl.eth&amp;dclenv=org</div>
+      </div>
+    </div>
+    <div class="footer"><span>UNFINISHED — Playable Co-Authorship</span><span>World: unfinished.dcl.eth · Web companion: onboarding + preview</span></div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
 <script>
-(async()=>{
-  try{
-    const r=await fetch('/runtime/core-v51.html',{cache:'no-store'});
-    if(!r.ok)throw new Error('core '+r.status);
-    let html=await r.text();
-    const head=`<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#17091f"><link rel="stylesheet" href="/runtime/v53-submission.css"><link rel="stylesheet" href="/runtime/v531-final.css"><link rel="stylesheet" href="/runtime/v532-experience.css"><link rel="stylesheet" href="/runtime/v533-mobile.css"><link rel="stylesheet" href="/runtime/v533-r2.css"><style>html:not(.v533ready) body{visibility:hidden;pointer-events:none}</style>`;
-    const patches=`<script src="/runtime/v52-patch.js"><\/script><script src="/runtime/v521-fix.js"><\/script><script src="/runtime/v53-submission.js"><\/script><script src="/runtime/v531-final.js"><\/script><script src="/runtime/v532-experience.js"><\/script><script src="/runtime/v533-mobile.js"><\/script><script src="/runtime/v533-r2.js"><\/script><script>(function(){if(!document.documentElement.classList.contains('v533ready')){document.documentElement.classList.add('boot-failed');document.body.innerHTML='<pre style="font:14px system-ui;padding:24px">UNFINISHED V5.3.3 readiness check failed.</pre>';return;}window.__UNFINISHED_RUNTIME__='5.3.3-mobile-finish-r2';document.title='UNFINISHED — Leave something real for what’s next';if(window.S)S.version='5.3.3-mobile-finish-r2';if(document.getElementById('debug'))document.getElementById('debug').textContent='v5.3.3-r2';})();<\/script>`;
-    html=html.replace('</head>',head+'</head>').replace('</body>',patches+'</body>');
-    document.open();document.write(html);document.close();
-  }catch(err){
-    document.documentElement.classList.add('boot-failed');
-    document.body.innerHTML='<pre style="font:14px system-ui;padding:24px">UNFINISHED could not load. '+String(err)+'</pre>';
-  }
-})();
+const API='https://ierowefnowuxybkivnnb.supabase.co/rest/v1';
+const KEY='sb_publishable__iUnIisPHzZeAg_Vz-ccsg_a2tEVSrh';
+const CHAIN='00000000-0000-4000-8000-000000000001';
+const DCL='decentraland://?realm=unfinished.dcl.eth&dclenv=org';
+const SITE='https://unfinished-delta.vercel.app/';
+const FALLBACK=[{author_name:'Maya',generation:1,pressure:'SPAN',tension:3},{author_name:'Faadil',generation:2,pressure:'SPAN',tension:4}];
+let rows=[];let latest=FALLBACK[FALLBACK.length-1];let step=0;let completion='';let nextPressure='';
+const $=id=>document.getElementById(id);
+function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1700)}
+function roleFor(i){if(i===0)return'started';if(i===1)return'completed';return'continued'}
+function renderChain(data){const recent=data.slice(-4);$('chain').innerHTML=recent.map((r,i)=>`<div class="chain-row"><span class="chain-node"></span><span class="chain-name">${esc(r.author_name)}</span><span class="chain-role">${roleFor(Math.max(0,data.length-recent.length+i))}</span></div>`).join('')+`<div class="chain-row"><span class="chain-node" style="background:var(--ivory);box-shadow:none"></span><span class="chain-name">You</span><span class="chain-role">could be next</span></div>`}
+async function loadChain(){try{const r=await fetch(`${API}/chain_states?chain_id=eq.${CHAIN}&select=author_name,generation,pressure,tension,anchor,vector,reach,engine_bias&order=generation.asc`,{headers:{apikey:KEY,Accept:'application/json'}});if(!r.ok)throw new Error('HTTP '+r.status);rows=await r.json();if(!rows.length)throw new Error('empty');latest=rows[rows.length-1];$('navStatus').textContent='LIVE CHAIN';$('chainStatus').textContent=`LIVE · generation ${latest.generation} · read from shared state`; }catch(e){rows=FALLBACK;latest=rows[rows.length-1];$('navStatus').textContent='CHAIN PREVIEW';$('chainStatus').textContent='Fallback preview · live read unavailable';} $('condition').textContent=`${latest.pressure} · T${latest.tension}`;$('byline').textContent=`${latest.author_name} left this as generation ${latest.generation}.`;renderChain(rows);renderDemo();}
+function renderDemo(){const box=$('demoState');if(step===0){box.innerHTML=`<div class="demo-head"><div><div class="card-label">Web preview · inherit</div><h3>${esc(latest.author_name)} left this</h3></div><span class="pill"><span class="dot"></span>${esc(latest.pressure)} · T${latest.tension}</span></div><p class="demo-copy">Choose how you would finish the inherited gap. This mirrors the decision in the World, but stays local to your browser.</p><div class="choice-grid"><button class="choice" data-choice="CONNECT"><strong>↔ CONNECT</strong><span>bridge what is missing</span></button><button class="choice" data-choice="RISE"><strong>↥ RISE</strong><span>push the route upward</span></button></div><div class="notice">WEB PREVIEW ONLY · No write is made to the shared chain.</div>`;box.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{completion=b.dataset.choice;step=1;renderDemo()})}
+else if(step===1){box.innerHTML=`<div class="card-label">Use what your choice created</div><div class="demo-head"><div><h3>${completion} changed the route.</h3><p class="demo-copy">In Decentraland you physically traverse this spatial consequence before you are allowed to author what comes next.</p></div></div><div class="route-mini"><div class="route-line"></div><div class="route-step a"></div><div class="route-step b"></div><div class="route-step c"></div><div class="route-step d"></div></div><button class="btn rose" style="margin-top:18px;width:100%" id="reached">I REACHED THE BEACON</button>`;$('reached').onclick=()=>{step=2;renderDemo()}}
+else if(step===2){box.innerHTML=`<div class="card-label">Author next</div><h3 style="font-size:30px;margin:10px 0">Leave a condition for the next person.</h3><p class="demo-copy">Your choice becomes somebody else’s beginning.</p><div class="choice-grid"><button class="choice" data-next="HEIGHT"><strong>HEIGHT</strong><span>leave a vertical constraint</span></button><button class="choice" data-next="SPAN"><strong>SPAN</strong><span>leave a connective constraint</span></button></div>`;box.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>{nextPressure=b.dataset.next;step=3;renderDemo()})}
+else{const gen=(latest.generation||1)+1;box.innerHTML=`<div class="card-label">Preview receipt</div><h3 style="font-size:30px;margin:10px 0;color:var(--coral)">HANDOFF READY</h3><div class="receipt"><strong>GEN ${gen} · YOU → NEXT</strong><small>${esc(latest.author_name)} → You · ${completion} · next condition ${nextPressure} · T${Math.min(5,(latest.tension||3)+1)}</small></div><div class="notice">This receipt is a local simulation. To make it real and extend the shared human chain, continue in Decentraland.</div><div class="choice-grid"><button class="btn rose" id="openReal">OPEN REAL WORLD</button><button class="btn secondary" id="again">TRY AGAIN</button></div>`;$('openReal').onclick=()=>location.href=DCL;$('again').onclick=()=>{step=0;completion='';nextPressure='';renderDemo()}}}
+async function copyWorld(){try{await navigator.clipboard.writeText(DCL);toast('Decentraland link copied')}catch{toast('Copy unavailable — long-press the link below')}}
+async function shareWorld(){const data={title:'UNFINISHED — Playable Co-Authorship',text:'Another real person’s unfinished decision becomes the level you have to play. Try the web preview, then continue the real chain in Decentraland.',url:SITE};try{if(navigator.share){await navigator.share(data)}else{await navigator.clipboard.writeText(SITE);toast('Web preview link copied')}}catch{}}
+$('copyWorld').onclick=copyWorld;$('shareWorld').onclick=shareWorld;
+loadChain();
 </script>
 </body>
 </html>
