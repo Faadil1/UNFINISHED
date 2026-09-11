@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#241429">
+<meta name="theme-color" content="#17091f">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>UNFINISHED — Leave something real for what’s next</title>
 <style>
 html:not(.v533ready) body{visibility:hidden;pointer-events:none}
@@ -20,7 +21,7 @@ body{margin:0;background:#241429;color:#fff8fb;font:14px system-ui,-apple-system
     const r=await fetch('/runtime/core-v51.html',{cache:'no-store'});
     if(!r.ok)throw new Error('core '+r.status);
     let html=await r.text();
-    const head=`<link rel="stylesheet" href="/runtime/v53-submission.css"><link rel="stylesheet" href="/runtime/v531-final.css"><link rel="stylesheet" href="/runtime/v532-experience.css"><link rel="stylesheet" href="/runtime/v533-mobile.css"><link rel="stylesheet" href="/runtime/v533-r2.css"><style>html:not(.v533ready) body{visibility:hidden;pointer-events:none}</style>`;
+    const head=`<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="theme-color" content="#17091f"><link rel="stylesheet" href="/runtime/v53-submission.css"><link rel="stylesheet" href="/runtime/v531-final.css"><link rel="stylesheet" href="/runtime/v532-experience.css"><link rel="stylesheet" href="/runtime/v533-mobile.css"><link rel="stylesheet" href="/runtime/v533-r2.css"><style>html:not(.v533ready) body{visibility:hidden;pointer-events:none}</style>`;
     const patches=`<script src="/runtime/v52-patch.js"><\/script><script src="/runtime/v521-fix.js"><\/script><script src="/runtime/v53-submission.js"><\/script><script src="/runtime/v531-final.js"><\/script><script src="/runtime/v532-experience.js"><\/script><script src="/runtime/v533-mobile.js"><\/script><script src="/runtime/v533-r2.js"><\/script><script>(function(){if(!document.documentElement.classList.contains('v533ready')){document.documentElement.classList.add('boot-failed');document.body.innerHTML='<pre style="font:14px system-ui;padding:24px">UNFINISHED V5.3.3 readiness check failed.</pre>';return;}window.__UNFINISHED_RUNTIME__='5.3.3-mobile-finish-r2';document.title='UNFINISHED — Leave something real for what’s next';if(window.S)S.version='5.3.3-mobile-finish-r2';if(document.getElementById('debug'))document.getElementById('debug').textContent='v5.3.3-r2';})();<\/script>`;
     html=html.replace('</head>',head+'</head>').replace('</body>',patches+'</body>');
     document.open();document.write(html);document.close();
