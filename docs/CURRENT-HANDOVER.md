@@ -6,7 +6,7 @@ This file is the compact resume point for the next conversation. If chat context
 
 ## Current verdict
 
-**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON IMPLEMENTED / SDK7 BUILD PASS / PUBLISHED-WORLD VISUAL SMOKE PENDING / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
+**SHARED CHAIN PROVEN / SUPABASE LIVE / MAYA -> FAADIL PERSISTED / MEMORY BEACON CODE + CI ARTIFACT PROVEN / PUBLISHED WORLD STILL SERVING OLD VISUAL BUNDLE / DEPLOYMENT-PATH VERIFICATION NEXT / MOBILE VISUAL RETEST PENDING / CROSS-USER PASS C PENDING**
 
 ## Product
 
@@ -62,7 +62,7 @@ Coherent merge of:
 - Memory Bridge -> visible human lineage/transmission path;
 - Chain Monument -> cumulative spatial memory.
 
-## Latest build
+## Memory Beacon implementation
 
 ### World layer
 `decentraland/src/world.ts`
@@ -84,51 +84,85 @@ Implements:
 ### Game integration
 `decentraland/src/game.ts`
 
+Imports and calls:
+- `buildMemoryBeaconWorld()`
+- `refreshMemoryBridge()`
+- `setBeaconState()`
+- `showChoiceSignature()`
+
 The proven shared-chain/gameplay flow remains intact and now drives the visual states.
 
 ### Entry framing
 `decentraland/scene.json`
 
-Spawn camera target now frames the Memory Beacon immediately.
+Spawn camera target frames the Memory Beacon.
 
-## Latest commits
+## Build proof
 
+Core implementation commits:
 - `0279f9eebdeec2f1a34c27f40559e02dda5f088a` — Memory Beacon world layer
 - `4de82db146329592724bae1fe6621fce29862ea8` — game integration
 - `47099928c0698cfd81558a950e79d593c5106adc` — entry framing
-- `ab698acf138e2b8c569aaa700f7cbebc3ff6a728` — visual build evidence
-- `c6a9daf5ce348d00127b5f02f34f6db4011ac18a` — canonical handover
 
 GitHub Actions run `34634950496`: **SUCCESS**.
+Artifact: `unfinished-dcl-build`, id `10276754589`, digest `sha256:6c0617f97b4e5b42446ac204b85cb106d406bcedd2771a3cf82420a197eedcb4`.
+The compiled artifact was inspected and contains `buildMemoryBeaconWorld`, `refreshMemoryBridge`, `setBeaconState`, and `showChoiceSignature`.
+
+## Latest published-world visual smoke
+
+User video uploaded after the Memory Beacon implementation still shows the **old visual environment**:
+- old rectangular gate architecture remains;
+- no Memory Beacon tower;
+- no suspended halos;
+- no Memory Bridge rails/steles;
+- no Chain Monument pillars.
+
+At the same time the runtime still shows `LIVE CHAIN` and the self-handoff UI (`YOUR HANDOFF IS WAITING`, `Maya -> Faadil`).
+
+Conclusion:
+**The latest source and CI artifact are correct, but the published World is still serving an older scene bundle. This is a deployment/local-project mismatch, not a design-code failure.**
 
 ## Exact next gate
 
-Do not ideate further before visual smoke.
+Do not change visual design or backend yet.
 
-1. User runs:
+1. Verify the local repo actually matches `origin/main`:
 
 ```powershell
 cd $HOME\UNFINISHED
-git pull --ff-only
-cd decentraland
-npm run build
+git fetch origin
+git status --short
+git rev-parse HEAD
+git rev-parse origin/main
 ```
 
-2. Republish `unfinished.dcl.eth` in Creator Hub.
-3. Desktop published-world visual smoke:
-   - landmark visible at entry;
-   - no blocked spawn;
-   - inheritance UI readable;
-   - `LIVE CHAIN` still present;
-   - `CONNECT` and `RISE` visibly differ;
-   - traversal still works;
-   - authoring still works;
-   - save still reaches `HANDOFF READY`;
-   - handoff beacon state visibly activates.
-4. If desktop pass succeeds, repeat the essential flow on mobile.
-5. Then send handoff to Benita / second account.
-6. PASS C requires second user to inherit Faadil's persisted state while Faadil is self-blocked from consuming his own latest handoff.
-7. After PASS C, freeze final demo/submission package and judge narrative.
+2. Confirm the Memory Beacon source exists locally:
+
+```powershell
+Select-String -Path .\decentraland\src\game.ts -Pattern "buildMemoryBeaconWorld"
+Select-String -Path .\decentraland\src\world.ts -Pattern "buildMemoryBeaconWorld"
+```
+
+3. Build from the exact repo folder:
+
+```powershell
+cd $HOME\UNFINISHED\decentraland
+npm run build
+Select-String -Path .\bin\index.js -Pattern "buildMemoryBeaconWorld"
+```
+
+4. Before publishing, run local preview from that same folder:
+
+```powershell
+npm run start
+```
+
+5. If local preview shows the Memory Beacon, Creator Hub must be pointed to exactly:
+`C:\Users\fboussari\UNFINISHED\decentraland`
+
+6. Republish only from that exact project/folder.
+7. Re-enter `unfinished.dcl.eth` and verify the landmark visually.
+8. Only after the published-world Memory Beacon is confirmed: full desktop smoke -> mobile smoke -> cross-user PASS C.
 
 ## Visual constraints
 
@@ -139,10 +173,6 @@ npm run build
 - do not regress the proven shared chain;
 - one iconic landmark and one readable human-chain path are more important than extra effects.
 
-## Latest evidence
+## Canonical operational thread
 
-Read:
-`evidence/runtime/MEMORY-BEACON-VISUAL-PASS-2026-09-11.md`
-
-Canonical operational thread:
 GitHub Issue #3 — `Canonical State + Handover — Decentraland Submission`
