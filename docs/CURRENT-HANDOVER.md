@@ -4,9 +4,9 @@
 
 ## Current verdict
 
-**PROJECT FINISHER: READY_FOR_HUMAN_VALIDATION**
+**FRIENDZONE SUBMITTED / PROJECT FINISHER COMPLETE / CANONICAL RUNTIME FROZEN / VERCEL MIRROR PENDING BUILD-RATE RESET**
 
-The product path is complete enough for submission. The repository has been reconciled around the native Decentraland runtime, the Cloudflare 2.5D sandbox, and the real Supabase chain.
+UNFINISHED has been submitted to the Friendzone Mobile Buildathon. The product path is frozen. No new features or visual exploration should be introduced post-submission; only release-blocking fixes or mirror-deployment maintenance are allowed.
 
 ## Product
 
@@ -73,15 +73,30 @@ The web companion:
 
 ## Repository finalization
 
-The Project Finisher pass identified and corrected the main submission-facing inconsistencies:
-- old README treated the browser prototype as primary;
-- README and docs still pointed to Vercel;
-- architecture / validation docs still denied shared durable persistence after Supabase proof existed;
-- Decentraland README still described shared persistence as future work;
-- old empty Vercel config remained at root;
-- proof index underweighted the native Decentraland evidence.
+Project Finisher completed the submission-facing reconciliation:
+- README rewritten as judge-facing / product-first documentation;
+- canonical links moved from Vercel to Cloudflare;
+- architecture / validation docs aligned with real Supabase persistence;
+- Decentraland README aligned with the live runtime;
+- proof index promoted native Decentraland evidence;
+- obsolete empty `vercel.json` removed;
+- mobile handoff fallback now targets `unfinished.pages.dev/handoff.html`;
+- final audit stored at `docs/PROJECT-FINISHER-FINAL.md`.
 
-These have been reconciled on `main`.
+Latest Decentraland SDK7 CI after the Cloudflare handoff-link correction:
+- GitHub Actions run #23: **SUCCESS**.
+
+## Vercel mirror status
+
+The old Vercel mirror may still be useful as a secondary public mirror after submission.
+
+Current state:
+- repository `main` already contains the final current web code;
+- the latest Vercel Git check failed only because the Hobby account hit `build-rate-limit`;
+- this is not a code/build failure;
+- once the limit resets, a single production redeploy is sufficient to bring the Vercel mirror to the current 2.5D mauve build.
+
+Cloudflare remains the canonical public site regardless of the Vercel mirror status.
 
 ## Claims discipline
 
@@ -102,20 +117,22 @@ Do not claim:
 - reconnect/offline guarantees;
 - production moderation / griefing controls.
 
-## Exact final human validation
+## Post-submission rule
 
-Before pressing **Submit** on DoraHacks:
+**Freeze the product.**
 
-1. Open `https://unfinished.pages.dev/` in a fresh/private browser session.
-2. Confirm Maya seed → CONNECT/RISE → avatar starts on the route → traversal works → author next → local receipt.
-3. Open `unfinished.dcl.eth` once on desktop/mobile and confirm the latest published World is healthy.
-4. Confirm the DoraHacks fields use:
-   - Project website: `https://unfinished.pages.dev/`
-   - GitHub: `https://github.com/Faadil1/UNFINISHED`
-   - Demo: `https://youtu.be/As1GI0nlRNw`
-5. Human approves the final submission.
+Allowed post-submission work:
+- keep Cloudflare healthy;
+- update the optional Vercel mirror once its build-rate limit resets;
+- preserve links / demo / evidence;
+- answer judge questions;
+- fix only release-blocking regressions.
 
-No feature expansion after this point. Only release-blocking corrections are allowed.
+Not allowed:
+- new gameplay systems;
+- visual redesigns;
+- architecture expansion;
+- claim inflation.
 
 ## Canonical operational thread
 
